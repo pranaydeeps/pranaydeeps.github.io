@@ -4,8 +4,7 @@ layout: default
 
 <div class="post">
   <h1 class="post-title">{{ page.title }}</h1>
-  <span class="post-date">{{ page.date | date_to_string }}</span>
-  <div class="post-categories" style="margin-bottom: 20px">
+  <div class="post-categories" style="margin-bottom: 10px">
   {% if post %}
     {% assign categories = post.categories %}
   {% else %}
@@ -16,6 +15,8 @@ layout: default
   {% unless forloop.last %}&nbsp;{% endunless %}
   {% endfor %}
 </div>
+  <span class="post-date">{{ page.date | date_to_string }}</span>
+
   {{ content }}
 </div>
 

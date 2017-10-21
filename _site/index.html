@@ -52,10 +52,6 @@
       
         
           
-        
-      
-        
-          
             <a class="sidebar-nav-item" href="/about/">About</a>
           
         
@@ -92,55 +88,14 @@
         Dataset Shortages Pt. 1 - Introduction to Scrapy
       </a>
     </h1>
-
+	<div class="post-categories" style="margin-bottom: 10px">
+  
+  
+   Category: <a href="//categories/#Data-Science">Data-Science</a>
+  
+  
+</div>
     <span class="post-date">23 Jan 2017</span>
-
-    <h2>Dealing with lack of Data</h2>
-
-<p>Deep Learning and Machine Learning are fun hobbies. Endless projects to do. Lots of Open Source Code available. Nothing to stop you. Except Datasets. If you are up to generic problems, then you will probably come across a dataset if you look hard enough. But if you are trying to solve a weird problem. Looking for a dataset can be nightmarish. Let&#39;s see if there are ways you could build your own dataset overnight.</p>
-
-<p>Data Scraping is basically looking for sites with the right data. Taking their HTML and structuring it to a form which is suitable to train your Neural Net, etc. How is this done you ask? The answer to the question is same as the answer to most of our problems. Look for a library/framework in Python!</p>
-
-<p>This particular framework is called <a href="https://scrapy.org/"><strong>Scrapy</strong></a>. And it is nothing short of art. Scrapy gives you the left hand of Picasso so you can call yourself a great artist. You can send requests and extract fields in lesser lines than it takes to write &quot;Hello World&quot; in Java. How to get started? As with any other Python Framework, the <a href="https://docs.scrapy.org/en/latest/">documentation</a> is golden. Have a look at it and you will be ready to go in under an hour. Let me take you through some of it. </p>
-
-<h2>Getting Used to Scrapy</h2>
-
-<p>First of all get it installed with:</p>
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span></span>pip install scrapy</code></pre></figure>
-
-<p>After the setup is complete. You can go two ways. You can either start a project straightaway or first get warmed up using the Scrapy shell. The Scrapy shell is a command shell for interactive scraping. You can test your code using the shell before moving to a proper project. Let&#39;s try getting the list of all flowers on this <a href="http://www.all-my-favourite-flower-names.com/">site</a> from the shell.</p>
-
-<p>Open the shell with:</p>
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span></span>scrapy shell http://www.all-my-favourite-flower-names.com/list-of-flower-names.html</code></pre></figure>
-
-<p>The HTML Response is saved in the &#39;response&#39; variable. You can use CSS or Xpath selectors to get data from the HTML. For example, let&#39;s get the title of the page using both Xpath and CSS Selectors:</p>
-
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//title/text()&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>  <span class="c1">##Using Xpath Selectors</span>
-<span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;title::text&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>  <span class="c1">##Using CSS Selectors</span></code></pre></figure>
-
-<p>The title of the page should be returned. Simple enough, right? </p>
-
-<h2>On to more complex tasks</h2>
-
-<p>Let&#39;s get all the flower names on this particular page. As you may have noticed. The name of the flowers are inside a <em>b</em> tag inside a <em>span</em> tag inside a <em>p</em> tag. So to get the names out:</p>
-
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//p/span/b/text()&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>  <span class="c1">##Using Xpath Selectors</span>
-<span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;p span b::text&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>  <span class="c1">##Using CSS Selectors</span></code></pre></figure>
-
-<p>Surprisingly simple. If your page is slightly more complicated. Try to get closer to the data you need using the nearest <em>div</em> tag in the DOM Tree. Identify the <em>div</em> tag using it&#39;s class or ID or any other such attribute and then move further inside till you have the data you need.</p>
-
-<p>Once you know your selectors are spot on, you can begin working the logic for navigating to all the pages your data is on. For this particular example, we have more pages with flower names alphabetically arranged. How do you move across all those pages? You need to get all those links first. The links can be easily taken out with:</p>
-
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;p b a::attr(href)&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span></code></pre></figure>
-
-<p>Now you have a list of links. You can simply cycle through all these links and run your selector each time to get all the names. Another way is to move page by page instead of getting all the links at the beginning. For that, once you have gotten data from the first page, you look for the next link to go to. This approach is more common when all the links may not be available on the first page itself. For our example the first approach works just fine.</p>
-
-<h2>What&#39;s Next?</h2>
-
-<p>There&#39;s a lot more to it. <strong>Scrapy</strong> provides middlewares, allows you to set custom headers, let&#39;s you create your own item pipelines and write custom link extractors. I&#39;ll dive into this later. This part should be enough to explore simple sites. Build your own dataset for your Deep Learning or Machine Learning Problems or just gather data because you love data. It&#39;s fun anyways. You can go all detective trying to figure out which selectors and tags will be just right for you to pick up the data you need in the most efficient manner.</p>
-
   </div>
   
   <div class="post">
@@ -149,328 +104,14 @@
         Webdrivers and Using Them
       </a>
     </h1>
-
-    <span class="post-date">23 Nov 2016</span>
-
-    <h2>What are Webdrivers?</h2>
-
-<p>Ever seen a person do too well on an online game? Or maybe spam you messages at an inhuman speed? Well this is what Webdrivers do. They weren&#39;t designed to do this of course. Webdrivers are easy to use APIs for Web Application Testing, they allow us to control the behaviour of our browser towards sites using the provided API. People do use them for Testing Servers but there are a lot of fun uses too.</p>
-
-<h2>Get Started with Selenium</h2>
-
-<p><a href="http://www.seleniumhq.org/projects/webdriver/">Selenium</a> is the Michael Jordan of webdrivers. The ultimate, most complete webdriver you can find. Thinking it&#39;s pretty hard to use? The <a href="http://selenium-python.readthedocs.io/">documentation</a> is pretty neat but let me give you a demonstration anyway. To setup the python bindings, simply open your terminal and do:</p>
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span></span>pip install selenium</code></pre></figure>
-
-<p>Now, selenium comes with built in drivers for a variety of browsers, including Chrome, Firefox, Safari, Opera etc. I prefer using the Firefox driver since that is my default browser but the code should be relatively similar for all sorts of browsers. Let&#39;s start up a simple instance of our favorite browser:</p>
-
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
-<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">()</span></code></pre></figure>
-
-<p>As soon as you press Enter after that last line, an instance of Firefox should fire up. Now you have complete control over it from your Python interpreter. You can do all sorts of stuff with it. </p>
-
-<h2>Going a Little Further</h2>
-
-<p>I&#39;ll help you get started by demonstrating how you can write a script to log you into your facebook account whenever your PC starts up without you pressing even one key. So first thing&#39;s first. You should have imported selenium and started an instance of your favorite browser. Next let&#39;s navigate to the facebook login page with:</p>
-
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://www.facebook.com/login&#39;</span><span class="p">)</span></code></pre></figure>
-
-<p>Great, so far so easy. Now what a human does next is fill in his E-Mail and Password in the respective fields. We&#39;ll make Selenium do the same. But it needs to know where to put the E-Mail and the Password. So we first make it look for the fields using:</p>
-
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="n">email_box</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">)</span>
-<span class="n">password_box</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s1">&#39;pass&#39;</span><span class="p">)</span></code></pre></figure>
-
-<p>What we do here is simply make the driver look for an element with the id <em>email</em> and <em>pass</em> respectively which is generally the ID for such fields. If you are trying this on another site and it fails, simply go to the site and navigate to the respective field, then right click and select Inspect Element, and you can figure out the ID. If that particular element does not have an ID attribute, Selenium provides you with other options for searching like using the name,the xpath, the tag name etc. Hopefully, in this case though Selenium found the respective fields. Next we type in our data in the fields:</p>
-
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="kn">from</span> <span class="nn">selenium.webdriver.common_keys</span> <span class="kn">import</span> <span class="n">Keys</span>
-<span class="n">email_box</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s2">&quot;mycrappymail@somedomain.com&quot;</span><span class="p">)</span>
-<span class="n">pass_box</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s2">&quot;sweetpotatoesareyummy&quot;</span><span class="p">)</span></code></pre></figure>
-
-<p>Hopefully, these lines were pretty self-explanatory. Now, just one last thing we need to do. Press the login button. We follow the same steps, look for the button first, then click it.</p>
-
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="n">login_button</span>  <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s1">&#39;loginbutton&#39;</span><span class="p">)</span>
-<span class="n">login_button</span><span class="o">.</span><span class="n">click</span><span class="p">()</span></code></pre></figure>
-
-<p>There it is. Your Facebook page logged in. Now all you have to do is. Copy all these commands to a python script, add it to your startup applications. And you have your Facebook page open at Computer startup without pressing a button.</p>
-
-<h2>Doing more with the same</h2>
-
-<p>Now this was possibly the simplest thing you could do with the Selenium Webdriver. You could automate filling forms so you never have to enter your details anywhere ever again. You could make a customized crawler for looking through pages for something you want. And of course, game bots or spam bots are probably the must fun thing to do. I might go on to make some of these if I write more about Selenium</p>
-
-  </div>
+	<div class="post-categories" style="margin-bottom: 10px">
   
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/others/introducing-hyde/">
-        Webdrivers - Introduction to Selenium
-      </a>
-    </h1>
-
-    <span class="post-date">28 Dec 2013</span>
-
-    <h2>What are Webdrivers?</h2>
-
-<p>Ever seen a person do too well on an online game? Or maybe spam you messages at an inhuman speed? Well this is what Webdrivers do. They weren&#39;t designed to do this of course. Webdrivers are easy to use APIs for Web Application Testing, they allow us to control the behaviour of our browser towards sites using the provided API. People do use them for Testing Servers but there are a lot of fun uses too.</p>
-
-<h2>Get Started with Selenium</h2>
-
-<p><a href="http://www.seleniumhq.org/projects/webdriver/">Selenium</a> is the Michael Jordan of webdrivers. The ultimate, most complete webdriver you can find. Thinking it&#39;s pretty hard to use? The <a href="http://selenium-python.readthedocs.io/">documentation</a> is pretty neat but let me give you a demonstration anyway. To setup the python bindings, simply open your terminal and do:</p>
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span></span>pip install selenium</code></pre></figure>
-
-<p>Now, selenium comes with built in drivers for a variety of browsers, including Chrome, Firefox, Safari, Opera etc. I prefer using the Firefox driver since that is my default browser but the code should be relatively similar for all sorts of browsers. Let&#39;s start up a simple instance of our favorite browser:</p>
-
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
-<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">()</span></code></pre></figure>
-
-<p>As soon as you press Enter after that last line, an instance of Firefox should fire up. Now you have complete control over it from your Python interpreter. You can do all sorts of stuff with it. </p>
-
-<h2>Going a Little Further</h2>
-
-<p>I&#39;ll help you get started by demonstrating how you can write a script to log you into your facebook account whenever your PC starts up without you pressing even one key. So first thing&#39;s first. You should have imported selenium and started an instance of your favorite browser. Next let&#39;s navigate to the facebook login page with:</p>
-
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://www.facebook.com/login&#39;</span><span class="p">)</span></code></pre></figure>
-
-<p>Great, so far so easy. Now what a human does next is fill in his E-Mail and Password in the respective fields. We&#39;ll make Selenium do the same. But it needs to know where to put the E-Mail and the Password. So we first make it look for the fields using:</p>
-
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="n">email_box</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">)</span>
-<span class="n">password_box</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s1">&#39;pass&#39;</span><span class="p">)</span></code></pre></figure>
-
-<p>What we do here is simply make the driver look for an element with the id <em>email</em> and <em>pass</em> respectively which is generally the ID for such fields. If you are trying this on another site and it fails, simply go to the site and navigate to the respective field, then right click and select Inspect Element, and you can figure out the ID. If that particular element does not have an ID attribute, Selenium provides you with other options for searching like using the name,the xpath, the tag name etc. Hopefully, in this case though Selenium found the respective fields. Next we type in our data in the fields:</p>
-
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="kn">from</span> <span class="nn">selenium.webdriver.common_keys</span> <span class="kn">import</span> <span class="n">Keys</span>
-<span class="n">email_box</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s2">&quot;mycrappymail@somedomain.com&quot;</span><span class="p">)</span>
-<span class="n">pass_box</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s2">&quot;sweetpotatoesareyummy&quot;</span><span class="p">)</span></code></pre></figure>
-
-<p>Hopefully, these lines were pretty self-explanatory. Now, just one last thing we need to do. Press the login button. We follow the same steps, look for the button first, then click it.</p>
-
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="n">login_button</span>  <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s1">&#39;loginbutton&#39;</span><span class="p">)</span>
-<span class="n">login_button</span><span class="o">.</span><span class="n">click</span><span class="p">()</span></code></pre></figure>
-
-<p>There it is. Your Facebook page logged in. Now all you have to do is. Copy all these commands to a python script, add it to your startup applications. And you have your Facebook page open at Computer startup without pressing a button.</p>
-
-<h2>Doing more with the same</h2>
-
-<p>Now this was possibly the simplest thing you could do with the Selenium Webdriver. You could automate filling forms so you never have to enter your details anywhere ever again. You could make a customized crawler for looking through pages for something you want. And of course, game bots or spam bots are probably the must fun thing to do. I might go on to make some of these if I write more about Selenium</p>
-
-  </div>
   
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/random/example-content/">
-        Example content
-      </a>
-    </h1>
-
-    <span class="post-date">07 Feb 2012</span>
-
-    <div class="message">
-  Howdy! This is an example blog post that shows several types of HTML content supported in this theme.
+   Category: <a href="//categories/#Others">Others</a>
+  
+  
 </div>
-
-<p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. <em>Aenean eu leo quam.</em> Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-
-<blockquote>
-<p>Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-</blockquote>
-
-<p>Etiam porta <strong>sem malesuada magna</strong> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-
-<h2>Inline HTML elements</h2>
-
-<p>HTML defines a long list of available inline tags, a complete list of which can be found on the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">Mozilla Developer Network</a>.</p>
-
-<ul>
-<li><strong>To bold text</strong>, use <code>&lt;strong&gt;</code>.</li>
-<li><em>To italicize text</em>, use <code>&lt;em&gt;</code>.</li>
-<li>Abbreviations, like <abbr title="HyperText Markup Langage">HTML</abbr> should use <code>&lt;abbr&gt;</code>, with an optional <code>title</code> attribute for the full phrase.</li>
-<li>Citations, like <cite>&mdash; Mark otto</cite>, should use <code>&lt;cite&gt;</code>.</li>
-<li><del>Deleted</del> text should use <code>&lt;del&gt;</code> and <ins>inserted</ins> text should use <code>&lt;ins&gt;</code>.</li>
-<li>Superscript <sup>text</sup> uses <code>&lt;sup&gt;</code> and subscript <sub>text</sub> uses <code>&lt;sub&gt;</code>.</li>
-</ul>
-
-<p>Most of these elements are styled by browsers with few modifications on our part.</p>
-
-<h2>Heading</h2>
-
-<p>Vivamus sagittis lacus vel augue rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-
-<h3>Code</h3>
-
-<p>Cum sociis natoque penatibus et magnis dis <code>code element</code> montes, nascetur ridiculus mus.</p>
-
-<figure class="highlight"><pre><code class="language-js" data-lang="js"><span></span><span class="c1">// Example can be run directly in your JavaScript console</span>
-
-<span class="c1">// Create a function that takes two arguments and returns the sum of those arguments</span>
-<span class="kd">var</span> <span class="nx">adder</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Function</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;return a + b&quot;</span><span class="p">);</span>
-
-<span class="c1">// Call the function</span>
-<span class="nx">adder</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
-<span class="c1">// &gt; 8</span></code></pre></figure>
-
-<p>Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-
-<h3>Gists via GitHub Pages</h3>
-
-<p>Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo. Donec sed odio dui.</p>
-
-<p><noscript><pre>400: Invalid request
-</pre></noscript><script src="https://gist.github.com/5555251.js?file=gist.md"> </script></p>
-
-<p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sed odio dui. Vestibulum id ligula porta felis euismod semper.</p>
-
-<h3>Lists</h3>
-
-<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-
-<ul>
-<li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
-<li>Donec id elit non mi porta gravida at eget metus.</li>
-<li>Nulla vitae elit libero, a pharetra augue.</li>
-</ul>
-
-<p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
-
-<ol>
-<li>Vestibulum id ligula porta felis euismod semper.</li>
-<li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>
-<li>Maecenas sed diam eget risus varius blandit sit amet non magna.</li>
-</ol>
-
-<p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
-
-<dl>
-  <dt>HyperText Markup Language (HTML)</dt>
-  <dd>The language used to describe and define the content of a Web page</dd>
-
-  <dt>Cascading Style Sheets (CSS)</dt>
-  <dd>Used to describe the appearance of Web content</dd>
-
-  <dt>JavaScript (JS)</dt>
-  <dd>The programming language used to build advanced Web sites and applications</dd>
-</dl>
-
-<p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
-
-<h3>Images</h3>
-
-<p>Quisque consequat sapien eget quam rhoncus, sit amet laoreet diam tempus. Aliquam aliquam metus erat, a pulvinar turpis suscipit at.</p>
-
-<p><img src="http://placehold.it/800x400" alt="placeholder" title="Large example image">
-<img src="http://placehold.it/400x200" alt="placeholder" title="Medium example image">
-<img src="http://placehold.it/200x200" alt="placeholder" title="Small example image"></p>
-
-<h3>Tables</h3>
-
-<p>Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Upvotes</th>
-      <th>Downvotes</th>
-    </tr>
-  </thead>
-  <tfoot>
-    <tr>
-      <td>Totals</td>
-      <td>21</td>
-      <td>23</td>
-    </tr>
-  </tfoot>
-  <tbody>
-    <tr>
-      <td>Alice</td>
-      <td>10</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <td>Bob</td>
-      <td>4</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <td>Charlie</td>
-      <td>7</td>
-      <td>9</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
-
-<hr>
-
-<p>Want to see something else added? <a href="https://github.com/poole/poole/issues/new">Open an issue.</a></p>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/data-science/whats-jekyll/">
-        Dataset Shortages Pt. 1 - Introduction to Scrapy
-      </a>
-    </h1>
-
-    <span class="post-date">06 Feb 2012</span>
-
-    <h2>Dealing with lack of Data</h2>
-
-<p>Deep Learning and Machine Learning are fun hobbies. Endless projects to do. Lots of Open Source Code available. Nothing to stop you. Except Datasets. If you are up to generic problems, then you will probably come across a dataset if you look hard enough. But if you are trying to solve a weird problem. Looking for a dataset can be nightmarish. Let&#39;s see if there are ways you could build your own dataset overnight.</p>
-
-<p>Data Scraping is basically looking for sites with the right data. Taking their HTML and structuring it to a form which is suitable to train your Neural Net, etc. How is this done you ask? The answer to the question is same as the answer to most of our problems. Look for a library/framework in Python!</p>
-
-<p>This particular framework is called <a href="https://scrapy.org/"><strong>Scrapy</strong></a>. And it is nothing short of art. Scrapy gives you the left hand of Picasso so you can call yourself a great artist. You can send requests and extract fields in lesser lines than it takes to write &quot;Hello World&quot; in Java. How to get started? As with any other Python Framework, the <a href="https://docs.scrapy.org/en/latest/">documentation</a> is golden. Have a look at it and you will be ready to go in under an hour. Let me take you through some of it. </p>
-
-<h2>Getting Used to Scrapy</h2>
-
-<p>First of all get it installed with:</p>
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span></span>pip install scrapy</code></pre></figure>
-
-<p>After the setup is complete. You can go two ways. You can either start a project straightaway or first get warmed up using the Scrapy shell. The Scrapy shell is a command shell for interactive scraping. You can test your code using the shell before moving to a proper project. Let&#39;s try getting the list of all flowers on this <a href="http://www.all-my-favourite-flower-names.com/">site</a> from the shell.</p>
-
-<p>Open the shell with:</p>
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span></span>scrapy shell http://www.all-my-favourite-flower-names.com/list-of-flower-names.html</code></pre></figure>
-
-<p>The HTML Response is saved in the &#39;response&#39; variable. You can use CSS or Xpath selectors to get data from the HTML. For example, let&#39;s get the title of the page using both Xpath and CSS Selectors:</p>
-
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//title/text()&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>  <span class="c1">##Using Xpath Selectors</span>
-<span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;title::text&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>  <span class="c1">##Using CSS Selectors</span></code></pre></figure>
-
-<p>The title of the page should be returned. Simple enough, right? </p>
-
-<h2>On to more complex tasks</h2>
-
-<p>Let&#39;s get all the flower names on this particular page. As you may have noticed. The name of the flowers are inside a 
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;</span></code></pre></figure>
- tag inside a 
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span></code></pre></figure>
- tag inside a 
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span></code></pre></figure>
- tag. So to get the names out:</p>
-
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//p/span/b/text()&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>  <span class="c1">##Using Xpath Selectors</span>
-<span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;p span b::text&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>  <span class="c1">##Using CSS Selectors</span></code></pre></figure>
-
-<p>Surprisingly simple. If your page is slightly more complicated. Try to get closer to the data you need using the nearest 
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></figure>
- tag in the DOM Tree. Identify the 
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></figure>
- tag using it&#39;s class or ID or any other such attribute and then move further inside till you have the data you need.</p>
-
-<p>Once you know your selectors are spot on, you can begin working the logic for navigating to all the pages your data is on. For this particular example, we have more pages with flower names alphabetically arranged. How do you move across all those pages? You need to get all those links first. The links can be easily taken out with:</p>
-
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;p b a::attr(href)&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span></code></pre></figure>
-
-<p>Now you have a list of links. You can simply cycle through all these links and run your selector each time to get all the names. Another way is to move page by page instead of getting all the links at the beginning. For that, once you have gotten data from the first page, you look for the next link to go to. This approach is more common when all the links may not be available on the first page itself. For our example the first approach works just fine.</p>
-
-<h2>What&#39;s Next?</h2>
-
-<p>There&#39;s a lot more to it. <strong>Scrapy</strong> provides middlewares, allows you to set custom headers, let&#39;s you create your own item pipelines and write custom link extractors. I&#39;ll dive into this later. This part should be enough to explore simple sites. Build your own dataset for your Deep Learning or Machine Learning Problems or just gather data because you love data. It&#39;s fun anyways. You can go all detective trying to figure out which selectors and tags will be just right for you to pick up the data you need in the most efficient manner.</p>
-
+    <span class="post-date">11 Nov 2016</span>
   </div>
   
 </div>
@@ -483,6 +124,7 @@
     <span class="pagination-item newer">Newer</span>
   
 </div>
+
     </div>
 
   </body>
