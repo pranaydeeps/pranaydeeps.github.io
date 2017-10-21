@@ -10,7 +10,7 @@ title:            pranaydeep-af
 tagline:          'A Jekyll theme'
 description:      'NLP, Linguistics, Literature, Progressive Music and all kinds of stuff'
 url:              https://pranaydeep-af.github.io/
-baseurl:          /
+baseurl:          'https://pranaydeep-af.github.io/'
 
 author:
   name:           'Pranaydeep'
