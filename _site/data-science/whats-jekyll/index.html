@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Dataset Shortages Pt. 1 - Introduction to Scrapy &middot; pranaydeep-af
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class="theme-base-08 layout-reverse">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          pranaydeep-af
+        </a>
+      </h1>
+      <p class="lead">NLP, Linguistics, Literature, Progressive Music and all kinds of stuff</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/categories/">Categories</a>
+          
+        
+      
+        
+          
+        
+      
+
+<!--       <a class="sidebar-nav-item" href="https://github.com/pranaydeep-af/archive/v1.0.zip">Download</a> -->
+      <a class="sidebar-nav-item" href="https://github.com/pranaydeep-af">GitHub</a>
+      <span class="sidebar-nav-item">Currently v1.0</span>
+    </nav>
+
+    <p>&copy; 2017. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Dataset Shortages Pt. 1 - Introduction to Scrapy</h1>
+  <span class="post-date">06 Feb 2012</span>
+  <div class="post-categories" style="margin-bottom: 20px">
+  
+  
+   Category: <a href="//categories/#Data-Science">Data-Science</a>
+  
+  
+</div>
+  <h2>Dealing with lack of Data</h2>
+
+<p>Deep Learning and Machine Learning are fun hobbies. Endless projects to do. Lots of Open Source Code available. Nothing to stop you. Except Datasets. If you are up to generic problems, then you will probably come across a dataset if you look hard enough. But if you are trying to solve a weird problem. Looking for a dataset can be nightmarish. Let&#39;s see if there are ways you could build your own dataset overnight.</p>
+
+<p>Data Scraping is basically looking for sites with the right data. Taking their HTML and structuring it to a form which is suitable to train your Neural Net, etc. How is this done you ask? The answer to the question is same as the answer to most of our problems. Look for a library/framework in Python!</p>
+
+<p>This particular framework is called <a href="https://scrapy.org/"><strong>Scrapy</strong></a>. And it is nothing short of art. Scrapy gives you the left hand of Picasso so you can call yourself a great artist. You can send requests and extract fields in lesser lines than it takes to write &quot;Hello World&quot; in Java. How to get started? As with any other Python Framework, the <a href="https://docs.scrapy.org/en/latest/">documentation</a> is golden. Have a look at it and you will be ready to go in under an hour. Let me take you through some of it. </p>
+
+<h2>Getting Used to Scrapy</h2>
+
+<p>First of all get it installed with:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span></span>pip install scrapy</code></pre></figure>
+
+<p>After the setup is complete. You can go two ways. You can either start a project straightaway or first get warmed up using the Scrapy shell. The Scrapy shell is a command shell for interactive scraping. You can test your code using the shell before moving to a proper project. Let&#39;s try getting the list of all flowers on this <a href="http://www.all-my-favourite-flower-names.com/">site</a> from the shell.</p>
+
+<p>Open the shell with:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span></span>scrapy shell http://www.all-my-favourite-flower-names.com/list-of-flower-names.html</code></pre></figure>
+
+<p>The HTML Response is saved in the &#39;response&#39; variable. You can use CSS or Xpath selectors to get data from the HTML. For example, let&#39;s get the title of the page using both Xpath and CSS Selectors:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//title/text()&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>  <span class="c1">##Using Xpath Selectors</span>
+<span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;title::text&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>  <span class="c1">##Using CSS Selectors</span></code></pre></figure>
+
+<p>The title of the page should be returned. Simple enough, right? </p>
+
+<h2>On to more complex tasks</h2>
+
+<p>Let&#39;s get all the flower names on this particular page. As you may have noticed. The name of the flowers are inside a 
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;</span></code></pre></figure>
+ tag inside a 
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span></code></pre></figure>
+ tag inside a 
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span></code></pre></figure>
+ tag. So to get the names out:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//p/span/b/text()&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>  <span class="c1">##Using Xpath Selectors</span>
+<span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;p span b::text&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>  <span class="c1">##Using CSS Selectors</span></code></pre></figure>
+
+<p>Surprisingly simple. If your page is slightly more complicated. Try to get closer to the data you need using the nearest 
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></figure>
+ tag in the DOM Tree. Identify the 
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></figure>
+ tag using it&#39;s class or ID or any other such attribute and then move further inside till you have the data you need.</p>
+
+<p>Once you know your selectors are spot on, you can begin working the logic for navigating to all the pages your data is on. For this particular example, we have more pages with flower names alphabetically arranged. How do you move across all those pages? You need to get all those links first. The links can be easily taken out with:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;p b a::attr(href)&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span></code></pre></figure>
+
+<p>Now you have a list of links. You can simply cycle through all these links and run your selector each time to get all the names. Another way is to move page by page instead of getting all the links at the beginning. For that, once you have gotten data from the first page, you look for the next link to go to. This approach is more common when all the links may not be available on the first page itself. For our example the first approach works just fine.</p>
+
+<h2>What&#39;s Next?</h2>
+
+<p>There&#39;s a lot more to it. <strong>Scrapy</strong> provides middlewares, allows you to set custom headers, let&#39;s you create your own item pipelines and write custom link extractors. I&#39;ll dive into this later. This part should be enough to explore simple sites. Build your own dataset for your Deep Learning or Machine Learning Problems or just gather data because you love data. It&#39;s fun anyways. You can go all detective trying to figure out which selectors and tags will be just right for you to pick up the data you need in the most efficient manner.</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/data-science/scrapy-part-1/">
+            Dataset Shortages Pt. 1 - Introduction to Scrapy
+            <small>23 Jan 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/others/introducing-selenium/">
+            Webdrivers and Using Them
+            <small>23 Nov 2016</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/others/introducing-hyde/">
+            Webdrivers - Introduction to Selenium
+            <small>28 Dec 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>
