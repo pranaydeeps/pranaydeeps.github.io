@@ -9,7 +9,7 @@ permalink:        /:categories/:title/
 title:            pranaydeep-af
 tagline:          'My Journal'
 description:      'NLP, Linguistics, Literature, Progressive Music and all kinds of stuff'
-url:              'https://pranaydeep-af.github.io'
+url:              https://pranaydeep-af.github.io/
 baseurl:          'https://pranaydeep-af.github.io/'
 
 author:
