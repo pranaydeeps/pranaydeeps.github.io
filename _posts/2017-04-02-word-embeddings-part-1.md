@@ -31,17 +31,23 @@ So how does the code actually work out. Let’s dive in. The problem at hand bei
 
 <div class="message">
 Sentence-1 : "The wing of the plane was damaged and the engine had some issues but the pilot landed the plane successfully."
+</div>
 
+<div class="message">
 Sentence-2 : "A pilot drives a plane, but a driver drives a car."
+</div>
 
+<div class="message">
 Sentence-3 : "Planes are useful for air transport, while cars are useful for land transport."
+</div>
 
+<div class="message">
 Sentence-4 : "The driver steered the car through a steep turn"
 </div>
 
 Let’s see how we can make  a model based on the CBOW algorithm using these sentences:
 
-###Continuous Bag-of-words (CBOW)
+### Continuous Bag-of-words (CBOW)
 
 CBOW basically says, that the context decides the word. We use a window of say n-words. When we look at a word, we take n words from before the said word and n words from after the said word, and try to predict which word would come between these words. Too confusing? Let’s explore more with our example. Let’s say my model is looking at Sentence-2 and the word in question, is plane. If I have a context-window of 2, the model takes 2 words before plane, ie. drives and a, and 2 words after plane ie. but and a. These 4 words are the input to the model and the word plane is the label. In reality we will remove words like a and the because they are not contextually relevant. This is called stop words removal.
 
