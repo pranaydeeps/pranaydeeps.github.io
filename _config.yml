@@ -6,15 +6,15 @@ highlighter:      pygments
 permalink:        /:categories/:title/
 
 # Setup
-title:            pranaydeep-af
+title:            pranaydeeps
 tagline:          'My Journal'
 description:      'NLP, Linguistics, Literature, Progressive Music and all kinds of stuff'
-url:              https://pranaydeep-af.github.io/
-baseurl:          'https://pranaydeep-af.github.io/'
+url:              https://pranaydeeps.github.io/
+baseurl:          'https://pranaydeeps.github.io/'
 
 author:
   name:           'Pranaydeep'
-  url:            https://github.com/pranaydeep-af
+  url:            https://github.com/pranaydeeps
 
 paginate:         5
 
@@ -22,7 +22,7 @@ paginate:         5
 version:          1.0
 
 github:
-  repo:           https://github.com/pranaydeep-af
+  repo:           https://github.com/pranaydeeps
 
 gems:
   - jekyll-paginate
