@@ -2,7 +2,7 @@
 layout: post
 title: Webdrivers - An Introduction to Selenium
 categories: Others
-
+description: Ever seen a person do too well on an online game? Or maybe spam you messages at an inhuman speed? Well this is what Webdrivers do.  
 ---
 
 ## What are Webdrivers?
