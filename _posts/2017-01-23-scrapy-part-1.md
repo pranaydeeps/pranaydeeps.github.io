@@ -2,6 +2,7 @@
 layout: post
 title: Dataset Shortages Pt. 1 - Introduction to Scrapy
 categories: Data-Science
+description: Deep Learning and Machine Learning are fun hobbies. Endless projects to do. Lots of Open Source Code available. Nothing to stop you. Except Datasets. If you are up to generic problems, then you will probably come across a dataset if you look hard enough. But if you are trying to solve a weird problem. Looking for a dataset can be nightmarish, but there are ways you could build your own dataset overnight.
 ---
 
 ## Dealing with lack of Data

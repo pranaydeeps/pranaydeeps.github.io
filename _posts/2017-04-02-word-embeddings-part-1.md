@@ -2,13 +2,13 @@
 layout: post
 title: Introduction to Word Embeddings - Pt. 1
 categories: NLP
-
+description: Word Embeddings are basically a vector or tensor representations of text which can then be used by various Machine Learning Algorithms for a variety of tasks. Word2vec, one of the primary algorithms in word embedding tasks, which we will focus on, was proposed almost 4 years ago. Since then, it has exploded, with a paper coming out everyday on using Word2vec for semantic classification tasks. It’s exceptionally useful and ingenious. So, why wait? Let’s get straight into it.
 ---
 
                  
 ## What are they?
 
-Word Embeddings as referred to as vector or tensor representations of text which can then be used by various Machine Learning Algorithms for a variety of tasks. Words and Documents in the form of vectors, sounds  pretty impossible? But then every task accomplished by Deep Learning in recent years had been considered impossible. Word Embeddings are not even recent anymore. [Word2vec](https://en.wikipedia.org/wiki/Word2vec), one of the primary algorithms in word embedding tasks, which we will focus on, was proposed almost 4 years ago. Since then, it has exploded, with a paper coming out everyday on using Word2vec for semantic classification tasks. It’s exceptionally useful and ingenious. So, why wait? Let’s get straight into it.
+Word Embeddings are basically a vector or tensor representations of text which can then be used by various Machine Learning Algorithms for a variety of tasks. Words and Documents in the form of vectors, sounds  pretty impossible? But then every task accomplished by Deep Learning in recent years had been considered impossible. Word Embeddings are not even recent anymore. [Word2vec](https://en.wikipedia.org/wiki/Word2vec), one of the primary algorithms in word embedding tasks, which we will focus on, was proposed almost 4 years ago. Since then, it has exploded, with a paper coming out everyday on using Word2vec for semantic classification tasks. It’s exceptionally useful and ingenious. So, why wait? Let’s get straight into it.
 
 
 ## The Algorithm

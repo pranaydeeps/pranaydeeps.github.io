@@ -2,7 +2,7 @@
 layout: post
 title: Webdrivers - An Introduction to Selenium
 categories: Others
-description: Ever seen a person do too well on an online game? Or maybe spam you messages at an inhuman speed? Well this is what Webdrivers do.  
+description: Ever seen a person do too well on an online game? Or maybe spam you messages at an inhuman speed? Well this is what Webdrivers do. Webdrivers are easy to use APIs for Web Application Testing, they allow us to control the behaviour of our browser towards sites using the provided API. People do use them for Testing Servers but there are a lot of fun uses too.
 ---
 
 ## What are Webdrivers?

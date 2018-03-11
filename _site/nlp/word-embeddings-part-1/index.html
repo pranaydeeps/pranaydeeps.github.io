@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Introduction to Word Embeddings - Pt. 1 &middot; pranaydeeps
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          pranaydeeps
+        </a>
+      </h1>
+      <p class="lead">NLP, Linguistics, Literature, Progressive Music and all kinds of stuff</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/categories/">Categories</a>
+          
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+
+<!--       <a class="sidebar-nav-item" href="https://github.com/pranaydeeps/archive/v1.0.zip">Download</a> -->
+      <a class="sidebar-nav-item" href="https://github.com/pranaydeeps">GitHub</a>
+      <span class="sidebar-nav-item">Currently v1.0</span>
+    </nav>
+
+    <p>&copy; 2018. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Introduction to Word Embeddings - Pt. 1</h1>
+  <div class="post-categories" style="margin-bottom: 10px">
+  
+  
+   Category: <a href="//categories/#NLP">NLP</a>
+  
+  
+</div>
+  <span class="post-date">02 Apr 2017</span>
+
+  <h2 id="what-are-they">What are they?</h2>
+
+<p>Word Embeddings are basically a vector or tensor representations of text which can then be used by various Machine Learning Algorithms for a variety of tasks. Words and Documents in the form of vectors, sounds  pretty impossible? But then every task accomplished by Deep Learning in recent years had been considered impossible. Word Embeddings are not even recent anymore. <a href="https://en.wikipedia.org/wiki/Word2vec">Word2vec</a>, one of the primary algorithms in word embedding tasks, which we will focus on, was proposed almost 4 years ago. Since then, it has exploded, with a paper coming out everyday on using Word2vec for semantic classification tasks. It’s exceptionally useful and ingenious. So, why wait? Let’s get straight into it.</p>
+
+<h2 id="the-algorithm">The Algorithm</h2>
+
+<p>In it’s purest form, word2vec is as simple as it gets. We want to make sure our network understands the meaning of words. The computer needs numbers to determine closeness. Great. So, we represent words as vectors. You got this much from the word2vec name I assume. So, how’s this done?</p>
+
+<p>For that we need to ask ourselves, how do we as humans find out the meaning of a word? If I tell you, “Please bear with me”, you would know that I am telling you to hold up and not referring to the animal “bear”. How did you get that? It’s <em>context</em>. The other words next to the word “bear” tell you what my “bear” actually means. So all language and words are is <em>context</em>. This is exactly what we need to impart to our model. Context is our building block.</p>
+
+<p>The word2vec model would be a simple Neural Network, which learns the vector representations of the words using their context. We kick-start the network with randomly initialized word vectors. Then using word contexts, we make the network learn what words should be closer by and what should be further apart. For example, words like dogs and cats would occur in similar contexts, whereas dogs and gramophones would not be remotely related. For every group of words fed to it, the network checks how close by their vectors are. An update is performed to get these vectors close by if the words occur together. In the end, ideally the network is able to create a vector space, with a representation for every word in our corpus.
+Now, this might seem like it doesn’t make much sense. But the vectors represent some abstract form of understanding the words. Every dimension in the vector represents some piece of key information that was derived from the context, it might not make sense to a person, but the network has managed to learn every aspect of the word it could from the surrounding words.</p>
+
+<p>The picture above perfectly illustrates what I am trying to impart. If a 4 dimensional vector is representing King, Queen, Woman and Princess, the representations might be learned such that the first dimension represents their Royalty Score, the second Masculinity and so on. A human might not be able to decipher what the individual dimensions represent but the model has learn some way to discriminate and compare these words.</p>
+
+<h2 id="the-implementation">The Implementation</h2>
+
+<p>The complete code for the implementation can be found <a href="https://github.com/pranaydeep-af">here</a>
+So how does the code actually work out. Let’s dive in. The problem at hand being, train a neural network to represent words as vectors using the context. There are two types of algorithms, namely CBOW and Skip-Gram, involved in word2vec, both of these are fairly popular and have their advantages. We will be focusing on using CBOW for our testing. Let’s take an example where we explore how this works. Our corpus (just a fancy word for a collection of sentences or documents) for the example will only consist of 4 sentences.</p>
+
+<div class="message">
+Sentence-1 : "The wing of the plane was damaged and the engine had some issues but the pilot landed the plane successfully."
+</div>
+
+<div class="message">
+Sentence-2 : "A pilot drives a plane, but a driver drives a car."
+</div>
+
+<div class="message">
+Sentence-3 : "Planes are useful for air transport, while cars are useful for land transport."
+</div>
+
+<div class="message">
+Sentence-4 : "The driver steered the car through a steep turn"
+</div>
+
+<p>Let’s see how we can make  a model based on the CBOW algorithm using these sentences:</p>
+
+<h3 id="continuous-bag-of-words-cbow">Continuous Bag-of-words (CBOW)</h3>
+
+<p>CBOW basically says, that the context decides the word. We use a window of say n-words. When we look at a word, we take n words from before the said word and n words from after the said word, and try to predict which word would come between these words. Too confusing? Let’s explore more with our example. Let’s say my model is looking at Sentence-2 and the word in question, is plane. If I have a context-window of 2, the model takes 2 words before plane, ie. drives and a, and 2 words after plane ie. but and a. These 4 words are the input to the model and the word plane is the label. In reality we will remove words like a and the because they are not contextually relevant. This is called stop words removal.</p>
+
+<p>Let’s make a proper model using CBOW and our sample corpus. First we import all our modules.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">In</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">keras.backend</span> <span class="k">as</span> <span class="n">K</span>
+  <span class="o">...</span><span class="p">:</span> <span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+  <span class="o">...</span><span class="p">:</span> <span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Embedding</span><span class="p">,</span> <span class="n">Lambda</span>
+  <span class="o">...</span><span class="p">:</span> <span class="kn">from</span> <span class="nn">keras.utils.data_utils</span> <span class="kn">import</span> <span class="n">get_file</span>
+  <span class="o">...</span><span class="p">:</span> <span class="kn">from</span> <span class="nn">keras.utils</span> <span class="kn">import</span> <span class="n">np_utils</span>
+  <span class="o">...</span><span class="p">:</span> <span class="kn">from</span> <span class="nn">keras.preprocessing</span> <span class="kn">import</span> <span class="n">sequence</span>
+  <span class="o">...</span><span class="p">:</span> <span class="kn">from</span> <span class="nn">keras.preprocessing.text</span> <span class="kn">import</span> <span class="n">Tokenizer</span></code></pre></figure>
+
+<p>Next, we define our text. Tokenize it ie. separate the sentences into individual words. Also, since the model cannot compute using words, we will assign a unique number to each word.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">texts</span> <span class="o">=</span> <span class="p">[</span><span class="s">'The wing of the plane was damaged and the engine had some issues but the pilot landed the plane successfully'</span><span class="p">,</span><span class="s">'A pilot drives a plane, but a driver drives a car'</span><span class="p">,</span><span class="s">'Planes are useful for air transport, while cars are useful for land transport'</span><span class="p">,</span><span class="s">'The driver steered the car through a steep turn'</span><span class="p">]</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">()</span>
+   <span class="o">...</span><span class="p">:</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">fit_on_texts</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span>
+   <span class="o">...</span><span class="p">:</span> <span class="n">corpus</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">texts_to_sequences</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span></code></pre></figure>
+
+<p>Let’s see how our corpus looks now:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">corpus</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span>
+<span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">23</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">24</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">32</span><span class="p">]]</span></code></pre></figure>
+
+<p>Great, let’s prepare our training data now. For the CBOW model, our input should be n words for either direction and our output would be the middle word. So let’s define our hyper-parameters.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">nb_samples</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">corpus</span><span class="p">)</span>
+   <span class="o">...</span><span class="p">:</span> <span class="n">V</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">word_index</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+   <span class="o">...</span><span class="p">:</span> <span class="n">dim</span> <span class="o">=</span> <span class="mi">30</span> <span class="c">#No of dimensions each word vector should have</span>
+   <span class="o">...</span><span class="p">:</span> <span class="n">win_size</span> <span class="o">=</span> <span class="mi">5</span> <span class="c">#No of words in either direction</span></code></pre></figure>
+
+<p>Next, Let’s define a function to convert our current corpus into CBOW input form using our window size.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="k">def</span> <span class="nf">generate_data</span><span class="p">(</span><span class="n">corpus</span><span class="p">,</span> <span class="n">window_size</span><span class="p">,</span> <span class="n">V</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="n">maxlen</span> <span class="o">=</span> <span class="n">window_size</span><span class="o">*</span><span class="mi">2</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="k">for</span> <span class="n">words</span> <span class="ow">in</span> <span class="n">corpus</span><span class="p">:</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="n">contexts</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="n">labels</span>   <span class="o">=</span> <span class="p">[]</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="n">L</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>             <span class="n">s</span> <span class="o">=</span> <span class="n">index</span><span class="o">-</span><span class="n">window_size</span>
+    <span class="o">...</span><span class="p">:</span>             <span class="n">e</span> <span class="o">=</span> <span class="n">index</span><span class="o">+</span><span class="n">window_size</span><span class="o">+</span><span class="mi">1</span>
+    <span class="o">...</span><span class="p">:</span>             
+    <span class="o">...</span><span class="p">:</span>             <span class="n">contexts</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">L</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">index</span><span class="p">])</span>
+    <span class="o">...</span><span class="p">:</span>             <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>
+    <span class="o">...</span><span class="p">:</span>             <span class="n">x</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">pad_sequences</span><span class="p">(</span><span class="n">contexts</span><span class="p">,</span> <span class="n">maxlen</span><span class="o">=</span><span class="n">maxlen</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>             <span class="n">y</span> <span class="o">=</span> <span class="n">np_utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">V</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>
+    <span class="o">...</span><span class="p">:</span>             <span class="k">yield</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>             </code></pre></figure>
+
+<p>Almost done, we define our model now.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="n">cbow</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+    <span class="o">...</span><span class="p">:</span> <span class="n">cbow</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Embedding</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="n">V</span><span class="p">,</span><span class="n">output_dim</span><span class="o">=</span><span class="n">dim</span><span class="p">,</span> <span class="n">input_length</span><span class="o">=</span><span class="n">win_size</span><span class="o">*</span><span class="mi">2</span><span class="p">))</span>
+    <span class="o">...</span><span class="p">:</span> <span class="n">cbow</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Lambda</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">K</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span><span class="n">output_shape</span><span class="o">=</span><span class="p">(</span><span class="n">dim</span><span class="p">,)))</span>
+    <span class="o">...</span><span class="p">:</span> <span class="n">cbow</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'softmax'</span><span class="p">))</span>
+    <span class="o">...</span><span class="p">:</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">cbow</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s">'categorical_crossentropy'</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s">'adadelta'</span><span class="p">)</span></code></pre></figure>
+
+<p>The model is simple. We input a vector of 2 times window length, which in the case is 10. Process it using a dense layer and output a V-length (which is the length of our corpus) one-hot encoded vector indicating the output word. Let’s train the model for a hundred epochs.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="k">for</span> <span class="n">ite</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="n">loss</span> <span class="o">=</span> <span class="mf">0.</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">generate_data</span><span class="p">(</span><span class="n">corpus</span><span class="p">,</span> <span class="n">window_size</span><span class="p">,</span> <span class="n">V</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="n">loss</span> <span class="o">+=</span> <span class="n">cbow</span><span class="o">.</span><span class="n">train_on_batch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="k">if</span> <span class="n">ite</span><span class="o">%</span><span class="mi">20</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="k">print</span><span class="p">(</span><span class="n">ite</span><span class="p">,</span> <span class="n">loss</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>     
+    <span class="o">...</span><span class="p">:</span>     
+<span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">84.92460155487061</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mf">47.73322546482086</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mf">18.56218731403351</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mf">4.56478923559189</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mf">0.5073482573032379</span><span class="p">)</span></code></pre></figure>
+
+<p>Great, our model has been successfully trained. Are the vectors any good? We can find out. Let’s process the vectors using gensim and see which words the model thinks are closer together.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'vectors.txt'</span> <span class="p">,</span><span class="s">'w'</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">' '</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">V</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">dim</span><span class="p">)]))</span>
+    <span class="o">...</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span> <span class="n">vectors</span> <span class="o">=</span> <span class="n">cbow</span><span class="o">.</span><span class="n">get_weights</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="o">...</span><span class="p">:</span> <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">word_index</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">' '</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">vectors</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]))))</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="o">...</span><span class="p">:</span> <span class="n">w2v</span> <span class="o">=</span> <span class="n">gensim</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">KeyedVectors</span><span class="o">.</span><span class="n">load_word2vec_format</span><span class="p">(</span><span class="s">'./vectors.txt'</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="n">w2v</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="s">'driver'</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">10</span><span class="p">]:</span>
+<span class="p">[</span> <span class="p">(</span><span class="s">u'car'</span><span class="p">,</span> <span class="mf">0.6554617881774902</span><span class="p">),</span>
+ <span class="p">(</span><span class="s">u'drives'</span><span class="p">,</span> <span class="mf">0.6384860277175903</span><span class="p">),</span>
+ <span class="p">(</span><span class="s">u'steered'</span><span class="p">,</span> <span class="mf">0.5519140958786011</span><span class="p">),</span>
+ <span class="p">(</span><span class="s">u'turn'</span><span class="p">,</span> <span class="mf">0.5362613201141357</span><span class="p">),</span>
+  <span class="p">(</span><span class="s">u'pilot'</span><span class="p">,</span> <span class="mf">0.4439489245414734</span><span class="p">)]</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="n">w2v</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="s">'pilot'</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">11</span><span class="p">]:</span>
+<span class="p">[</span> <span class="p">(</span><span class="s">u'landed'</span><span class="p">,</span> <span class="mf">0.6166680455207825</span><span class="p">),</span>
+  <span class="p">(</span><span class="s">u'engine'</span><span class="p">,</span> <span class="mf">0.4601679742336273</span><span class="p">),</span>
+  <span class="p">(</span><span class="s">u'issues'</span><span class="p">,</span> <span class="mf">0.4028368592262268</span><span class="p">),</span>
+  <span class="p">(</span><span class="s">u'plane'</span><span class="p">,</span> <span class="mf">0.25351497530937195</span><span class="p">),</span>
+  <span class="p">(</span><span class="s">u'driver'</span><span class="p">,</span> <span class="mf">0.1687805950641632</span><span class="p">)</span> <span class="p">]</span></code></pre></figure>
+
+<p>There we go. Our model with so little training data, has learnt that a pilot is more related to engine and plane, and a driver is more related to car and steer.</p>
+
+<h2 id="hows-this-useful">How’s this Useful?</h2>
+
+<p>Well, there are hundreds of ways I can think of. Let’s start with the obvious and basic ones. Document Classification. This is as simple as it gets. My model as described in the above section has learned to understand what words are alike and what are not. Great. Say, I have a huge bunch of Sci-Fi Novels and a huge bunch of Self-Help books. When trained on these books, my network recognizes that words like, galaxy, supernova, spaceship all occur in similar contexts while words like motivation, determination occur in similar contexts. Now using this model, if you were to convert all your books to vectors, you would find that using a simple clustering algorithm you can sort these books out into Sci-Fi and Self-Help without having any prior knowledge or labeled training data whatsoever. Pretty good, huh? This is just scratching the surface.</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/data-science/scrapy-part-1/">
+            Dataset Shortages Pt. 1 - Introduction to Scrapy
+            <small>23 Jan 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/others/introducing-selenium/">
+            Webdrivers - An Introduction to Selenium
+            <small>11 Nov 2016</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>
