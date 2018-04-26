@@ -10,7 +10,7 @@ title:            pranaydeeps
 tagline:          'My Journal'
 description:      'NLP, Linguistics, Literature, Progressive Music and all kinds of stuff'
 url:              https://pranaydeeps.github.io/
-baseurl:          'https://pranaydeeps.github.io/'
+baseurl:          '/'
 
 author:
   name:           'Pranaydeep'
