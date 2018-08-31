@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Progress in Machine Translation - Pt. 1 &middot; pranaydeeps
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <img src="https://pbs.twimg.com/profile_images/996723618645082112/0msEUSsD_400x400.jpg" alt="Avatar" style="width:80px; border-radius: 50%;">
+      <h1>
+        <a href="/">
+          pranaydeeps
+        </a>
+      </h1>
+      <p class="lead">NLP, Linguistics, Literature, Progressive Metal and all kinds of stuff</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/categories/">Categories</a>
+          
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+
+<!--       <a class="sidebar-nav-item" href="https://github.com/pranaydeeps/archive/v1.0.zip">Download</a> -->
+      <!-- <a class="sidebar-nav-item" href="https://github.com/pranaydeeps">GitHub</a> -->
+      <!-- <span class="sidebar-nav-item">Currently v1.0</span> -->
+    </nav>
+
+    <p>&copy; 2018. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Progress in Machine Translation - Pt. 1</h1>
+  <div class="post-categories" style="margin-bottom: 10px">
+  
+  
+   Category: <a href="//categories/#NLP">NLP</a>
+  
+  
+</div>
+  <span class="post-date">21 Jul 2018</span>
+
+  <h2 id="before-nmt-systems">Before NMT Systems</h2>
+
+<p>As can be seen from the post (link word embedding blog), it is possible to represent words in a mathematical vector form which represents their semantic meaning. Machine Translation is however, a task which expands way beyond the understanding of words. The model needs to learn not only the laws and syntax of multiple languages, but also how to convert from one to another. As expected, this task is highly demanding from a computational perspective. Owing to this, Translation systems were mostly phrase-based. This means that translation was based on small units called ‘phrases’ only. The Model would translate a phrase from one language to another, given similar samples based on simple probabilistic rules.</p>
+
+<p>As you would expect though, these systems though reliant for basic translation, were not syntactically very accurate. Multiple reasons can be pointed out.</p>
+
+<ul>
+  <li>Phrase Reordering would be required: When translating from one phrase to another, one also needs to worry about the position of the phrase in the sentence. Some languages have a different way of placing words than others. This was accounted for by building a second language model to reorder the phrases. However, that only adds to the computation.</li>
+  <li>Loss of Context: Since the model is only looking at one phrase to translate and not it’s adjoining phrases, there is a huge loss of context. Lots of words have multiple meaning depending on the context. From our example in the (Word Embeddings post). ‘Please bear with me’ has a different meaning for ‘bear’, whereas ‘I see a big brown bear’ has a seperate meaning for ‘bear’.</li>
+  <li>Morphological Errors: Our model is only translating phrases, hence it has no idea about the tense or any part of the structure of the source text. Hence, it would be impossible to correctly place morphological forms of words in the translation.</li>
+</ul>
+
+<p>To correct these cons for phrase-based systems, came the NMT or Neural Machine Translation Systems. These systems centre around RNNs or Recurrent Neural Networks. The RNN Endoder-Decoder Architecture has been central to the development of not only Translation but a significant amount of Language and Sequence Modelling tasks over the years.</p>
+
+<h2 id="understanding-the-rnn-encoder-decoder">Understanding the RNN Encoder-Decoder</h2>
+
+<p>Any Endoder-Decoder Architecture centres around the idea that an intermediate representation can be learnt using the Encoder, which is sufficient to encode every bit of information presented to us, and the Decoder is capable of decoding this representation back to some meaningful form.</p>
+
+<p>An RNN based Encoder-Decoder works on similar lines. One RNN encodes a sequence of symbols into a fixed lenght vector representation, and another RNN decoded representations into another sequence of symbols. Esentially, the encoder and decoder together are trying to jointly minimize the conditional probability of a target sequence, given a source sequence.</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/literature/the-museum/">
+            The Museum - A Short Story
+            <small>04 Jul 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/nlp/word-embeddings-part-1/">
+            Introduction to Word Embeddings - Pt. 1
+            <small>02 Apr 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/literature/long-halloween/">
+            The Long Halloween - A Short Story
+            <small>18 Mar 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

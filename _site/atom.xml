@@ -4,13 +4,40 @@
  <title>pranaydeeps</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2018-08-31T07:56:33+05:30</updated>
+ <updated>2018-08-31T10:10:22+05:30</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Pranaydeep</name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>Progress in Machine Translation - Pt. 1</title>
+   <link href="http://localhost:4000/nlp/translation-1/"/>
+   <updated>2018-07-21T00:00:00+05:30</updated>
+   <id>http://localhost:4000/nlp/translation-1</id>
+   <content type="html">&lt;h2 id=&quot;before-nmt-systems&quot;&gt;Before NMT Systems&lt;/h2&gt;
+
+&lt;p&gt;As can be seen from the post (link word embedding blog), it is possible to represent words in a mathematical vector form which represents their semantic meaning. Machine Translation is however, a task which expands way beyond the understanding of words. The model needs to learn not only the laws and syntax of multiple languages, but also how to convert from one to another. As expected, this task is highly demanding from a computational perspective. Owing to this, Translation systems were mostly phrase-based. This means that translation was based on small units called ‘phrases’ only. The Model would translate a phrase from one language to another, given similar samples based on simple probabilistic rules.&lt;/p&gt;
+
+&lt;p&gt;As you would expect though, these systems though reliant for basic translation, were not syntactically very accurate. Multiple reasons can be pointed out.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Phrase Reordering would be required: When translating from one phrase to another, one also needs to worry about the position of the phrase in the sentence. Some languages have a different way of placing words than others. This was accounted for by building a second language model to reorder the phrases. However, that only adds to the computation.&lt;/li&gt;
+  &lt;li&gt;Loss of Context: Since the model is only looking at one phrase to translate and not it’s adjoining phrases, there is a huge loss of context. Lots of words have multiple meaning depending on the context. From our example in the (Word Embeddings post). ‘Please bear with me’ has a different meaning for ‘bear’, whereas ‘I see a big brown bear’ has a seperate meaning for ‘bear’.&lt;/li&gt;
+  &lt;li&gt;Morphological Errors: Our model is only translating phrases, hence it has no idea about the tense or any part of the structure of the source text. Hence, it would be impossible to correctly place morphological forms of words in the translation.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To correct these cons for phrase-based systems, came the NMT or Neural Machine Translation Systems. These systems centre around RNNs or Recurrent Neural Networks. The RNN Endoder-Decoder Architecture has been central to the development of not only Translation but a significant amount of Language and Sequence Modelling tasks over the years.&lt;/p&gt;
+
+&lt;h2 id=&quot;understanding-the-rnn-encoder-decoder&quot;&gt;Understanding the RNN Encoder-Decoder&lt;/h2&gt;
+
+&lt;p&gt;Any Endoder-Decoder Architecture centres around the idea that an intermediate representation can be learnt using the Encoder, which is sufficient to encode every bit of information presented to us, and the Decoder is capable of decoding this representation back to some meaningful form.&lt;/p&gt;
+
+&lt;p&gt;An RNN based Encoder-Decoder works on similar lines. One RNN encodes a sequence of symbols into a fixed lenght vector representation, and another RNN decoded representations into another sequence of symbols. Esentially, the encoder and decoder together are trying to jointly minimize the conditional probability of a target sequence, given a source sequence.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>The Museum - A Short Story</title>
