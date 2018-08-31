@@ -8,9 +8,9 @@ permalink:        /:categories/:title/
 # Setup
 title:            pranaydeeps
 tagline:          'My Journal'
-description:      'NLP, Linguistics, Literature, Progressive Music and all kinds of stuff'
+description:      'NLP, Linguistics, Literature, Progressive Metal and all kinds of stuff'
 url:              https://pranaydeeps.github.io/
-baseurl:          '/'
+baseurl:          https://pranaydeeps.github.io/
 
 author:
   name:           'Pranaydeep'
