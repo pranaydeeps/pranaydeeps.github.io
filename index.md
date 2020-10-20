@@ -12,6 +12,12 @@ I have previously worked in the R&D Team of retail AI startup [Paralleldots](htt
 In my free time I enjoy listening to progressive music, reading fantasy and I occasionally dabble with writing.  
 
 
+## News
+
+* July 29 '20: Attended the 10th Lisbon Machine Learning School
+* June 25 '20: Presented paper on Document Layout Analysis at ICIAR'20 
+* Jan 30 '20: Attended CLIN'20 at Utrecht University, NL
+
 ## Contact
 
 * [E-mail](mailto:pranaydeep.singh@ugent.be)
