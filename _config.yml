@@ -9,8 +9,8 @@ permalink:        /:categories/:title/
 title:            pranaydeep singh
 tagline:          'c1pher'
 description:      'Doctoral Candidate at LT3, UGent'
-url:              http://pranaydeeps.github.io/
-baseurl:          http://pranaydeeps.github.io/
+url:              https://pranaydeeps.github.io/
+baseurl:          https://pranaydeeps.github.io/
 
 author:
   name:           'Pranaydeep Singh'
