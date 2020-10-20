@@ -6,17 +6,18 @@ highlighter:      pygments
 permalink:        /:categories/:title/
 
 # Setup
-title:            pranaydeeps
+title:            pranaydeep singh
 tagline:          'My Journal'
-description:      'NLP, Linguistics, Literature, Progressive Metal and all kinds of stuff'
-url:              https://pranaydeeps.github.io/
-baseurl:          https://pranaydeeps.github.io/
+description:      'Doctoral Candidate at LT3, UGent'
+url:              http://pranaydeeps.github.io/
+baseurl:          http://pranaydeeps.github.io/
 
 author:
-  name:           'Pranaydeep'
+  name:           'Pranaydeep Singh'
   url:            https://github.com/pranaydeeps
 
 paginate:         5
+paginate_path: "Blog/page:num/"
 
 # Custom vars
 version:          1.0

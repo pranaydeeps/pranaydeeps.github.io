@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
- <title>pranaydeeps</title>
+ <title>pranaydeep singh</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2018-08-31T10:10:22+05:30</updated>
+ <updated>2020-10-20T17:36:40+05:30</updated>
  <id>http://localhost:4000</id>
  <author>
-   <name>Pranaydeep</name>
+   <name>Pranaydeep Singh</name>
    <email></email>
  </author>
 
@@ -36,104 +36,6 @@
 &lt;p&gt;Any Endoder-Decoder Architecture centres around the idea that an intermediate representation can be learnt using the Encoder, which is sufficient to encode every bit of information presented to us, and the Decoder is capable of decoding this representation back to some meaningful form.&lt;/p&gt;
 
 &lt;p&gt;An RNN based Encoder-Decoder works on similar lines. One RNN encodes a sequence of symbols into a fixed lenght vector representation, and another RNN decoded representations into another sequence of symbols. Esentially, the encoder and decoder together are trying to jointly minimize the conditional probability of a target sequence, given a source sequence.&lt;/p&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>The Museum - A Short Story</title>
-   <link href="http://localhost:4000/literature/the-museum/"/>
-   <updated>2017-07-04T00:00:00+05:30</updated>
-   <id>http://localhost:4000/literature/the-museum</id>
-   <content type="html">&lt;p&gt;The class stared at me in awe as I switched to the slide with the diffraction pattern. I heard a collective murmur.&lt;/p&gt;
-
-&lt;p&gt;“Surprising? Imagine what scientists at the time thought of this.” I said. Still not a word. Everyone still trying to figure out what had happened there.&lt;/p&gt;
-
-&lt;p&gt;“This is still considered to be one of the most baffling moments in experimental physics.” I said.&lt;/p&gt;
-
-&lt;p&gt;I felt like a magician revealing a man after I had supposedly made him disappear. Even though the trick wasn’t mine, I felt quite proud of it. Now it was time for the even more fun part. Revealing how the trick was performed.&lt;/p&gt;
-
-&lt;p&gt;“So. Time for a little bit of an explanation.” I said.&lt;/p&gt;
-
-&lt;p&gt;“Sir, you are talking weirdly. I can’t understand.” A boy in the front row murmured. The whole class nodded in approval.&lt;/p&gt;
-
-&lt;p&gt;“What are you guys talking about?” I said, but the words that came out of my mouth were different. Garbled. I tried to think what was happening but my mind seemed clouded. Unable to process. Then the tables and the ground started shaking and it all went dark.&lt;/p&gt;
-
-&lt;p&gt;“Dr. Kane? Sir? Are you feeling better?” a voice said. I did not know who that was. I was in a bed. A comfortable one. The air smelled nice, but artificial. My feet were chilly. I tried to open my eyes but they seemed like they had weights on them. After a lot of effort, a flurry of white light flooded my face. I groaned.&lt;/p&gt;
-
-&lt;p&gt;“It’s alright, Sir. You are alright now. You can relax.” the voice said softly again. It was a girl’s voice. As my pupils adjusted to the light, I realized I was in an emergency room. Everything around was white. Lights, sheets, curtains, clothes. It was almost too much white to look at. I wondered why hospitals loved white. It sure would be pretty hard to clean. Maybe, it was because of the brightness. To make dimming lives seem like they are still bright. I looked to the left and saw a nurse looking at me intently. Awaiting my response patiently.&lt;/p&gt;
-
-&lt;p&gt;“I am alright. But what happened?” I managed with a slippery tongue. My words still seemed like they were coming out of a child’s mouth. My legs and hands seemed weak. I felt like I was just waking up after a 10 mile run.&lt;/p&gt;
-
-&lt;p&gt;“Sir, you passed out during your class. Your students called 911. You are in St. Mungo’s Hospital. We did some basic blood tests. Everything looks fine for now. Your wife and daughter are waiting to take you home in the lounge.” she said. It took me a few seconds to process all the information. Lily and Emma were waiting. They couldn’t be too excited considering this was the 3rd time in the last month they were picking me up at a hospital.&lt;/p&gt;
-
-&lt;p&gt;The nurse helped me get up. My back seemed very fragile. Like it had been carrying a lot of weight lately. I looked around to see all kinds of people in trouble. A man with a gunshot wound on his shoulder, a woman in labor, a boy who probably had an overdose episode. I felt like the odd one out. Like the richest man in the room everyone envies. My wealth was that all my limbs were fine. “Just a little weakness”, I told myself. Was it just a little weakness though? This has been the 3rd blackout. It’s probably just old age starting to take over. I was past 40 now after all.&lt;/p&gt;
-
-&lt;p&gt;I showed up in the lounge after signing up a few papers and getting my clothes back. Emma and Lily sat in a sofa solving a crossword together. “Buckle up old man, you have to start eating healthier now.” Emma chuckled.&lt;/p&gt;
-
-&lt;p&gt;“This is it. Doctor’s appointment. Today.” Lily said with a strict firmness. I groaned. “No, I am fine. I didn’t have breakfast today. I don’t want to see the doctor.” I said. I felt like an 8 year old afraid of injections. But I had my reasons. I hate hospitals and doctors. I taught Theoretical Physics in an university. I had lived my whole life explaining to people how wondrous this universe and this life is. Hospitals constantly were a reminder of the fact that it had its flaws. A temple of negativity.&lt;/p&gt;
-
-&lt;p&gt;“I have already spoken to the receptionist. We have an appointment. In 10 minutes.” She smiled wickedly. “Okay, but this is it. Once I am checked out, you dare not try to get me back again.” I said. “We’ll see about that.” she said.&lt;/p&gt;
-
-&lt;p&gt;I sat back in the sofa comfortably. I couldn’t help but look around again. A woman in her twenties, sobbing. Another old woman, attached to a cylinder, looking miserable. A man with one foot, on a crutch. It felt like a human museum of accidents, mistakes and misery. I wanted to be out of there as fast as I could.&lt;/p&gt;
-
-&lt;p&gt;But 5 days later there I was, back again. Staring at my reports in amazement. “ALS - Primary diagnosis” it said in the note at the end. ALS. Amyotrophic lateral sclerosis. My nerves were degenerating, my muscles collapsing. I had 10-15 days to live. My mind started to wander as I realized I had become a piece in the museum.&lt;/p&gt;
-
-&lt;p&gt;“I am so sorry. As I said. We will do everything we can to reduce your pain. Please sit down.” The doctor said calmly as if informing me that my pizza had arrived. He would have delivered that same news 3 times a day. It wasn’t a big deal for him. He was the janitor of the museum. The displays weren’t shocking anymore because he saw them everyday. But the people who visited the museum for the first time. They are the ones who are shocked and amazed. Like families. My family. Lily and Emma. I felt sorry for them. But not for me. I was alright. I am a man of science. If anything, I can handle death.&lt;/p&gt;
-
-&lt;p&gt;Over the next few days, I was comfortably placed in a room, with a TV. For some reason, the hospital assumed I would like to spend my last few days looking at soap operas and football matches. Lily and Emma were there. All the time. It was hard for them. Emma had been bunking college and Lily had taken leave. A bunch of flowers had been assembled by my nightstand from co-workers and students. Love to Ethan, they said. I didn’t know their names. Not one. Yet, they say they send love. How close death makes us feel. We feel sad for the people we never knew. Like those museum pieces we stare at so intently. Visitors pecked against the glass. Oh, that old man has Alzheimer’s. How sad. Oh, the lady has cancer, how devastating.&lt;/p&gt;
-
-&lt;p&gt;“So, yeah, we finally put out the small fires all round the room. Man, the prof was pissed.” Emma finished her story, as I drifted back into the real world. “Dad, where you even listening?” she said annoyed.&lt;/p&gt;
-
-&lt;p&gt;“Of course I was sweetie. You should focus more on studying though.” I said.&lt;/p&gt;
-
-&lt;p&gt;“I am. Don’t worry. I will be the best lawyer, ever.” she gleamed.&lt;/p&gt;
-
-&lt;p&gt;“I am sure you will.” I smiled back.&lt;/p&gt;
-
-&lt;p&gt;I had 2 more days according to the doctor’s predictions on the disease progression. My vision was blurry now. I know it  sounds sick. But I wasn’t sad or anything. For 20 years, I had been studying and teaching science. Believing that we control our fate. Not some crazy man with a beard, called God. In two days, I would find out. What will I see when I die? My life flashing by? A door and a stairway with light? I was eager to find out. It wasn’t just that. I never really thought about it much, but I was bored. Exhausted of going to college daily and talking like a robot for hours at stretch. Teaching students who never comprehend the magnitude of the things I said. I was tired. Of people not understanding me. I wanted to move on. I was gonna be the most content man dying, ever. Lily was broken though. She never looked me in the eye after the diagnosis. She couldn’t bear to believe what was about to happen. I tried not to remind her. The result was a stringent denial of the state of events. Emma was dealing with it well. She stayed with me all the time. Helped me out with food and walking. I told her a few things that would be important to her. She cried a few times, but she carried herself well. Occasionally a few students and co-workers would come to visit. They never stayed for more than 5 minutes though.&lt;/p&gt;
-
-&lt;p&gt;With just 2 days left, today was going to be my day out. Emma and Lily planned to take me to a cliff overseeing the lake. I was excited. I would take it all in for the last time. Then, be ready to face whatever comes next. A lot of pain for 2 days. But hopefully, whatever comes after would be worth it. My encounter with the afterlife. In the museum of misery, I would move on from the i-pity-them sick people display, to the he-was-a-good-man dead display.&lt;/p&gt;
-
-&lt;p&gt;I was stuffed into the back of a car with my wheelchair in the trunk. Lots of bottles attached to me. Lily was driving, Emma sat next to me, holding onto my hand. It wasn’t a long drive. 10 minutes was all it took, for the scenery to change from the glistening, gloomy white to the color of life. Green. Lush green grass, thick foliage of trees and a neat blue sky. All the things, that should be in hospitals instead of the sickening white. Emma helped me open the window as a cool breeze swept my hair. The smell of water and mud flew in with it. Just 10 minutes away from AIDS, Cancers and Alzheimer’s.&lt;/p&gt;
-
-&lt;p&gt;Lily stopped driving at the end of a dusty road. Emma got out and pulled the wheel chair of the back as I mustered all my strength to get onto it. As I looked around, I saw a big blue lake towards the edge. We were way above it all. The kids playing, the people diving. Closer to the sky. Emma navigated my wheelchair towards a small garden with a few park benches.&lt;/p&gt;
-
-&lt;p&gt;“Did you get the I-Pod?” I asked.&lt;/p&gt;
-
-&lt;p&gt;“Of course” she replied.&lt;/p&gt;
-
-&lt;p&gt;“Put it on then.” she said.&lt;/p&gt;
-
-&lt;p&gt;“Oops, excuse me for a second.” she said as her phone started to buzz in her pockets.&lt;/p&gt;
-
-&lt;p&gt;“Don’t worry. You get it. I’ll put it on.” I asked. She handed me the I-Pod and turned to answer the phone. It was hard, but I managed. I thought about the pain that would come tomorrow. It would be like never before. The reality is so near and inevitable for me now. It’s impossible to ignore it.&lt;/p&gt;
-
-&lt;p&gt;Lily sat there staring at me intently as I nodded to the music. Over the last week, all life had been drained off her. She was now a shade of yellow. With dark patches under her eyes. Lily and Emma. The only reason I still had a part which wished I could stay. The sun was a shade of orange now. The sky also absorbing it’s orangish tint as if a colored ball in a jar of water. I couldn’t hear anything else except the loud music flooding my ears as a tear streamed down my eye. I was going to die. It just hit me. What if there is no afterlife? What if I was right? Physics was right? No afterlife. Just. The End. And Emma. What would she do without me? Will today be the last time I ever see her. I started to shiver as my eyelids welled up. I was a rational, scientific man. But I broke down. Rationality or irrationality can not explain what I felt then.&lt;/p&gt;
-
-&lt;p&gt;I could hear nothing over the sound of the music. I opened my eyes, Lily’s mouth was wide open. Color flooding to her cheeks as she got up on her feet. I turned around to find Emma jumping up and down. Eyes wide. Screaming. I wondered if she had passed her bar exams. I stopped the song as both of them came towering down on me. Hugging me. My muscles ached. As they pulled away, both of them were welled up with tears.&lt;/p&gt;
-
-&lt;p&gt;“It’s all good.” Emma screamed.&lt;/p&gt;
-
-&lt;p&gt;“What’s good?” I asked.&lt;/p&gt;
-
-&lt;p&gt;“It’s all good. You are all good. Daddy, you are going to be fine.” She said still screaming. Lily still couldn’t talk as she turned away, all teary.&lt;/p&gt;
-
-&lt;p&gt;“I don’t get it.” I said, puzzled.&lt;/p&gt;
-
-&lt;p&gt;“It was a misdiagnosis. You do not have ALS. It’s PLS. The onset is similar. Doctors make that mistake sometimes. You will have a long, healthy life.” She cried. I looked at her blankly.&lt;/p&gt;
-
-&lt;p&gt;“Why are you not happy, Daddy?” she asked jumping up and down.&lt;/p&gt;
-
-&lt;p&gt;“Of course, I am honey.” I said. Emma and Lily started calling my sister and her family jumping and hugging. I dragged my wheelchair towards the edge.I looked at the sun again. It was all gone. No more beautiful, gold ball in a jar of water. It was nothing now. Just the sun. The sun that had always been there. The sun I ignored everyday. The sun I was bored of. I could hear a whole lot of screaming in the background. I wanted that sun back again. The one I enjoyed, one I hadn’t been seeing for the past 40 years. I wanted more.&lt;/p&gt;
-
-&lt;p&gt;In one fluid motion, I jerked my wheelchair. The cool breeze swept my face again. Only much harder than before. As I fell, the sun turned to that beautiful ball again. The ground was approaching me at a threatening speed.&lt;/p&gt;
-
-&lt;p&gt;I counted back from three. Three. Two.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;“Death must be so beautiful. To lie in the soft brown earth, with the grasses waving above one’s head, and listen to silence. To have no yesterday, and no to-morrow. To forget time, to forget life, to be at peace.” - Oscar Wilde&lt;/p&gt;
-&lt;/blockquote&gt;
-
 </content>
  </entry>
  
@@ -300,79 +202,6 @@ Sentence-4 : &quot;The driver steered the car through a steep turn&quot;
 &lt;h2 id=&quot;hows-this-useful&quot;&gt;How’s this Useful?&lt;/h2&gt;
 
 &lt;p&gt;Well, there are hundreds of ways I can think of. Let’s start with the obvious and basic ones. Document Classification. This is as simple as it gets. My model as described in the above section has learned to understand what words are alike and what are not. Great. Say, I have a huge bunch of Sci-Fi Novels and a huge bunch of Self-Help books. When trained on these books, my network recognizes that words like, galaxy, supernova, spaceship all occur in similar contexts while words like motivation, determination occur in similar contexts. Now using this model, if you were to convert all your books to vectors, you would find that using a simple clustering algorithm you can sort these books out into Sci-Fi and Self-Help without having any prior knowledge or labeled training data whatsoever. Pretty good, huh? This is just scratching the surface.&lt;/p&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>The Long Halloween - A Short Story</title>
-   <link href="http://localhost:4000/literature/long-halloween/"/>
-   <updated>2017-03-18T00:00:00+05:30</updated>
-   <id>http://localhost:4000/literature/long-halloween</id>
-   <content type="html">&lt;p&gt;I see extraordinary things everyday. I see ghosts, I sometimes manipulate objects with the will of my mind. People would give a lot to see and do the things I do, but not what I gave. I gave my mind away. I am crazy. My parents died when I was 18 in an accident and I have spent 12 years of my life in the Mahkra mental asylum after I attempted suicide twice.&lt;/p&gt;
-
-&lt;p&gt;You must think I am foolish to attempt suicide. To throw my life away. But you are not someone who can judge. You do not what it feels like. It’s not about my parents, its about normality. You have a normal life and you seek thrills. Thrills that are like an antidote to the poison and boredom of normalcy.  But when something like this happens. You pray for normal. You would give everything just to get normal but never again. Nothing is the same again. Even daily activities like brushing your teeth and reading the paper feel different. You change and because of that the world around you seems strange too. Pardon the senseless ranting, it will not mean anything to you but read it again when something happens and you might just understand.&lt;/p&gt;
-
-&lt;p&gt;I see weird things everyday. Weird even for an asylum. I mean watching a naked man enacting a light saber battle with sound effects involving spitting and coughing is average on mental asylum scale. But I see even weirder things. My wheel chair sometimes moves even when someones not pushing it. I sometimes have things to eat in my hand even when I did not pick them up. I talked to my father for an hour a week back. I know I am crazy, but I can’t help it. These things just happen I have to go through them. I laugh at my selves and my condition. But there is nothing I can do about it. Recently, I took another step to being completely insane. One of my first childhood memories was of going to Disney World with my parents. I was thinking about it for an hour or so and there it was. I was in Disney World. I knew it was all fake but I roamed for a while reliving old memories and then I suddenly was back in my confined room. Similar events happened a couple of times, once I visualized our old home, then once the lake we used to go to on Sundays. I started enjoying the visions. They were so relaxing. It was nice to be away from the place which reminded of my mental state again and again.&lt;/p&gt;
-
-&lt;p&gt;You might think I am naive to find joy in something that I know is fake but again, you have never lived in an asylum for 12 years so you would not know. I started controlling these visions and seeing things I wanted. This went on for a while. It was a month later I think around the time when my neighbor Mr. Gabriel was telling us the story of how he killed his wife’s murderer for the tenth time. I had an idea. Maybe seeing the truck driver who killed my parents would give me some peace of mind.  I knew it was crazy, but for a man in my condition it was definitely worth a shot. I decided to talk with him for a while. I planned for it for days. I picked Halloween to be the day. I decided what I would say to him. I remembered everything about that night for days.&lt;/p&gt;
-
-&lt;p&gt;The day came. I told my caretaker I was going to sleep early and that nobody was to disturb me. I sealed my room from noise and light. Switched off all lights and sat on the bed. I started to focus on the man. I remembered everything about him. He was well built. About 6 feet tall and scary, very scary. He had multiple tattoos on his arms. His eyebrows were thick and devilish, so were his eyes. Everything about him chilled me. Especially the way he said in the court that it was my parents fault as they were driving on the wrong side. Cold, without an expression, no remorse, no guilt and probably no conscience.&lt;/p&gt;
-
-&lt;p&gt;Nothing happened. I was still in my cell. I knew it would happen. I had done it before. I kept on focusing. My brows became sweaty, my teeth were gritting as I closed my eyes as much as is humanly possible. It was all black. Blacker than ever. Like the kind of black you think would only be in hell. Then I felt it. The temperature changed. I could feel my breath. I was sitting on a seat and my naked feet were resting on metal. I opened my eyes and found myself sitting in a car, outside a small house. His house.&lt;/p&gt;
-
-&lt;p&gt;I walked out into the chilly air. The gravel of the road touched my feet as I felt it prick against my skin. I opened the lawn gate and walked into the lawn. They were beautiful. Green luscious grass, no sign of weeds. Without a second thought I walked to the front door and knocked thrice. I heard kids shouting as a person rushed to the door. The door opened with a creak and I found myself facing a middle aged blond woman who looked irritated.&lt;/p&gt;
-
-&lt;p&gt;“Yes mister, How can I help you?” she said.&lt;/p&gt;
-
-&lt;p&gt;“I am here to see Mr. Jack Napier on an urgent matter, Please.” I said politely.&lt;/p&gt;
-
-&lt;p&gt;“Wait outside, I will find him.” she said as she rushed back inside. I heard her screaming and a few minutes later. There he was. But he looked different. He looked normal. He no more had that smug expression. That criminal appearance. He looked like a family man. Dressed in a shirt and trousers, with a regular man’s hear cut. He looked ordinary.&lt;/p&gt;
-
-&lt;p&gt;“Hi, Mr. Napier I need to talk to you about a matter of the court. If you are free, it is a little urgent.” I said calmly.&lt;/p&gt;
-
-&lt;p&gt;“Look, mister if this is about my sister I do not want to hear it.” he said.&lt;/p&gt;
-
-&lt;p&gt;“No, no. It is actually about that accident in that Mahtog place. That truck accident. That case has been reopened actually.” I said&lt;/p&gt;
-
-&lt;p&gt;“Oh crap. I do not want to go through that again. I went through a lot of trouble, mister. I do not want to go through it again. And I sure as hell do not want my family to find out.” he said panicking a little.&lt;/p&gt;
-
-&lt;p&gt;“It’s alright nothing too intense. I would just like to hear your part of the story.” I said.&lt;/p&gt;
-
-&lt;p&gt;“Alright, please have a seat in the garden. Why are you not wearing shoes by the way?” he asked politely.&lt;/p&gt;
-
-&lt;p&gt;“Oh, I spilled coffee all over them. Had to dump them in the back of the trunk. So tell me what happened that night.” I said composed as ever.&lt;/p&gt;
-
-&lt;p&gt;“Well, nothing much to tell really. I was carrying a load of containers for my employers which they needed urgently. I was driving at 50 when suddenly a car appears in front of me. Could not slam the brakes in time and Wham!” he said coolly.&lt;/p&gt;
-
-&lt;p&gt;“So you did nothing wrong right.” I asked gritting my teeth.&lt;/p&gt;
-
-&lt;p&gt;“No, absolutely nothing. I was on my side. I was within the speed limit and everything.” he said.&lt;/p&gt;
-
-&lt;p&gt;“What about the fact that you were high?” I asked with a smug smile.He immediately got of his feet. His nerves were spouting.&lt;/p&gt;
-
-&lt;p&gt;“How the hell did you know that? That is not public knowledge.” he said obviously pissed.&lt;/p&gt;
-
-&lt;p&gt;“Well, it is my job to know. You did cost me a lot that night.” I said standing up.&lt;/p&gt;
-
-&lt;p&gt;“Excuse me.” he said.&lt;/p&gt;
-
-&lt;p&gt;“I am their son, Jack. The son of Martha and Thomas. The people you killed because you were high and got away because your employer was a big shot. Remember everything clearly know?” I asked almost shouting now. He started backing off. He bent down to pick a shovel from his garden floor.&lt;/p&gt;
-
-&lt;p&gt;“Stay away, mister.” he said shivering.&lt;/p&gt;
-
-&lt;p&gt;“I am just here to talk.” I said.&lt;/p&gt;
-
-&lt;p&gt;“Well, I do not care. You can get out right now or I am calling the police for trespassing. I have my children here for god’s case. Get lost right now.” he said as calmly as he could.&lt;/p&gt;
-
-&lt;p&gt;“You should burn for what you did. You stole my life. You do not deserve this. You should not have children. You are not fit to bring up a family.” I screamed.&lt;/p&gt;
-
-&lt;p&gt;He could not bear it anymore. He came charging down at me with his shovel. I fell on the grass. He struck me once in my stomach. Blood spurted out of my mouth. It was streaming hot. I was impressed at the details my mind captured. At this point, I realized it was still a dream. My dream. A gun suddenly materialized in my right hand and I shot him instantly in the foot. He fell down screaming in pain. I got up looked him in the eye. Thought about my parents and then shot him three times in the chest. His wife came screaming out. She saw what happened and broke down crying.&lt;/p&gt;
-
-&lt;p&gt;I woke up to the sound of banging on the door. Relieved that I had been taken away from that place I got up to open the door. My heart was still pumping faster than a horse’s heart. My fingers were trembling. I felt good. I opened the door to find my caretaker Harley standing outside.&lt;/p&gt;
-
-&lt;p&gt;“Bruce, we heard some screaming and, Oh my god what is that?” she said looking at my hands.&lt;/p&gt;
-
-&lt;p&gt;I looked down to find my hands holding a gun, covered in blood.&lt;/p&gt;
 </content>
  </entry>
  
