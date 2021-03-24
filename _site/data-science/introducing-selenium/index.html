@@ -11,7 +11,7 @@
 
   <title>
     
-      Webdrivers - An Introduction to Selenium &middot; pranaydeep singh
+      Webdrivers - An Introduction to Selenium &middot; Pranaydeep Singh
     
   </title>
 
@@ -35,10 +35,10 @@
     <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <img src="/images/me.jpg" alt="Avatar" style="width:240px;">
+      <img src="/images/me.jpeg" alt="Avatar" style="width:240px;">
       <h1>
         <a href="/">
-          pranaydeep singh
+          Pranaydeep Singh
         </a>
       </h1>
       <p class="lead">Doctoral Candidate at LT3, UGent</p>
@@ -83,7 +83,7 @@
       <!-- <span class="sidebar-nav-item">Currently v1.0</span> -->
     </nav>
 
-    <p>&copy; 2020. All rights reserved.</p>
+    <p>&copy; 2021. All rights reserved.</p>
   </div>
 </div>
 
@@ -108,12 +108,12 @@
 
 <p><a href="http://www.seleniumhq.org/projects/webdriver/">Selenium</a> is the Michael Jordan of webdrivers. The ultimate, most complete webdriver you can find. Thinking it’s pretty hard to use? The <a href="http://selenium-python.readthedocs.io/">documentation</a> is pretty neat but let me give you a demonstration anyway. To setup the python bindings, simply open your terminal and do:</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">pip install selenium</code></pre></figure>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">pip <span class="nb">install </span>selenium</code></pre></figure>
 
 <p>Now, selenium comes with built in drivers for a variety of browsers, including Chrome, Firefox, Safari, Opera etc. I prefer using the Firefox driver since that is my default browser but the code should be relatively similar for all sorts of browsers. Let’s start up a simple instance of our favorite browser:</p>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
-<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">()</span></code></pre></figure>
+<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="p">.</span><span class="n">Firefox</span><span class="p">()</span></code></pre></figure>
 
 <p>As soon as you press Enter after that last line, an instance of Firefox should fire up. Now you have complete control over it from your Python interpreter. You can do all sorts of stuff with it.</p>
 
@@ -121,23 +121,23 @@
 
 <p>I’ll help you get started by demonstrating how you can write a script to log you into your facebook account whenever your PC starts up without you pressing even one key. So first thing’s first. You should have imported selenium and started an instance of your favorite browser. Next let’s navigate to the facebook login page with:</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://www.facebook.com/login'</span><span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">driver</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://www.facebook.com/login'</span><span class="p">)</span></code></pre></figure>
 
 <p>Great, so far so easy. Now what a human does next is fill in his E-Mail and Password in the respective fields. We’ll make Selenium do the same. But it needs to know where to put the E-Mail and the Password. So we first make it look for the fields using:</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">email_box</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s">'email'</span><span class="p">)</span>
-<span class="n">password_box</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s">'pass'</span><span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">email_box</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s">'email'</span><span class="p">)</span>
+<span class="n">password_box</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s">'pass'</span><span class="p">)</span></code></pre></figure>
 
 <p>What we do here is simply make the driver look for an element with the id <em>email</em> and <em>pass</em> respectively which is generally the ID for such fields. If you are trying this on another site and it fails, simply go to the site and navigate to the respective field, then right click and select Inspect Element, and you can figure out the ID. If that particular element does not have an ID attribute, Selenium provides you with other options for searching like using the name,the xpath, the tag name etc. Hopefully, in this case though Selenium found the respective fields. Next we type in our data in the fields:</p>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">selenium.webdriver.common_keys</span> <span class="kn">import</span> <span class="n">Keys</span>
-<span class="n">email_box</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s">"mycrappymail@somedomain.com"</span><span class="p">)</span>
-<span class="n">pass_box</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s">"sweetpotatoesareyummy"</span><span class="p">)</span></code></pre></figure>
+<span class="n">email_box</span><span class="p">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s">"mycrappymail@somedomain.com"</span><span class="p">)</span>
+<span class="n">pass_box</span><span class="p">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s">"sweetpotatoesareyummy"</span><span class="p">)</span></code></pre></figure>
 
 <p>Hopefully, these lines were pretty self-explanatory. Now, just one last thing we need to do. Press the login button. We follow the same steps, look for the button first, then click it.</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">login_button</span>  <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s">'loginbutton'</span><span class="p">)</span>
-<span class="n">login_button</span><span class="o">.</span><span class="n">click</span><span class="p">()</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">login_button</span>  <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s">'loginbutton'</span><span class="p">)</span>
+<span class="n">login_button</span><span class="p">.</span><span class="n">click</span><span class="p">()</span></code></pre></figure>
 
 <p>There it is. Your Facebook page logged in. Now all you have to do is. Copy all these commands to a python script, add it to your startup applications. And you have your Facebook page open at Computer startup without pressing a button.</p>
 

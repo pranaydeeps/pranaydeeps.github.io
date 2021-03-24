@@ -11,7 +11,7 @@
 
   <title>
     
-      Dataset Shortages Pt. 1 - Introduction to Scrapy &middot; pranaydeep singh
+      Dataset Shortages Pt. 1 - Introduction to Scrapy &middot; Pranaydeep Singh
     
   </title>
 
@@ -35,10 +35,10 @@
     <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <img src="/images/me.jpg" alt="Avatar" style="width:240px;">
+      <img src="/images/me.jpeg" alt="Avatar" style="width:240px;">
       <h1>
         <a href="/">
-          pranaydeep singh
+          Pranaydeep Singh
         </a>
       </h1>
       <p class="lead">Doctoral Candidate at LT3, UGent</p>
@@ -83,7 +83,7 @@
       <!-- <span class="sidebar-nav-item">Currently v1.0</span> -->
     </nav>
 
-    <p>&copy; 2020. All rights reserved.</p>
+    <p>&copy; 2021. All rights reserved.</p>
   </div>
 </div>
 
@@ -112,7 +112,7 @@
 
 <p>First of all get it installed with:</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">pip install scrapy</code></pre></figure>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">pip <span class="nb">install </span>scrapy</code></pre></figure>
 
 <p>After the setup is complete. You can go two ways. You can either start a project straightaway or first get warmed up using the Scrapy shell. The Scrapy shell is a command shell for interactive scraping. You can test your code using the shell before moving to a proper project. Let’s try getting the list of all flowers on this <a href="http://www.all-my-favourite-flower-names.com/">site</a> from the shell.</p>
 
@@ -122,9 +122,8 @@
 
 <p>The HTML Response is saved in the ‘response’ variable. You can use CSS or Xpath selectors to get data from the HTML. For example, let’s get the title of the page using both Xpath and CSS Selectors:</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s">'//title/text()'</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>  <span class="c">##Using Xpath Selectors
-</span>
-<span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s">'title::text'</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>  <span class="c">##Using CSS Selectors</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">response</span><span class="p">.</span><span class="n">xpath</span><span class="p">(</span><span class="s">'//title/text()'</span><span class="p">).</span><span class="n">extract</span><span class="p">()</span>  <span class="c1">##Using Xpath Selectors
+</span><span class="n">response</span><span class="p">.</span><span class="n">css</span><span class="p">(</span><span class="s">'title::text'</span><span class="p">).</span><span class="n">extract</span><span class="p">()</span>  <span class="c1">##Using CSS Selectors</span></code></pre></figure>
 
 <p>The title of the page should be returned. Simple enough, right?</p>
 
@@ -132,15 +131,14 @@
 
 <p>Let’s get all the flower names on this particular page. As you may have noticed. The name of the flowers are inside a <em>b</em> tag inside a <em>span</em> tag inside a <em>p</em> tag. So to get the names out:</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s">'//p/span/b/text()'</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>  <span class="c">##Using Xpath Selectors
-</span>
-<span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s">'p span b::text'</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>  <span class="c">##Using CSS Selectors</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">response</span><span class="p">.</span><span class="n">xpath</span><span class="p">(</span><span class="s">'//p/span/b/text()'</span><span class="p">).</span><span class="n">extract</span><span class="p">()</span>  <span class="c1">##Using Xpath Selectors
+</span><span class="n">response</span><span class="p">.</span><span class="n">css</span><span class="p">(</span><span class="s">'p span b::text'</span><span class="p">).</span><span class="n">extract</span><span class="p">()</span>  <span class="c1">##Using CSS Selectors</span></code></pre></figure>
 
 <p>Surprisingly simple. If your page is slightly more complicated. Try to get closer to the data you need using the nearest <em>div</em> tag in the DOM Tree. Identify the <em>div</em> tag using it’s class or ID or any other such attribute and then move further inside till you have the data you need.</p>
 
 <p>Once you know your selectors are spot on, you can begin working the logic for navigating to all the pages your data is on. For this particular example, we have more pages with flower names alphabetically arranged. How do you move across all those pages? You need to get all those links first. The links can be easily taken out with:</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s">'p b a::attr(href)'</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">response</span><span class="p">.</span><span class="n">css</span><span class="p">(</span><span class="s">'p b a::attr(href)'</span><span class="p">).</span><span class="n">extract</span><span class="p">()</span></code></pre></figure>
 
 <p>Now you have a list of links. You can simply cycle through all these links and run your selector each time to get all the names. Another way is to move page by page instead of getting all the links at the beginning. For that, once you have gotten data from the first page, you look for the next link to go to. This approach is more common when all the links may not be available on the first page itself. For our example the first approach works just fine.</p>
 

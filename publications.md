@@ -3,7 +3,9 @@ layout: page
 title: Publications
 ---
 
-
+- Does BERT Understand Sentiment? Leveraging Comparisons Between Contextual and Non-Contextual Embeddings to Improve Aspect-Based Sentiment Models [[PDF]]()<br>
+<span style="color:blue">Natesh Reddy, **Pranaydeep Singh**, Muktabh Mayank Srivastava</span> <br>
+<span style="color:green">Pre-print on Arxiv</span>
 
 - Sentiment Analysis for Hinglish Code-mixed Tweets by means of Cross-lingual Word Embeddings [[PDF]](https://www.aclweb.org/anthology/2020.calcs-1.6.pdf) <br>
 <span style="color:blue">**Pranaydeep Singh**, Els Lefever</span> <br>
@@ -13,7 +15,7 @@ title: Publications
 <span style="color:blue">Els Lefever, Sofie Labat, **Pranaydeep Singh**</span> <br>
 <span style="color:green">Language Resources and Evaluation Conference 2020</span>
 
-- LT3 at SemEval-2020 Task 8: Multi-Modal Multi-Task Learning for Memotion Analysis [[PDF]](https://willbeupdated.soon) <br>
+- LT3 at SemEval-2020 Task 8: Multi-Modal Multi-Task Learning for Memotion Analysis [[PDF]](https://www.aclweb.org/anthology/2020.semeval-1.153.pdf) <br>
 <span style="color:blue">**Pranaydeep Singh**, Nina Bauwelinck, Els Lefever</span> <br>
 <span style="color:green">International Workshop on Semantic Evaluation 2020</span>
 
@@ -21,6 +23,6 @@ title: Publications
 <span style="color:blue">**Pranaydeep Singh**, Srikrishna Varadarajan, Ankit Narayan Singh, Muktabh Mayank Srivastava</span> <br>
 <span style="color:green">International Conference on Image Analysis and Recognition 2020</span>
 
-- LT3 at SemEval-2020 Task 9: Cross-lingual Embeddings for Sentiment Analysis of Hinglish Social Media Text [[PDF]](https://willbeupdated.soon) <br>
+- LT3 at SemEval-2020 Task 9: Cross-lingual Embeddings for Sentiment Analysis of Hinglish Social Media Text [[PDF]](https://www.aclweb.org/anthology/2020.semeval-1.173.pdf) <br>
 <span style="color:blue">**Pranaydeep Singh**, Els Lefever</span> <br>
 <span style="color:green">International Workshop on Semantic Evaluation 2020</span>
