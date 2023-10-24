@@ -5,7 +5,7 @@ title: Key Publications
 
 - Misery Loves Complexity: Exploring Linguistic Complexity in the Context of Emotion Detection [[PDF]]()<br>
 <span style="color:blue">**Pranaydeep Singh**, Luna De Bruyne, Orphée De Clercq, Els Lefever</span> <br>
-<span style="color:green">Electronics Special Issue on AI for Text Understanding</span>
+<span style="color:green">Findings of the 2023 Conference on Empirical Methods in Natural Language Processing</span>
 
 - Distilling Monolingual Models from Large Multilingual Transformers [[PDF]](https://www.mdpi.com/2079-9292/12/4/1022/pdf)<br>
 <span style="color:blue">**Pranaydeep Singh**, Orphée De Clercq, Els Lefever</span> <br>
