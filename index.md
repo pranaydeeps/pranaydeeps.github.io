@@ -14,11 +14,10 @@ In my free time I enjoy listening to progressive music, reading fantasy and I oc
 
 ## News
 
-* March '21: Teaching Assistant for [Advanced Language Processing with Python](https://lt3.ugent.be/courses/advanced-language-processing-with-python/)
-* January '21: Reviewer for  [WASSA'21](https://dl.acm.org/conference/wassa)
-* July 29 '20: Attended the 10th Lisbon Machine Learning School
-* June 25 '20: Presented paper on Document Layout Analysis at ICIAR'20 
-* Jan 30 '20: Attended CLIN'20 at Utrecht University, NL
+* Oct '23 - Jan '23: Visiting Researcher at the IXA NLP Group at the University of Basque Country, supervised by Prof. Dr. Eneko Agirre
+* Oct '23: Paper titled "Misery Loves Complexity: Exploring Linguistic Complexity in the Context of Emotion Detection" accepted to Findings of EMNLP'23
+* July '23: Teaching at the [Methods in Language Sciences (MILS) Summer School](https://www.mils.ugent.be/)
+* March '23 - August '23: Teaching Assistant for [Advanced Language Processing with Python](https://lt3.ugent.be/courses/advanced-language-processing-with-python/)
 
 ## Contact
 
