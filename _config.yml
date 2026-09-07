@@ -10,7 +10,8 @@ title:            Pranaydeep Singh
 tagline:          'c1pher'
 description:      'Postdoctoral Researcher at LT3 & T2K, Ghent University'
 url:              https://pranaydeeps.github.io
-baseurl:          /
+# GitHub Pages forces baseurl to "" for user sites; templates use root-absolute paths
+baseurl:          ""
 
 author:
   name:           'Pranaydeep Singh'
