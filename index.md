@@ -5,10 +5,10 @@ title: Home
 
 Hi! My name is Pranay. I am a Postdoctoral Researcher at the [Language and Translation Technology Team (LT3)](https://lt3.ugent.be) and the [Text-to-Knowledge group (T2K)](https://ugentt2k.github.io/) at Ghent University. I defended my PhD, *Bridging the Gap: Adapting English & Multilingual Language Models for LOTE*, in September 2025, supervised by Prof. Dr. Els Lefever and Prof. Dr. Orphée De Clercq. <br>
 
-My current work is on **mechanistic interpretability for multilingual models** — trying to understand what actually happens inside a model when knowledge transfers across languages, rather than only measuring whether it does. More broadly, my interests are *Cross-Lingual Supervision*, *Low-Resource NLP*, *Transfer Learning* and *Interpretability*. In the past I have also worked on multi-modal analysis of memes, aspect-based sentiment analysis and large-scale document layout understanding. <br>
+My current work is on **mechanistic interpretability for multilingual models**: trying to understand what actually happens inside a multilingual model and how and where knowledge transfers across languages. More broadly, my interests are *Cross-Lingual Supervision*, *Low-Resource NLP*, *Transfer Learning* and *Interpretability*. In the past I have also worked on multi-modal analysis of memes, aspect-based sentiment analysis and large-scale document layout understanding. <br>
 
 Before Ghent, I worked in the R&D Team of retail AI startup [Paralleldots](https://www.paralleldots.com/), before which I was a student at [BITS Pilani, Goa](https://www.bits-pilani.ac.in/goa/). <br>
-In my free time I enjoy listening to progressive music, reading fantasy and I occasionally dabble with writing. <br>
+In my free time I enjoy listening to all sorts of music (check [Records](/records.html)), reading fantasy and playing games. <br>
 
 The [Posts](/Blog/) section is mostly a notebook for myself: when I figure something out, I write it down there so I can find it again later. You are very welcome to read along.
 
