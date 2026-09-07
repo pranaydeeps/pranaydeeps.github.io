@@ -8,12 +8,13 @@ permalink:        /:categories/:title/
 # Setup
 title:            Pranaydeep Singh
 tagline:          'c1pher'
-description:      'Doctoral Candidate at LT3, UGent'
-url:              https://pranaydeeps.github.io/
-baseurl:          https://pranaydeeps.github.io/
+description:      'Postdoctoral Researcher at LT3 & T2K, Ghent University'
+url:              https://pranaydeep.xyz
+baseurl:          /
 
 author:
   name:           'Pranaydeep Singh'
+  email:          'pranaydeep.singh@ugent.be'
   url:            https://github.com/pranaydeeps
 
 paginate:         5
