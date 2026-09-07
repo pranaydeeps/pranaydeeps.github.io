@@ -1,0 +1,499 @@
+---
+layout: page
+title: Records
+---
+
+<p style="margin-top:0;">
+  A running log of what I'm listening to. The top of the list is a <em>queue</em> —
+  records I mean to get to next — and below it are the ones I've already heard, each
+  with a rating out of ten and the occasional note. It leans hard into progressive,
+  post-metal and the more melancholic end of things. The sliders and notes save to
+  your own browser, so feel free to poke around; there's also a markdown export I use
+  to keep the same list in my notes.
+</p>
+
+<style>
+  #log-root {
+    /* Palette pulled from the site (Poole/Hyde) so this section blends in */
+    --paper:      transparent;
+    --paper-sunk: #f5f5f5;
+    --ink:        #313131;
+    --ink-soft:   #767676;
+    --rule:       #e5e5e5;
+    --accent:     #268bd2;
+    --accent-dim: #a9d0ec;
+
+    --serif: "PT Sans", Helvetica, Arial, sans-serif;
+    --sans:  "PT Sans", Helvetica, Arial, sans-serif;
+
+    background: var(--paper);
+    color: #515151;
+    font-family: var(--serif);
+    line-height: 1.5;
+    margin-top: 1.5rem;
+  }
+  #log-root *, #log-root *::before, #log-root *::after { box-sizing: border-box; }
+  #log-root button, #log-root input, #log-root textarea { font: inherit; color: inherit; background: none; border: none; margin: 0; }
+  #log-root :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  #log-root .masthead { margin-bottom: 1.25rem; }
+  #log-root .hero {
+    font-size: 1.15rem; line-height: 1.35; font-weight: 400;
+    margin: 0; color: var(--ink-soft);
+  }
+  #log-root .hero em { font-style: normal; color: var(--accent); font-weight: 700; }
+
+  #log-root .controls {
+    display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: baseline;
+    border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    padding: 10px 0;
+  }
+  #log-root .filters { display: flex; gap: 16px; flex-wrap: wrap; }
+  #log-root .filter {
+    font-family: var(--sans); font-size: 0.8rem; cursor: pointer; color: var(--ink-soft);
+    padding: 2px 0; border-bottom: 2px solid transparent;
+  }
+  #log-root .filter:hover { color: var(--ink); }
+  #log-root .filter[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+  #log-root .controls-right { margin-left: auto; display: flex; gap: 16px; }
+  #log-root .linkbtn {
+    font-family: var(--sans); font-size: 0.8rem; cursor: pointer; color: var(--accent);
+    border-bottom: 1px solid var(--accent-dim); padding-bottom: 1px;
+  }
+  #log-root .linkbtn:hover { border-bottom-color: var(--accent); }
+
+  #log-root .list { list-style: none; margin: 0; padding: 0; }
+  #log-root .album { border-bottom: 1px solid var(--rule); padding: 20px 0; }
+  #log-root .title { font-size: 1.15rem; font-weight: 700; line-height: 1.25; margin: 0; color: var(--ink); }
+  #log-root .artist { font-family: var(--sans); font-size: 0.8rem; color: var(--ink-soft); margin: 4px 0 0; text-transform: uppercase; letter-spacing: 0.04em; }
+  #log-root .tags { font-family: var(--sans); font-size: 0.75rem; color: var(--accent); margin: 8px 0 0; }
+  #log-root .meta { margin: 8px 0 0; font-size: 0.95rem; font-style: italic; color: var(--ink-soft); max-width: 64ch; }
+
+  #log-root .score-row { display: flex; align-items: center; gap: 14px; margin-top: 14px; flex-wrap: wrap; }
+  #log-root .score {
+    font-size: 1.4rem; font-weight: 700; min-width: 76px; color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  #log-root .score .of { font-size: 0.8rem; color: var(--ink-soft); font-weight: 400; }
+  #log-root .score.none { color: var(--ink-soft); font-size: 0.95rem; font-style: italic; font-weight: 400; }
+
+  #log-root input[type="range"] {
+    -webkit-appearance: none; appearance: none;
+    flex: 1 1 190px; max-width: 300px; height: 22px; background: none; cursor: pointer;
+  }
+  #log-root input[type="range"]::-webkit-slider-runnable-track {
+    height: 3px; background: var(--accent-dim); border-radius: 2px;
+  }
+  #log-root input[type="range"]::-moz-range-track { height: 3px; background: var(--accent-dim); border-radius: 2px; }
+  #log-root input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 8px; height: 20px; margin-top: -8.5px;
+    background: var(--accent); border-radius: 1px;
+  }
+  #log-root input[type="range"]::-moz-range-thumb {
+    width: 8px; height: 20px; background: var(--accent); border: none; border-radius: 1px;
+  }
+
+  #log-root .album-foot {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 12px;
+    font-family: var(--sans); font-size: 0.78rem; color: var(--ink-soft);
+  }
+  #log-root .heard-date { color: var(--accent); }
+
+  #log-root .note {
+    width: 100%; margin-top: 12px; resize: vertical; min-height: 66px;
+    background: var(--paper-sunk); padding: 12px 14px; border-radius: 3px;
+    font-size: 0.95rem; line-height: 1.5; border-left: 2px solid var(--accent-dim);
+  }
+  #log-root .note::placeholder { color: var(--ink-soft); opacity: .8; font-style: italic; }
+  #log-root .hidden { display: none !important; }
+
+  #log-root .add { margin-top: 28px; padding: 20px; background: var(--paper-sunk); border-radius: 3px; }
+  #log-root .add h2 { font-family: var(--sans); font-size: 0.8rem; font-weight: 700; margin: 0 0 14px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink); }
+  #log-root .add-fields { display: flex; flex-wrap: wrap; gap: 10px; }
+  #log-root .add-fields input { flex: 1 1 190px; background: #fff; padding: 9px 12px; border-radius: 3px; font-size: 0.95rem; border: 1px solid var(--rule); }
+  #log-root .add-actions { margin-top: 12px; display: flex; gap: 16px; align-items: center; }
+  #log-root .primary {
+    font-family: var(--sans); font-size: 0.8rem; font-weight: 700; cursor: pointer;
+    background: var(--accent); color: #fff; padding: 9px 16px; border-radius: 3px;
+  }
+  #log-root .primary:hover { background: #1f6fa8; }
+
+  #log-root .md-panel { margin-top: 20px; }
+  #log-root .md-out {
+    width: 100%; min-height: 300px; background: var(--paper-sunk);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.78rem; line-height: 1.5; padding: 14px; border-radius: 3px;
+    white-space: pre; overflow-x: auto; border: 1px solid var(--rule);
+  }
+  #log-root .md-actions { display: flex; gap: 16px; align-items: center; margin: 12px 0; flex-wrap: wrap; }
+  #log-root .status { font-family: var(--sans); font-size: 0.78rem; color: var(--ink-soft); min-height: 18px; margin-top: 10px; }
+  #log-root .empty { font-style: italic; color: var(--ink-soft); padding: 28px 0; font-size: 1rem; }
+
+  @media (prefers-reduced-motion: reduce) { #log-root * { transition: none !important; } }
+</style>
+
+<div id="log-root">
+  <div class="masthead">
+    <p class="hero" id="hero">Loading the shelf&hellip;</p>
+  </div>
+
+  <div class="controls">
+    <div class="filters" role="group" aria-label="Filter albums">
+      <button class="filter" data-filter="all" aria-pressed="true">Everything</button>
+      <button class="filter" data-filter="queue" aria-pressed="false">Queue</button>
+      <button class="filter" data-filter="heard" aria-pressed="false">Listened</button>
+      <button class="filter" data-filter="ranked" aria-pressed="false">By rating</button>
+    </div>
+    <div class="controls-right">
+      <button class="linkbtn" id="toggleMd">Markdown export</button>
+    </div>
+  </div>
+
+  <div class="md-panel hidden" id="mdPanel">
+    <div class="md-actions">
+      <button class="primary" id="copyMd">Copy markdown</button>
+      <button class="linkbtn" id="dlMd">Download Records.md</button>
+      <span class="status" id="mdStatus"></span>
+    </div>
+    <textarea class="md-out" id="mdOut" readonly aria-label="Markdown export"></textarea>
+  </div>
+
+  <ul class="list" id="list"></ul>
+  <p class="empty hidden" id="empty"></p>
+
+  <div class="add">
+    <h2>Add an album yourself</h2>
+    <div class="add-fields">
+      <input id="newTitle" placeholder="Album" aria-label="Album">
+      <input id="newArtist" placeholder="Artist" aria-label="Artist">
+      <input id="newTags" placeholder="Genres, comma separated" aria-label="Genres">
+      <input id="newSimilar" placeholder="Similar to" aria-label="Similar to">
+    </div>
+    <div class="add-actions">
+      <button class="primary" id="addBtn">Add to the queue</button>
+      <span class="status" id="addStatus"></span>
+    </div>
+  </div>
+
+  <p class="status" id="saveStatus"></p>
+</div>
+
+<script>
+(function () {
+  const KEY = 'records-log:v2', OLD_KEY = 'album-log:v1';
+
+  // Everything from Records.md, plus recommendations. Ratings and notes entered here are
+  // stored separately and keyed by album, so this list can grow without overwriting them.
+  const SEED = [
+    // — queue, already in the vault —
+    { id: 'neurosis-a-prayer-to-the-unbroken-road', title: 'A Prayer to the Unbroken Road', artist: 'Neurosis',
+      tags: ['Post-metal','Doom','Atmospheric'], similar: 'Amenra, Cult of Luna' },
+    { id: 'epica-the-holographic-principle', title: 'The Holographic Principle', artist: 'Epica',
+      tags: ['Gothic','Epic','Symphonic'], similar: 'Draconian' },
+    { id: 'gybe-lift-your-skinny-fists', title: 'Lift Your Skinny Fists Like Antennas to Heaven', artist: 'Godspeed You! Black Emperor',
+      tags: ['Post-rock','Ambient','Melancholic'], similar: 'The Antlers' },
+    { id: 'enslaved-wardruna', title: 'Wardruna', artist: 'Enslaved',
+      tags: ['Heavy-metal','Epic','Norse'], similar: 'Dissection' },
+    { id: 'gorguts-obscura', title: 'Obscura', artist: 'Gorguts',
+      tags: ['Death-metal','Prog','Complex'], similar: 'Mariner, Mass III' },
+    { id: 'empyrium-songs-of-moor-and-misty-fields', title: 'Songs of Moor and Misty Fields', artist: 'Empyrium',
+      tags: ['Doom','Folk','Melancholic'], similar: 'Draconian' },
+
+    // — recommended 2026-09-07 —
+    { id: 'nick-drake-pink-moon', title: 'Pink Moon', artist: 'Nick Drake',
+      tags: ['Folk','Acoustic','Melancholic'], similar: 'Carrie & Lowell, Elliott Smith',
+      rec: 'Claude, 2026-09-07 — the source of this whole mode. 28 minutes, one voice, one guitar.' },
+    { id: 'elliott-smith-either-or', title: 'Either/Or', artist: 'Elliott Smith',
+      tags: ['Indie','Folk','Melancholic'], similar: 'Nick Drake, Sufjan Stevens',
+      rec: 'Claude, 2026-09-07 — double-tracked whisper over fingerpicking. Worth it for the guitar alone.' },
+    { id: 'sun-kil-moon-benji', title: 'Benji', artist: 'Sun Kil Moon',
+      tags: ['Slowcore','Folk','Confessional'], similar: 'Carrie & Lowell',
+      rec: 'Claude, 2026-09-07 — nearest thing anyone has made to Carrie & Lowell. Near-spoken delivery.' },
+    { id: 'jeff-buckley-grace', title: 'Grace', artist: 'Jeff Buckley',
+      tags: ['Alt-rock','Melancholic'], similar: 'The Bends, Radiohead',
+      rec: 'Claude, 2026-09-07 — the record The Bends was measured against at the time.' },
+    { id: 'talk-talk-spirit-of-eden', title: 'Spirit of Eden', artist: 'Talk Talk',
+      tags: ['Post-rock','Ambient','Slow'], similar: 'Godspeed You! Black Emperor, Porcupine Tree',
+      rec: 'Claude, 2026-09-07 — a pop band dissolving into improvised quiet. Where that prog patience comes from.' },
+    { id: 'the-national-trouble-will-find-me', title: 'Trouble Will Find Me', artist: 'The National',
+      tags: ['Indie','Melancholic','Restrained'], similar: 'Hospice, The Antlers',
+      rec: 'Claude, 2026-09-07 — baritone, brushed drums, grey-weather music.' },
+    { id: 'weyes-blood-titanic-rising', title: 'Titanic Rising', artist: 'Weyes Blood',
+      tags: ['Chamber-pop','Orchestral','Melancholic'], similar: 'Norman Fucking Rockwell, Lana Del Rey',
+      rec: 'Claude, 2026-09-07 — widescreen and doomy-romantic, with more Karen Carpenter in the voice.' },
+    { id: 'phoebe-bridgers-punisher', title: 'Punisher', artist: 'Phoebe Bridgers',
+      tags: ['Indie','Sparse','Melancholic'], similar: 'Sufjan Stevens, Lana Del Rey',
+      rec: 'Claude, 2026-09-07 — quieter and more skeletal than NFR, sharper writing.' },
+    { id: 'beach-house-teen-dream', title: 'Teen Dream', artist: 'Beach House',
+      tags: ['Dream-pop','Ambient','Hazy'], similar: 'Slowdive',
+      rec: 'Claude, 2026-09-07 — all reverb and organ. Less lyrical, more atmosphere.' },
+    { id: 'blackfield-blackfield', title: 'Blackfield', artist: 'Blackfield',
+      tags: ['Prog-rock','Pop','Melancholic'], similar: 'Steven Wilson, Porcupine Tree',
+      rec: 'Claude, 2026-09-07 — Wilson with Aviv Geffen, his most straightforwardly sad project.' },
+    { id: 'antimatter-planetary-confinement', title: 'Planetary Confinement', artist: 'Antimatter',
+      tags: ['Acoustic','Dark','Melancholic'], similar: 'Anathema',
+      rec: 'Claude, 2026-09-07 — Mick Moss doing unornamented acoustic melancholy.' },
+
+    // — already listened —
+    { id: 'cult-of-luna-mariner', title: 'Mariner', artist: 'Cult of Luna',
+      tags: ['Post-metal','Doom','Dark'], rating: 9, listenedOn: '2024-04-09', comment: '' },
+    { id: 'amenra-mass-iii', title: 'Mass III', artist: 'Amenra',
+      tags: ['Post-metal','Dark','Atmospheric'], rating: 8.5, listenedOn: '2024-03-20',
+      comment: 'Absolutely engaging with no dull moment, post-apocalyptic wasteland vibes' },
+    { id: 'draconian-under-the-godless-veil', title: 'Under the Godless Veil', artist: 'Draconian',
+      tags: ['Epic','Gothic','Doom'], rating: 8.5, listenedOn: '2024-04-02',
+      comment: 'Fabulous dark atmosphere, with dreamy female vocals. Slow but heavy.' },
+    { id: 'the-antlers-hospice', title: 'Hospice', artist: 'The Antlers',
+      tags: ['Indie','Melancholic','Ambient'], rating: 8, listenedOn: '2024-03-20',
+      comment: 'Amazing depressive, melancholic vibes, extremely immersive' },
+    { id: 'dissection-storm-of-the-lights-bane', title: "Storm of the Light's Bane", artist: 'Dissection',
+      tags: ['Heavy-metal','Epic'], rating: 8, listenedOn: '2024-10-03',
+      comment: 'Just classic heavy metal, no complaints' },
+    { id: 'trna-istok', title: 'Istok', artist: 'Trna',
+      tags: ['Blackgaze','Ambient','Black-metal'], rating: 7, listenedOn: '2024-04-09',
+      comment: 'Mellow at times, mostly harsh vocals but soothing' },
+    { id: 'alice-in-chains-dirt', title: 'Dirt', artist: 'Alice in Chains',
+      tags: ['Grunge','Melancholic'], rating: 6.5, listenedOn: '2024-03-15',
+      comment: 'Very smooth, not a single bad song, but very similar vibe for an hour' },
+    { id: 'black-noodle-project-ready-to-go', title: 'Ready to Go', artist: 'Black Noodle Project',
+      tags: ['Prog-rock','Ambient','Calm'], rating: 6.5, listenedOn: '2024-09-24', comment: '' },
+    { id: 'algorithm-brute-force', title: 'Brute Force', artist: 'Algorithm',
+      tags: ['Techno','Prog-metal'], rating: 6, listenedOn: '2024-03-15',
+      comment: 'Fun work music, very energetic, but monotonous' },
+    { id: 'aafcc-try-not-to-destroy', title: 'Try Not to Destroy Everything You Love', artist: 'An Autumn for Crippled Children',
+      tags: ['Blackgaze','Post-metal'], rating: 5, listenedOn: '2024-03-06',
+      comment: 'Dark vibes but maybe a bit monotonous\nDidn’t pay too much attention' }
+  ];
+
+  const el = (id) => document.getElementById(id);
+  const listEl = el('list'), heroEl = el('hero'), emptyEl = el('empty'), saveStatus = el('saveStatus');
+
+  let entries = {}, custom = [], filter = 'all', saveTimer = null;
+
+  // Plain localStorage — this runs on the live site, not inside an Artifact.
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+  };
+
+  const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const today = () => new Date().toISOString().slice(0, 10);
+  const esc = (s) => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const fmt = (n) => (n % 1 === 0 ? String(n) : n.toFixed(1));
+
+  const albums = () => SEED.concat(custom);
+  const bySeed = (id) => albums().find(a => a.id === id) || {};
+
+  function entry(id) {
+    if (!entries[id]) {
+      const s = bySeed(id);
+      entries[id] = { rating: s.rating || 0, comment: s.comment || '', listenedOn: s.listenedOn || '' };
+    }
+    return entries[id];
+  }
+  const isHeard = (id) => { const e = entry(id); return !!(e.rating || (e.comment && e.comment.trim())); };
+
+  function load() {
+    const raw = store.get(KEY);
+    if (raw) {
+      try { const d = JSON.parse(raw); entries = d.entries || {}; custom = d.custom || []; } catch (e) { /* ignore corrupt */ }
+    } else {
+      const old = store.get(OLD_KEY); // migrate anything rated on the old 5-point version
+      if (old) {
+        try {
+          const d = JSON.parse(old);
+          Object.keys(d.entries || {}).forEach(id => {
+            const e = d.entries[id];
+            if (e.rating || (e.comment || '').trim()) {
+              entries[id] = { rating: e.rating ? e.rating * 2 : 0, comment: e.comment || '', listenedOn: e.listenedOn || '' };
+            }
+          });
+          custom = d.custom || [];
+        } catch (e) { /* nothing to migrate */ }
+      }
+    }
+    render();
+  }
+
+  function save() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+      const ok = store.set(KEY, JSON.stringify({ entries, custom }));
+      saveStatus.textContent = ok
+        ? 'Saved ' + new Date().toLocaleTimeString()
+        : 'Could not save (browser storage is off). Export your markdown to be safe.';
+      if (!el('mdPanel').classList.contains('hidden')) el('mdOut').value = buildMarkdown();
+    }, 400);
+  }
+
+  function render() {
+    const all = albums();
+    const heard = all.filter(a => isHeard(a.id));
+    const waiting = all.length - heard.length;
+    const rated = heard.filter(a => entry(a.id).rating);
+    const avg = rated.length ? (rated.reduce((s, a) => s + entry(a.id).rating, 0) / rated.length) : 0;
+
+    heroEl.innerHTML = heard.length
+      ? `${all.length} records. <em>${heard.length} heard</em>, ${waiting} waiting, averaging ${fmt(Math.round(avg * 10) / 10)}.`
+      : `${all.length} records in the queue. <em>None heard yet.</em>`;
+
+    let shown = all.filter(a =>
+      filter === 'all' ? true : filter === 'heard' || filter === 'ranked' ? isHeard(a.id) : !isHeard(a.id));
+    if (filter === 'ranked') shown = shown.slice().sort((x, y) => (entry(y.id).rating || 0) - (entry(x.id).rating || 0));
+
+    listEl.innerHTML = '';
+    if (!shown.length) {
+      emptyEl.classList.remove('hidden');
+      emptyEl.textContent = filter === 'queue' ? 'Nothing waiting. Time for more recommendations.' : 'Nothing rated yet. Put one on and come back.';
+      return;
+    }
+    emptyEl.classList.add('hidden');
+
+    shown.forEach(a => {
+      const e = entry(a.id);
+      const li = document.createElement('li');
+      li.className = 'album';
+      li.innerHTML = `
+        <p class="title">${esc(a.title)}</p>
+        <p class="artist">${esc(a.artist)}</p>
+        ${a.tags && a.tags.length ? `<p class="tags">${a.tags.map(t => '#' + esc(t)).join(' ')}</p>` : ''}
+        ${a.similar ? `<p class="meta">Similar to ${esc(a.similar)}</p>` : ''}
+        ${a.rec ? `<p class="meta">${esc(a.rec)}</p>` : ''}
+        <div class="score-row">
+          <span class="score ${e.rating ? '' : 'none'}" data-score>${e.rating ? fmt(e.rating) + '<span class="of">/10</span>' : 'unrated'}</span>
+          <input type="range" min="0" max="10" step="0.5" value="${e.rating || 0}"
+                 aria-label="Rating for ${esc(a.title)} out of 10" data-range>
+        </div>
+        <div class="album-foot">
+          ${e.listenedOn ? `<span class="heard-date">Heard ${esc(e.listenedOn)}</span>` : '<span>Not yet heard</span>'}
+          <button class="linkbtn" data-note>${e.comment ? 'Edit note' : 'Write a note'}</button>
+          ${e.rating || e.comment ? '<button class="linkbtn" data-reset>Back to queue</button>' : ''}
+        </div>
+        <textarea class="note ${e.comment ? '' : 'hidden'}" data-textarea
+          placeholder="What stayed with you? One line per thought, the way the vault entries read."
+          aria-label="Note on ${esc(a.title)}">${esc(e.comment || '')}</textarea>
+      `;
+
+      const range = li.querySelector('[data-range]');
+      const score = li.querySelector('[data-score]');
+      range.addEventListener('input', () => {
+        const v = Number(range.value);
+        score.innerHTML = v ? fmt(v) + '<span class="of">/10</span>' : 'unrated';
+        score.classList.toggle('none', !v);
+      });
+      range.addEventListener('change', () => {
+        const en = entry(a.id);
+        en.rating = Number(range.value);
+        if (en.rating && !en.listenedOn) en.listenedOn = today();
+        save(); render();
+      });
+
+      const ta = li.querySelector('[data-textarea]');
+      li.querySelector('[data-note]').addEventListener('click', () => {
+        ta.classList.toggle('hidden');
+        if (!ta.classList.contains('hidden')) ta.focus();
+      });
+      ta.addEventListener('input', () => {
+        const en = entry(a.id);
+        en.comment = ta.value;
+        if (ta.value.trim() && !en.listenedOn) en.listenedOn = today();
+        save();
+      });
+
+      const reset = li.querySelector('[data-reset]');
+      if (reset) reset.addEventListener('click', () => {
+        entries[a.id] = { rating: 0, comment: '', listenedOn: '' };
+        save(); render();
+      });
+
+      listEl.appendChild(li);
+    });
+  }
+
+  function entryLines(a, heard) {
+    const e = entry(a.id);
+    const L = [];
+    L.push(`- [${heard ? 'x' : ' '}] ${a.title} - **${a.artist}**${heard && e.listenedOn ? ' ✅ ' + e.listenedOn : ''}`);
+    if (a.tags && a.tags.length) L.push('\t- ' + a.tags.map(t => '#' + t).join(' '));
+    if (a.similar) L.push('\t- Similar to: ' + a.similar);
+    if (a.rec) L.push('\t- Rec: ' + a.rec);
+    if (e.comment && e.comment.trim()) e.comment.trim().split('\n').forEach(l => { if (l.trim()) L.push('\t- ' + l.trim()); });
+    if (e.rating) L.push(`\t- **${fmt(e.rating)}/10**`);
+    L.push('');
+    return L;
+  }
+
+  function buildMarkdown() {
+    const all = albums();
+    const queue = all.filter(a => !isHeard(a.id));
+    const heard = all.filter(a => isHeard(a.id)).sort((x, y) => (entry(y.id).rating || 0) - (entry(x.id).rating || 0));
+    const out = [
+      '---', 'tags: [music, listening-log, reviews, personal]', 'updated: ' + today(), '---', '',
+      '# Records', '',
+      '> [!note]- Entry template',
+      '> ```',
+      '> - [ ] Album - **Artist**',
+      '> \t- #Genre #Genre #Mood',
+      '> \t- Similar to: reference points',
+      '> \t- Rec: where it came from',
+      '> ```',
+      '> Once listened: tick the box, add note bullets, close with the rating in bold. Ratings out of 10, half points allowed.',
+      '', '## Queue', ''
+    ];
+    queue.forEach(a => out.push(...entryLines(a, false)));
+    out.push('## Listened', '');
+    heard.forEach(a => out.push(...entryLines(a, true)));
+    return out.join('\n');
+  }
+
+  el('toggleMd').addEventListener('click', () => {
+    const p = el('mdPanel');
+    p.classList.toggle('hidden');
+    const open = !p.classList.contains('hidden');
+    if (open) el('mdOut').value = buildMarkdown();
+    el('toggleMd').textContent = open ? 'Hide markdown' : 'Markdown export';
+  });
+
+  el('copyMd').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(buildMarkdown());
+      el('mdStatus').textContent = 'Copied. Replace the contents of Records.md.';
+    } catch (err) {
+      const ta = el('mdOut'); ta.focus(); ta.select();
+      el('mdStatus').textContent = 'Select all and copy from the box below.';
+    }
+  });
+
+  el('dlMd').addEventListener('click', () => {
+    const blob = new Blob([buildMarkdown()], { type: 'text/markdown' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'Records.md';
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+    el('mdStatus').textContent = 'Downloaded. Move it into your vault, replacing the old file.';
+  });
+
+  el('addBtn').addEventListener('click', () => {
+    const t = el('newTitle').value.trim(), ar = el('newArtist').value.trim();
+    if (!t || !ar) { el('addStatus').textContent = 'Both an album and an artist, please.'; return; }
+    const id = slug(ar + '-' + t);
+    if (albums().some(a => a.id === id)) { el('addStatus').textContent = 'That one is already on the list.'; return; }
+    const tags = el('newTags').value.split(',').map(s => s.trim().replace(/\s+/g, '-')).filter(Boolean);
+    custom.push({ id, title: t, artist: ar, tags, similar: el('newSimilar').value.trim() });
+    ['newTitle','newArtist','newTags','newSimilar'].forEach(f => el(f).value = '');
+    el('addStatus').textContent = 'Added to the queue.';
+    save(); render();
+  });
+
+  document.querySelectorAll('#log-root .filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      filter = btn.dataset.filter;
+      document.querySelectorAll('#log-root .filter').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+      render();
+    });
+  });
+
+  load();
+})();
+</script>
