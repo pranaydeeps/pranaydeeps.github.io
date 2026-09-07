@@ -1,0 +1,211 @@
+# Records — the album list behind /records/.
+#
+# Edit this file to change what the site shows. Each entry needs id, title and
+# artist; everything else is optional. An entry counts as "listened" once it has
+# a rating or a comment, otherwise it sits in the queue.
+#
+#   id:         unique slug, lowercase-with-dashes
+#   tags:       [Genre, Genre, Mood]
+#   similar:    free text reference points
+#   rec:        where the recommendation came from
+#   rating:     0-10, half points allowed
+#   listenedOn: YYYY-MM-DD
+#   comment:    your note; use > on its own line for a multi-line note
+
+# ---------- queue ----------
+
+- id: neurosis-a-prayer-to-the-unbroken-road
+  title: A Prayer to the Unbroken Road
+  artist: Neurosis
+  tags: [Post-metal, Doom, Atmospheric]
+  similar: Amenra, Cult of Luna
+
+- id: epica-the-holographic-principle
+  title: The Holographic Principle
+  artist: Epica
+  tags: [Gothic, Epic, Symphonic]
+  similar: Draconian
+
+- id: gybe-lift-your-skinny-fists
+  title: Lift Your Skinny Fists Like Antennas to Heaven
+  artist: Godspeed You! Black Emperor
+  tags: [Post-rock, Ambient, Melancholic]
+  similar: The Antlers
+
+- id: enslaved-wardruna
+  title: Wardruna
+  artist: Enslaved
+  tags: [Heavy-metal, Epic, Norse]
+  similar: Dissection
+
+- id: gorguts-obscura
+  title: Obscura
+  artist: Gorguts
+  tags: [Death-metal, Prog, Complex]
+  similar: Mariner, Mass III
+
+- id: empyrium-songs-of-moor-and-misty-fields
+  title: Songs of Moor and Misty Fields
+  artist: Empyrium
+  tags: [Doom, Folk, Melancholic]
+  similar: Draconian
+
+- id: nick-drake-pink-moon
+  title: Pink Moon
+  artist: Nick Drake
+  tags: [Folk, Acoustic, Melancholic]
+  similar: Carrie & Lowell, Elliott Smith
+  rec: Claude, 2026-09-07 — the source of this whole mode. 28 minutes, one voice, one guitar.
+
+- id: elliott-smith-either-or
+  title: Either/Or
+  artist: Elliott Smith
+  tags: [Indie, Folk, Melancholic]
+  similar: Nick Drake, Sufjan Stevens
+  rec: Claude, 2026-09-07 — double-tracked whisper over fingerpicking. Worth it for the guitar alone.
+
+- id: sun-kil-moon-benji
+  title: Benji
+  artist: Sun Kil Moon
+  tags: [Slowcore, Folk, Confessional]
+  similar: Carrie & Lowell
+  rec: Claude, 2026-09-07 — nearest thing anyone has made to Carrie & Lowell. Near-spoken delivery.
+
+- id: jeff-buckley-grace
+  title: Grace
+  artist: Jeff Buckley
+  tags: [Alt-rock, Melancholic]
+  similar: The Bends, Radiohead
+  rec: Claude, 2026-09-07 — the record The Bends was measured against at the time.
+
+- id: talk-talk-spirit-of-eden
+  title: Spirit of Eden
+  artist: Talk Talk
+  tags: [Post-rock, Ambient, Slow]
+  similar: Godspeed You! Black Emperor, Porcupine Tree
+  rec: Claude, 2026-09-07 — a pop band dissolving into improvised quiet. Where that prog patience comes
+    from.
+
+- id: the-national-trouble-will-find-me
+  title: Trouble Will Find Me
+  artist: The National
+  tags: [Indie, Melancholic, Restrained]
+  similar: Hospice, The Antlers
+  rec: Claude, 2026-09-07 — baritone, brushed drums, grey-weather music.
+
+- id: weyes-blood-titanic-rising
+  title: Titanic Rising
+  artist: Weyes Blood
+  tags: [Chamber-pop, Orchestral, Melancholic]
+  similar: Norman Fucking Rockwell, Lana Del Rey
+  rec: Claude, 2026-09-07 — widescreen and doomy-romantic, with more Karen Carpenter in the voice.
+
+- id: phoebe-bridgers-punisher
+  title: Punisher
+  artist: Phoebe Bridgers
+  tags: [Indie, Sparse, Melancholic]
+  similar: Sufjan Stevens, Lana Del Rey
+  rec: Claude, 2026-09-07 — quieter and more skeletal than NFR, sharper writing.
+
+- id: beach-house-teen-dream
+  title: Teen Dream
+  artist: Beach House
+  tags: [Dream-pop, Ambient, Hazy]
+  similar: Slowdive
+  rec: Claude, 2026-09-07 — all reverb and organ. Less lyrical, more atmosphere.
+
+- id: blackfield-blackfield
+  title: Blackfield
+  artist: Blackfield
+  tags: [Prog-rock, Pop, Melancholic]
+  similar: Steven Wilson, Porcupine Tree
+  rec: Claude, 2026-09-07 — Wilson with Aviv Geffen, his most straightforwardly sad project.
+
+- id: antimatter-planetary-confinement
+  title: Planetary Confinement
+  artist: Antimatter
+  tags: [Acoustic, Dark, Melancholic]
+  similar: Anathema
+  rec: Claude, 2026-09-07 — Mick Moss doing unornamented acoustic melancholy.
+
+# ---------- listened ----------
+
+- id: cult-of-luna-mariner
+  title: Mariner
+  artist: Cult of Luna
+  tags: [Post-metal, Doom, Dark]
+  rating: 9
+  listenedOn: '2024-04-09'
+
+- id: amenra-mass-iii
+  title: Mass III
+  artist: Amenra
+  tags: [Post-metal, Dark, Atmospheric]
+  rating: 8.5
+  listenedOn: '2024-03-20'
+  comment: Absolutely engaging with no dull moment, post-apocalyptic wasteland vibes
+
+- id: draconian-under-the-godless-veil
+  title: Under the Godless Veil
+  artist: Draconian
+  tags: [Epic, Gothic, Doom]
+  rating: 8.5
+  listenedOn: '2024-04-02'
+  comment: Fabulous dark atmosphere, with dreamy female vocals. Slow but heavy.
+
+- id: the-antlers-hospice
+  title: Hospice
+  artist: The Antlers
+  tags: [Indie, Melancholic, Ambient]
+  rating: 8
+  listenedOn: '2024-03-20'
+  comment: Amazing depressive, melancholic vibes, extremely immersive
+
+- id: dissection-storm-of-the-lights-bane
+  title: Storm of the Light's Bane
+  artist: Dissection
+  tags: [Heavy-metal, Epic]
+  rating: 8
+  listenedOn: '2024-10-03'
+  comment: Just classic heavy metal, no complaints
+
+- id: trna-istok
+  title: Istok
+  artist: Trna
+  tags: [Blackgaze, Ambient, Black-metal]
+  rating: 7
+  listenedOn: '2024-04-09'
+  comment: Mellow at times, mostly harsh vocals but soothing
+
+- id: alice-in-chains-dirt
+  title: Dirt
+  artist: Alice in Chains
+  tags: [Grunge, Melancholic]
+  rating: 6.5
+  listenedOn: '2024-03-15'
+  comment: Very smooth, not a single bad song, but very similar vibe for an hour
+
+- id: black-noodle-project-ready-to-go
+  title: Ready to Go
+  artist: Black Noodle Project
+  tags: [Prog-rock, Ambient, Calm]
+  rating: 6.5
+  listenedOn: '2024-09-24'
+
+- id: algorithm-brute-force
+  title: Brute Force
+  artist: Algorithm
+  tags: [Techno, Prog-metal]
+  rating: 6
+  listenedOn: '2024-03-15'
+  comment: Fun work music, very energetic, but monotonous
+
+- id: aafcc-try-not-to-destroy
+  title: Try Not to Destroy Everything You Love
+  artist: An Autumn for Crippled Children
+  tags: [Blackgaze, Post-metal]
+  rating: 5
+  listenedOn: '2024-03-06'
+  comment: 'Dark vibes but maybe a bit monotonous
+
+    Didn’t pay too much attention'

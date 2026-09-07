@@ -4,12 +4,10 @@ title: Records
 ---
 
 <p style="margin-top:0;">
-  A running log of what I'm listening to. The top of the list is a <em>queue</em> —
-  records I mean to get to next — and below it are the ones I've already heard, each
+  A running log of what I'm listening to. The top of the list is a <em>queue</em> of
+  records I mean to get to next, and below it are the ones I've already heard, each
   with a rating out of ten and the occasional note. It leans hard into progressive,
-  post-metal and the more melancholic end of things. The sliders and notes save to
-  your own browser, so feel free to poke around; there's also a markdown export I use
-  to keep the same list in my notes.
+  post-metal and the more melancholic end of things. 
 </p>
 
 <style>
@@ -153,6 +151,8 @@ title: Records
     <div class="md-actions">
       <button class="primary" id="copyMd">Copy markdown</button>
       <button class="linkbtn" id="dlMd">Download Records.md</button>
+      <button class="primary" id="copyYaml">Copy as YAML</button>
+      <button class="linkbtn" id="dlYaml">Download records.yml</button>
       <span class="status" id="mdStatus"></span>
     </div>
     <textarea class="md-out" id="mdOut" readonly aria-label="Markdown export"></textarea>
@@ -182,93 +182,16 @@ title: Records
 (function () {
   const KEY = 'records-log:v2', OLD_KEY = 'album-log:v1';
 
-  // Everything from Records.md, plus recommendations. Ratings and notes entered here are
-  // stored separately and keyed by album, so this list can grow without overwriting them.
-  const SEED = [
-    // — queue, already in the vault —
-    { id: 'neurosis-a-prayer-to-the-unbroken-road', title: 'A Prayer to the Unbroken Road', artist: 'Neurosis',
-      tags: ['Post-metal','Doom','Atmospheric'], similar: 'Amenra, Cult of Luna' },
-    { id: 'epica-the-holographic-principle', title: 'The Holographic Principle', artist: 'Epica',
-      tags: ['Gothic','Epic','Symphonic'], similar: 'Draconian' },
-    { id: 'gybe-lift-your-skinny-fists', title: 'Lift Your Skinny Fists Like Antennas to Heaven', artist: 'Godspeed You! Black Emperor',
-      tags: ['Post-rock','Ambient','Melancholic'], similar: 'The Antlers' },
-    { id: 'enslaved-wardruna', title: 'Wardruna', artist: 'Enslaved',
-      tags: ['Heavy-metal','Epic','Norse'], similar: 'Dissection' },
-    { id: 'gorguts-obscura', title: 'Obscura', artist: 'Gorguts',
-      tags: ['Death-metal','Prog','Complex'], similar: 'Mariner, Mass III' },
-    { id: 'empyrium-songs-of-moor-and-misty-fields', title: 'Songs of Moor and Misty Fields', artist: 'Empyrium',
-      tags: ['Doom','Folk','Melancholic'], similar: 'Draconian' },
-
-    // — recommended 2026-09-07 —
-    { id: 'nick-drake-pink-moon', title: 'Pink Moon', artist: 'Nick Drake',
-      tags: ['Folk','Acoustic','Melancholic'], similar: 'Carrie & Lowell, Elliott Smith',
-      rec: 'Claude, 2026-09-07 — the source of this whole mode. 28 minutes, one voice, one guitar.' },
-    { id: 'elliott-smith-either-or', title: 'Either/Or', artist: 'Elliott Smith',
-      tags: ['Indie','Folk','Melancholic'], similar: 'Nick Drake, Sufjan Stevens',
-      rec: 'Claude, 2026-09-07 — double-tracked whisper over fingerpicking. Worth it for the guitar alone.' },
-    { id: 'sun-kil-moon-benji', title: 'Benji', artist: 'Sun Kil Moon',
-      tags: ['Slowcore','Folk','Confessional'], similar: 'Carrie & Lowell',
-      rec: 'Claude, 2026-09-07 — nearest thing anyone has made to Carrie & Lowell. Near-spoken delivery.' },
-    { id: 'jeff-buckley-grace', title: 'Grace', artist: 'Jeff Buckley',
-      tags: ['Alt-rock','Melancholic'], similar: 'The Bends, Radiohead',
-      rec: 'Claude, 2026-09-07 — the record The Bends was measured against at the time.' },
-    { id: 'talk-talk-spirit-of-eden', title: 'Spirit of Eden', artist: 'Talk Talk',
-      tags: ['Post-rock','Ambient','Slow'], similar: 'Godspeed You! Black Emperor, Porcupine Tree',
-      rec: 'Claude, 2026-09-07 — a pop band dissolving into improvised quiet. Where that prog patience comes from.' },
-    { id: 'the-national-trouble-will-find-me', title: 'Trouble Will Find Me', artist: 'The National',
-      tags: ['Indie','Melancholic','Restrained'], similar: 'Hospice, The Antlers',
-      rec: 'Claude, 2026-09-07 — baritone, brushed drums, grey-weather music.' },
-    { id: 'weyes-blood-titanic-rising', title: 'Titanic Rising', artist: 'Weyes Blood',
-      tags: ['Chamber-pop','Orchestral','Melancholic'], similar: 'Norman Fucking Rockwell, Lana Del Rey',
-      rec: 'Claude, 2026-09-07 — widescreen and doomy-romantic, with more Karen Carpenter in the voice.' },
-    { id: 'phoebe-bridgers-punisher', title: 'Punisher', artist: 'Phoebe Bridgers',
-      tags: ['Indie','Sparse','Melancholic'], similar: 'Sufjan Stevens, Lana Del Rey',
-      rec: 'Claude, 2026-09-07 — quieter and more skeletal than NFR, sharper writing.' },
-    { id: 'beach-house-teen-dream', title: 'Teen Dream', artist: 'Beach House',
-      tags: ['Dream-pop','Ambient','Hazy'], similar: 'Slowdive',
-      rec: 'Claude, 2026-09-07 — all reverb and organ. Less lyrical, more atmosphere.' },
-    { id: 'blackfield-blackfield', title: 'Blackfield', artist: 'Blackfield',
-      tags: ['Prog-rock','Pop','Melancholic'], similar: 'Steven Wilson, Porcupine Tree',
-      rec: 'Claude, 2026-09-07 — Wilson with Aviv Geffen, his most straightforwardly sad project.' },
-    { id: 'antimatter-planetary-confinement', title: 'Planetary Confinement', artist: 'Antimatter',
-      tags: ['Acoustic','Dark','Melancholic'], similar: 'Anathema',
-      rec: 'Claude, 2026-09-07 — Mick Moss doing unornamented acoustic melancholy.' },
-
-    // — already listened —
-    { id: 'cult-of-luna-mariner', title: 'Mariner', artist: 'Cult of Luna',
-      tags: ['Post-metal','Doom','Dark'], rating: 9, listenedOn: '2024-04-09', comment: '' },
-    { id: 'amenra-mass-iii', title: 'Mass III', artist: 'Amenra',
-      tags: ['Post-metal','Dark','Atmospheric'], rating: 8.5, listenedOn: '2024-03-20',
-      comment: 'Absolutely engaging with no dull moment, post-apocalyptic wasteland vibes' },
-    { id: 'draconian-under-the-godless-veil', title: 'Under the Godless Veil', artist: 'Draconian',
-      tags: ['Epic','Gothic','Doom'], rating: 8.5, listenedOn: '2024-04-02',
-      comment: 'Fabulous dark atmosphere, with dreamy female vocals. Slow but heavy.' },
-    { id: 'the-antlers-hospice', title: 'Hospice', artist: 'The Antlers',
-      tags: ['Indie','Melancholic','Ambient'], rating: 8, listenedOn: '2024-03-20',
-      comment: 'Amazing depressive, melancholic vibes, extremely immersive' },
-    { id: 'dissection-storm-of-the-lights-bane', title: "Storm of the Light's Bane", artist: 'Dissection',
-      tags: ['Heavy-metal','Epic'], rating: 8, listenedOn: '2024-10-03',
-      comment: 'Just classic heavy metal, no complaints' },
-    { id: 'trna-istok', title: 'Istok', artist: 'Trna',
-      tags: ['Blackgaze','Ambient','Black-metal'], rating: 7, listenedOn: '2024-04-09',
-      comment: 'Mellow at times, mostly harsh vocals but soothing' },
-    { id: 'alice-in-chains-dirt', title: 'Dirt', artist: 'Alice in Chains',
-      tags: ['Grunge','Melancholic'], rating: 6.5, listenedOn: '2024-03-15',
-      comment: 'Very smooth, not a single bad song, but very similar vibe for an hour' },
-    { id: 'black-noodle-project-ready-to-go', title: 'Ready to Go', artist: 'Black Noodle Project',
-      tags: ['Prog-rock','Ambient','Calm'], rating: 6.5, listenedOn: '2024-09-24', comment: '' },
-    { id: 'algorithm-brute-force', title: 'Brute Force', artist: 'Algorithm',
-      tags: ['Techno','Prog-metal'], rating: 6, listenedOn: '2024-03-15',
-      comment: 'Fun work music, very energetic, but monotonous' },
-    { id: 'aafcc-try-not-to-destroy', title: 'Try Not to Destroy Everything You Love', artist: 'An Autumn for Crippled Children',
-      tags: ['Blackgaze','Post-metal'], rating: 5, listenedOn: '2024-03-06',
-      comment: 'Dark vibes but maybe a bit monotonous\nDidn’t pay too much attention' }
-  ];
+  // The album list lives in _data/records.yml - edit that file, not this one.
+  // Ratings and notes typed on the page are per-browser; use "Copy as YAML"
+  // to move them into the data file so they are published.
+  const SEED = {{ site.data.records | jsonify }};
 
   const el = (id) => document.getElementById(id);
   const listEl = el('list'), heroEl = el('hero'), emptyEl = el('empty'), saveStatus = el('saveStatus');
 
   let entries = {}, custom = [], filter = 'all', saveTimer = null;
+  let panelMode = 'md';               // which format the export box is showing
 
   // Plain localStorage — this runs on the live site, not inside an Artifact.
   const store = {
@@ -322,7 +245,7 @@ title: Records
       saveStatus.textContent = ok
         ? 'Saved ' + new Date().toLocaleTimeString()
         : 'Could not save (browser storage is off). Export your markdown to be safe.';
-      if (!el('mdPanel').classList.contains('hidden')) el('mdOut').value = buildMarkdown();
+      if (!el('mdPanel').classList.contains('hidden')) el('mdOut').value = renderPanel();
     }, 400);
   }
 
@@ -446,15 +369,103 @@ title: Records
     return out.join('\n');
   }
 
+
+  // ---- YAML export, shaped for _data/records.yml -------------------------
+  const YKEYS = ['id','title','artist','tags','similar','rec','rating','listenedOn','comment'];
+
+  function yScalar(v, indent) {
+    if (typeof v === 'number') return String(v);
+    const s = String(v);
+    if (s.includes('\n')) {                       // block literal, keeps line breaks
+      const pad = ' '.repeat(indent + 2);
+      return '|-\n' + s.split('\n').map(l => pad + l).join('\n');
+    }
+    // quote anything YAML could misread; '' escapes a quote inside single quotes
+    if (s === '' || /^[\s>|*&!%@`#-]|[:#]\s|\s$|^(true|false|null|yes|no|on|off|~)$/i.test(s) || /^[\d.]+$/.test(s)) {
+      return "'" + s.replace(/'/g, "''") + "'";
+    }
+    return s;
+  }
+
+  function yamlEntry(a) {
+    const e = entry(a.id);
+    const merged = Object.assign({}, a, {
+      rating: e.rating || undefined,
+      listenedOn: e.listenedOn || undefined,
+      comment: (e.comment || '').trim() || undefined
+    });
+    const lines = [];
+    YKEYS.forEach(k => {
+      const v = merged[k];
+      if (v === undefined || v === null || v === '') return;
+      if (k === 'tags') { if (v.length) lines.push(`  tags: [${v.join(', ')}]`); return; }
+      const prefix = lines.length ? '  ' : '- ';
+      lines.push(`${prefix}${k}: ${yScalar(v, 2)}`);
+    });
+    // first line must carry the "- " list marker
+    if (lines.length && !lines[0].startsWith('- ')) lines[0] = '- ' + lines[0].slice(2);
+    return lines.join('\n');
+  }
+
+  function buildYaml() {
+    const all = albums();
+    const q = all.filter(a => !isHeard(a.id));
+    const h = all.filter(a => isHeard(a.id));
+    const out = [
+      '# Records - the album list behind /records/.',
+      '#',
+      '# Edit this file to change what the site shows. An entry counts as "listened"',
+      '# once it has a rating or a comment, otherwise it sits in the queue.',
+      '',
+      '# ---------- queue ----------', ''
+    ];
+    q.forEach(a => { out.push(yamlEntry(a), ''); });
+    out.push('# ---------- listened ----------', '');
+    h.forEach(a => { out.push(yamlEntry(a), ''); });
+    return out.join('\n');
+  }
+
+  function renderPanel() { return panelMode === 'yaml' ? buildYaml() : buildMarkdown(); }
+
+  function download(name, text, mime) {
+    const url = URL.createObjectURL(new Blob([text], { type: mime }));
+    const a = document.createElement('a');
+    a.href = url; a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  el('copyYaml').addEventListener('click', async () => {
+    panelMode = 'yaml';
+    const y = buildYaml();
+    el('mdOut').value = y;
+    try {
+      await navigator.clipboard.writeText(y);
+      el('mdStatus').textContent = 'Copied. Paste over _data/records.yml and commit.';
+    } catch (err) {
+      const ta = el('mdOut'); ta.focus(); ta.select();
+      el('mdStatus').textContent = 'Select all and copy from the box below.';
+    }
+  });
+
+  el('dlYaml').addEventListener('click', () => {
+    panelMode = 'yaml';
+    el('mdOut').value = buildYaml();
+    download('records.yml', buildYaml(), 'text/yaml');
+    el('mdStatus').textContent = 'Downloaded. Replace _data/records.yml with it and commit.';
+  });
+
   el('toggleMd').addEventListener('click', () => {
     const p = el('mdPanel');
     p.classList.toggle('hidden');
     const open = !p.classList.contains('hidden');
-    if (open) el('mdOut').value = buildMarkdown();
+    if (open) el('mdOut').value = renderPanel();
     el('toggleMd').textContent = open ? 'Hide markdown' : 'Markdown export';
   });
 
   el('copyMd').addEventListener('click', async () => {
+    panelMode = 'md';
+    el('mdOut').value = buildMarkdown();
     try {
       await navigator.clipboard.writeText(buildMarkdown());
       el('mdStatus').textContent = 'Copied. Replace the contents of Records.md.';
