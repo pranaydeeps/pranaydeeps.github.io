@@ -2,7 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Autumn Run">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#FAF6EE">
 <title>Autumn Base Block — Sep–Dec 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -109,6 +117,40 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
 
 .site-back{display:inline-block;margin:24px 0 -8px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
 .site-back:hover{color:var(--green);border-bottom-color:var(--green)}
+
+/* ---- phone + installed-app behaviour ---- */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{overscroll-behavior-y:contain;-webkit-tap-highlight-color:rgba(0,0,0,.06)}
+@media(max-width:560px){
+  .site-back{padding:10px 0;margin-top:14px}
+}
+@supports(padding:max(0px)){
+    .wrap{padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right));padding-bottom:max(80px,env(safe-area-inset-bottom))}
+}
+@media(display-mode:standalone){
+    .wrap{padding-top:max(8px,env(safe-area-inset-top))}
+}
+
+@media(max-width:560px){
+  /* the zones table has four columns and cannot fit a phone: stack each zone
+     as its own card, with the dropped column headers restored per row */
+  table{border:none;background:none}
+  thead{display:none}
+  table,tbody,tr,td{display:block;width:100%}
+  tbody tr{background:var(--paper);border:1px solid var(--line);
+    margin-bottom:10px;padding:12px 14px}
+  tbody tr:last-child{margin-bottom:0}
+  td{border:none;padding:0}
+  td.z{font-size:16px;margin-bottom:9px;white-space:normal}
+  td.num{display:grid;grid-template-columns:84px 1fr;gap:10px;
+    align-items:baseline;padding:3px 0}
+  td.evidence{display:grid;grid-template-columns:84px 1fr;gap:10px;
+    align-items:baseline;margin-top:8px;padding-top:9px;
+    border-top:1px solid var(--line)}
+  td.num::before,td.evidence::before{content:attr(data-l);
+    font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--ink-soft);font-style:normal}
+}
 </style>
 </head>
 <body>
@@ -134,11 +176,11 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-si
   <table>
     <thead><tr><th>Zone</th><th>Heart rate</th><th>Pace</th><th>Read from</th></tr></thead>
     <tbody>
-      <tr><td class="z"><span class="swatch" style="background:#B9B3A4"></span>1 Recovery</td><td class="num">&lt;135</td><td class="num">8:35–9:05</td><td class="evidence">1 Sep opening km, 8:49 at 125</td></tr>
-      <tr><td class="z"><span class="swatch" style="background:var(--green)"></span>2 Easy</td><td class="num">135–148</td><td class="num">7:50–8:30</td><td class="evidence">1 Sep, 8:33 at 136; 30 Aug, 7:56 at 144</td></tr>
-      <tr><td class="z"><span class="swatch" style="background:var(--gold)"></span>3 Steady</td><td class="num">149–157</td><td class="num">7:15–7:35</td><td class="evidence">15 Aug, 7:22 at 157</td></tr>
-      <tr><td class="z"><span class="swatch" style="background:var(--persimmon)"></span>4 Threshold</td><td class="num">158–166</td><td class="num">6:50–7:05 held<br>6:20–6:40 in reps</td><td class="evidence">30 Aug, 6:48 at 165 held; 2 Sep, 6:10 at 162 in reps</td></tr>
-      <tr><td class="z"><span class="swatch" style="background:#8B2E12"></span>5 VO2</td><td class="num">167+</td><td class="num">5:40–6:05</td><td class="evidence">27 Aug, 6:02 at 167 over 500 m</td></tr>
+      <tr><td class="z"><span class="swatch" style="background:#B9B3A4"></span>1 Recovery</td><td class="num" data-l="Heart rate">&lt;135</td><td class="num" data-l="Pace">8:35–9:05</td><td class="evidence" data-l="Read from">1 Sep opening km, 8:49 at 125</td></tr>
+      <tr><td class="z"><span class="swatch" style="background:var(--green)"></span>2 Easy</td><td class="num" data-l="Heart rate">135–148</td><td class="num" data-l="Pace">7:50–8:30</td><td class="evidence" data-l="Read from">1 Sep, 8:33 at 136; 30 Aug, 7:56 at 144</td></tr>
+      <tr><td class="z"><span class="swatch" style="background:var(--gold)"></span>3 Steady</td><td class="num" data-l="Heart rate">149–157</td><td class="num" data-l="Pace">7:15–7:35</td><td class="evidence" data-l="Read from">15 Aug, 7:22 at 157</td></tr>
+      <tr><td class="z"><span class="swatch" style="background:var(--persimmon)"></span>4 Threshold</td><td class="num" data-l="Heart rate">158–166</td><td class="num" data-l="Pace">6:50–7:05 held<br>6:20–6:40 in reps</td><td class="evidence" data-l="Read from">30 Aug, 6:48 at 165 held; 2 Sep, 6:10 at 162 in reps</td></tr>
+      <tr><td class="z"><span class="swatch" style="background:#8B2E12"></span>5 VO2</td><td class="num" data-l="Heart rate">167+</td><td class="num" data-l="Pace">5:40–6:05</td><td class="evidence" data-l="Read from">27 Aug, 6:02 at 167 over 500 m</td></tr>
     </tbody>
   </table>
   <p class="note" style="margin-top:18px">Reference 5K: <strong>32:30, or 6:30/km</strong>. Your short reps run faster than that and your continuous efforts run slower — that gap is why the sessions below are prescribed by heart rate. Chase the bpm, let the pace be whatever it is on the day.</p>

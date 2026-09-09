@@ -1,0 +1,31 @@
+{
+  "name": "Autumn Base Block",
+  "short_name": "Autumn Run",
+  "description": "14-week autumn running base block.",
+  "start_url": "/training/running/",
+  "scope": "/training/running/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#FAF6EE",
+  "background_color": "#FAF6EE",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

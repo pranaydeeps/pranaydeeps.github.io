@@ -2,7 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Strength">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
 <meta name="description" content="Two-day strength routine built to support running: lower body with a plyometric progression, upper body with a pulling bias.">
 <meta name="theme-color" content="#F4F6F1">
 <title>Strength Plan · Two Days</title>
@@ -168,6 +175,23 @@
 
 .site-back{display:inline-block;margin:24px 0 -10px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
 .site-back:hover{color:var(--green);border-bottom-color:var(--green)}
+
+/* ---- phone + installed-app behaviour ---- */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{overscroll-behavior-y:contain;-webkit-tap-highlight-color:rgba(0,0,0,.06)}
+@media(max-width:560px){
+  .site-back{padding:10px 0;margin-top:14px}
+}
+@supports(padding:max(0px)){
+    body{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right));padding-bottom:max(64px,env(safe-area-inset-bottom))}
+}
+@media(display-mode:standalone){
+    body{padding-top:max(8px,env(safe-area-inset-top))}
+}
+
+@media(max-width:560px){
+  .viewtog{min-height:44px}
+}
 </style>
 </head>
 <body>
