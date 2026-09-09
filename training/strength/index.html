@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Two-day strength routine built to support running: lower body with a plyometric progression, upper body with a pulling bias.">
+<meta name="theme-color" content="#F4F6F1">
+<title>Strength Plan · Two Days</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F4F6F1; --surface:#FFFFFF; --ink:#18241E; --muted:#5E6B62;
+    --green:#2E6B4F; --green-deep:#1F4E3A; --persimmon:#D85C2E; --gold:#B5832A;
+    --line:#E3E7DD; --green-tint:#EAF1EB; --persimmon-tint:#FBEDE6; --gold-tint:#F6EEDC;
+    --display:'Bricolage Grotesque',system-ui,sans-serif;
+    --body:'Inter',system-ui,sans-serif;
+    --mono:'Space Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);
+    line-height:1.5;-webkit-font-smoothing:antialiased;padding:0 16px 64px}
+  .wrap{max-width:920px;margin:0 auto}
+
+  header{padding:38px 0 8px}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--green);margin:0 0 10px}
+  h1{font-family:var(--display);font-weight:800;font-size:clamp(34px,6vw,52px);
+    line-height:1.02;letter-spacing:-.02em;margin:0 0 8px}
+  .sub{color:var(--muted);max-width:58ch;margin:0}
+
+  .targets{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0 8px}
+  @media(max-width:560px){.targets{grid-template-columns:1fr}}
+  .tcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;
+    padding:18px 18px 16px;position:relative;overflow:hidden}
+  .tcard .who{font-family:var(--display);font-weight:700;font-size:19px;display:flex;
+    align-items:center;gap:9px}
+  .dot{width:11px;height:11px;border-radius:50%;display:inline-block}
+  .tcard .kcal{font-family:var(--mono);font-size:26px;font-weight:700;margin:8px 0 2px}
+  .tcard .kcal small{font-size:14px;color:var(--muted);font-weight:400}
+  .tcard .rate{font-size:13px;color:var(--muted);margin-bottom:12px}
+  .macros{display:flex;gap:6px;flex-wrap:wrap}
+  .mac{font-family:var(--mono);font-size:12px;background:var(--green-tint);
+    color:var(--green-deep);padding:4px 9px;border-radius:7px;white-space:nowrap}
+  .tcard.him{border-color:#F0D8CC}
+  .tcard.him .mac{background:var(--persimmon-tint);color:#A03E18}
+  .tcard .stripe{position:absolute;top:0;left:0;width:5px;height:100%}
+  .him .stripe{background:var(--persimmon)} .her .stripe{background:var(--green)}
+  .him .dot{background:var(--persimmon)} .her .dot{background:var(--green)}
+
+  .bfast{background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--gold);
+    border-radius:16px;padding:18px 20px;margin:14px 0 4px}
+  .bfast .ic{font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+  .bfast h3{font-family:var(--display);font-weight:700;font-size:18px;margin:0 0 4px}
+  .bfast p{margin:0;color:var(--muted);font-size:14px}
+
+  nav{position:sticky;top:0;z-index:5;background:var(--bg);padding:14px 0 12px;margin-top:14px}
+  .navrow{display:flex;gap:8px;align-items:center;justify-content:space-between}
+  .days{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+  .days::-webkit-scrollbar{display:none}
+  .day{flex:0 0 auto;font-family:var(--mono);font-size:13px;border:1px solid var(--line);
+    background:var(--surface);color:var(--muted);padding:9px 16px;border-radius:10px;
+    cursor:pointer;transition:.15s;text-align:center}
+  .day:hover{border-color:var(--green)}
+  .day[aria-selected=true]{background:var(--green-deep);color:#fff;border-color:var(--green-deep)}
+  .day .tag{display:block;font-size:10px;letter-spacing:.06em;opacity:.7;margin-top:1px}
+  .viewtog{flex:0 0 auto;font-family:var(--mono);font-size:12px;border:1px solid var(--line);
+    background:var(--surface);color:var(--muted);padding:10px 13px;border-radius:10px;cursor:pointer}
+  .viewtog:hover{border-color:var(--green);color:var(--green-deep)}
+
+  .dayhead{display:flex;align-items:baseline;justify-content:space-between;
+    gap:12px;margin:6px 0 14px;flex-wrap:wrap}
+  .dayhead h2{font-family:var(--display);font-weight:800;font-size:26px;margin:0;letter-spacing:-.01em}
+  .session{font-family:var(--mono);font-size:12px;color:var(--persimmon);
+    background:var(--persimmon-tint);padding:5px 11px;border-radius:8px}
+
+  .block{background:var(--surface);border:1px solid var(--line);border-radius:16px;
+    padding:16px 18px;margin-bottom:12px;border-left:5px solid var(--gold)}
+  .block h3{font-family:var(--display);font-weight:700;font-size:17px;margin:0 0 8px}
+  .block p{margin:0;color:var(--muted);font-size:14.5px}
+  .block .t{font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--gold);display:block;margin-bottom:4px}
+
+  .meal{background:var(--surface);border:1px solid var(--line);border-radius:16px;
+    padding:18px;margin-bottom:12px}
+  .meal.pair{border-left:5px solid var(--green)}
+  .meal .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+    margin-bottom:4px;flex-wrap:wrap}
+  .slot{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--green)}
+  .badge{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+    padding:4px 9px;border-radius:7px;font-weight:700}
+  .badge.prep{background:var(--green-deep);color:#fff}
+  .badge.fresh{background:var(--gold-tint);color:#7A5A14}
+  .badge.cut{background:var(--persimmon-tint);color:#A03E18}
+  .meal h3{font-family:var(--display);font-weight:700;font-size:19px;margin:2px 0 8px}
+  .ing{color:var(--muted);font-size:14.5px;margin:0 0 10px}
+  .ing b{color:var(--ink);font-weight:600}
+  .cue{font-size:13.5px;color:var(--muted);border-top:1px dashed var(--line);
+    padding-top:10px;margin:10px 0 0}
+  .cue b{color:var(--ink);font-weight:600}
+  .mline{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+  .chip{font-family:var(--mono);font-size:12px;background:var(--green-tint);
+    color:var(--green-deep);padding:4px 9px;border-radius:7px}
+  .chip.k{background:var(--ink);color:#fff}
+  .chip.o{background:var(--persimmon-tint);color:#A03E18}
+
+  .quick{background:var(--surface);border:1px solid var(--line);border-radius:16px;
+    overflow:hidden;margin-bottom:12px}
+  .qgroup{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--green);background:var(--green-tint);padding:8px 16px}
+  .qrow{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+    padding:13px 16px;border-top:1px solid var(--line)}
+  .qrow .qn{font-weight:600;font-size:15px}
+  .qrow .qv{font-family:var(--mono);font-size:13px;color:var(--muted);
+    white-space:nowrap;text-align:right}
+  .qrow .qv b{color:var(--ink)}
+
+  .section{margin:40px 0 0}
+  .section > h2{font-family:var(--display);font-weight:800;font-size:24px;margin:0 0 4px;letter-spacing:-.01em}
+  .section > .lead{color:var(--muted);margin:0 0 18px;max-width:64ch}
+
+  .ladder{display:grid;gap:12px}
+  .rung{background:var(--surface);border:1px solid var(--line);border-radius:16px;
+    padding:18px 20px;display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:start}
+  @media(max-width:560px){.rung{grid-template-columns:1fr;gap:10px}}
+  .rung .lvl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--green);line-height:1.3}
+  .rung .lvl b{display:block;font-family:var(--display);font-size:30px;font-weight:800;
+    color:var(--green-deep);letter-spacing:-.02em;line-height:1}
+  .rung h3{font-family:var(--display);font-weight:700;font-size:18px;margin:0 0 3px}
+  .rung .when{font-family:var(--mono);font-size:12px;color:var(--muted);margin:0 0 10px}
+  .rung ul{margin:0 0 11px;padding-left:18px;font-size:14.5px}
+  .rung ul li{margin:3px 0}
+  .rung .gate{font-size:13px;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px}
+  .rung .gate b{color:var(--ink)}
+  .rung.r1{border-left:5px solid var(--green-deep)}
+  .rung.r2{border-left:5px solid var(--green)}
+  .rung.r3{border-left:5px solid var(--gold)}
+  .rung.r4{border-left:5px solid var(--persimmon)}
+
+  .prepgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:640px){.prepgrid{grid-template-columns:1fr}}
+  .prep{background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--green-deep);
+    border-radius:16px;padding:20px}
+  .prep .makes{font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--green);display:block;margin-bottom:8px}
+  .prep h3{font-family:var(--display);font-weight:700;font-size:19px;margin:0 0 12px}
+  .prep ul{margin:0;padding-left:18px;color:var(--ink);font-size:14.5px}
+  .prep ul li{margin:5px 0}
+  .prep.warnbox{border-top-color:var(--persimmon)}
+  .prep.warnbox .makes{color:var(--persimmon)}
+  .prep.goldbox{border-top-color:var(--gold)}
+  .prep.goldbox .makes{color:var(--gold)}
+
+  .notes{background:var(--green-deep);color:#EAF1EB;border-radius:18px;padding:26px 26px 24px;margin-top:18px}
+  .notes h2{font-family:var(--display);font-weight:800;font-size:22px;margin:0 0 14px;color:#fff}
+  .notes ul{margin:0;padding:0;list-style:none;display:grid;gap:13px}
+  .notes li{display:flex;gap:12px;font-size:14.5px}
+  .notes li .n{font-family:var(--mono);font-size:12px;color:#9FD4B8;flex:0 0 auto;padding-top:1px}
+  .notes b{color:#fff}
+  .foot{color:var(--muted);font-size:12.5px;text-align:center;margin-top:26px;font-family:var(--mono)}
+
+  :focus-visible{outline:2.5px solid var(--persimmon);outline-offset:2px;border-radius:4px}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.site-back{display:inline-block;margin:24px 0 -10px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+.site-back:hover{color:var(--green);border-bottom-color:var(--green)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a class="site-back" href="/">&larr; Pranaydeep Singh</a>
+
+
+  <header>
+    <p class="eyebrow">Two sessions a week · Full gym · 50–60 min</p>
+    <h1>Heavy legs,<br>quiet landings.</h1>
+    <p class="sub">One lower-body day built around force production and a slow plyometric ladder, one upper day with a pulling bias, arms and trunk work on the end. Low reps, real load, and a jumping progression that assumes no prior experience.</p>
+
+    <div class="targets">
+      <div class="tcard him">
+        <div class="stripe"></div>
+        <div class="who"><span class="dot"></span>Day A · Legs</div>
+        <div class="kcal">55–60 <small>minutes</small></div>
+        <div class="rate">Plyometrics first while fresh, then squat, then single-leg and lower-leg work</div>
+        <div class="macros"><span class="mac">4 lifts</span><span class="mac">3 plyo drills</span><span class="mac">Calf + tib</span></div>
+      </div>
+      <div class="tcard her">
+        <div class="stripe"></div>
+        <div class="who"><span class="dot"></span>Day B · Upper</div>
+        <div class="kcal">55–60 <small>minutes</small></div>
+        <div class="rate">Supersetted push and pull, then carry, then arms, then trunk</div>
+        <div class="macros"><span class="mac">9 lifts</span><span class="mac">Pull-biased</span><span class="mac">Arms + core</span></div>
+      </div>
+    </div>
+
+    <div class="bfast">
+      <div class="ic">Read this before Day A</div>
+      <h3>The plyometric ladder is the plan</h3>
+      <p>No prior jumping experience plus a right calf with history means the dosing matters far more than the exercise choice. Start at Phase 1 regardless of how easy it feels, and only move up when the gate conditions are met.</p>
+    </div>
+  </header>
+
+  <nav>
+    <div class="navrow">
+      <div class="days" id="days" role="tablist"></div>
+      <button class="viewtog" id="viewtog" aria-pressed="false">Quick list</button>
+    </div>
+  </nav>
+  <main id="dayview" role="tabpanel"></main>
+
+  <section class="section">
+    <h2>The plyometric ladder</h2>
+    <p class="lead">Four phases, four weeks each at minimum. The number that matters is ground contacts — every landing is a dose of force through the calf and shin, and beginners get hurt by taking too many too soon, not by jumping too high. Contact counts exclude the low-level drills.</p>
+    <div class="ladder">
+
+      <div class="rung r1">
+        <div class="lvl"><b>1</b>Absorb</div>
+        <div>
+          <h3>Learning to land</h3>
+          <p class="when">Weeks 1–4 · ~48 contacts per session</p>
+          <ul>
+            <li><b>Pogo hops, double leg, in place</b> — 3 × 12. Knees nearly straight, all ankle, minimum time on the ground.</li>
+            <li><b>Countermovement jump, stick the landing</b> — 3 × 4. Moderate height, land soft, freeze two full seconds before the next rep.</li>
+            <li><b>Ankling drill</b> — 2 × 20m. Low intensity, doesn't count toward contacts.</li>
+          </ul>
+          <p class="gate"><b>Gate to Phase 2:</b> two consecutive weeks with no calf or shin awareness the following morning.</p>
+        </div>
+      </div>
+
+      <div class="rung r2">
+        <div class="lvl"><b>2</b>Rebound</div>
+        <div>
+          <h3>Adding elasticity</h3>
+          <p class="when">Weeks 5–8 · ~66 contacts per session</p>
+          <ul>
+            <li><b>Pogo hops, continuous</b> — 3 × 16. Now chained rather than reset between reps.</li>
+            <li><b>Box jump, step down</b> — 3 × 5. Box 30–40cm. Always <em>step</em> off, never jump down.</li>
+            <li><b>Lateral hop and stick</b> — 2 × 4 each side. First single-leg landings, with no rebound.</li>
+          </ul>
+          <p class="gate"><b>Gate to Phase 3:</b> same two clean weeks, and landings still quiet by the last set.</p>
+        </div>
+      </div>
+
+      <div class="rung r3">
+        <div class="lvl"><b>3</b>One leg</div>
+        <div>
+          <h3>Running is a single-leg sport</h3>
+          <p class="when">Weeks 9–12 · ~84 contacts per session</p>
+          <ul>
+            <li><b>Single-leg pogo hops in place</b> — 3 × 8 each side.</li>
+            <li><b>Broad jump and stick</b> — 3 × 4. Distance, not height. Land and hold.</li>
+            <li><b>Lateral bound and stick</b> — 3 × 4 each side. Push sideways, land on the outside leg, hold.</li>
+          </ul>
+          <p class="gate"><b>Gate to Phase 4:</b> two clean weeks and no side-to-side difference you can feel in the single-leg work.</p>
+        </div>
+      </div>
+
+      <div class="rung r4">
+        <div class="lvl"><b>4</b>Elastic</div>
+        <div>
+          <h3>Reactive strength</h3>
+          <p class="when">Weeks 13 onward · ~100 contacts per session</p>
+          <ul>
+            <li><b>Single-leg hops travelling forward</b> — 3 × 10 each side.</li>
+            <li><b>Alternating bounds</b> — 3 × 6 each side. Exaggerated running stride, float between contacts.</li>
+            <li><b>Low hurdle hops</b> — 3 × 6. Hurdles around 20cm, continuous.</li>
+          </ul>
+          <p class="gate"><b>This is the ceiling.</b> Depth jumps and drop jumps sit above this and you don't need them. Stay here and get better at it.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Rules that keep the jumping safe</h2>
+    <p class="lead">These matter more than the exercise selection. Plyometrics is the one part of this plan with a real injury cost if the dosing goes wrong.</p>
+    <div class="prepgrid">
+      <div class="prep">
+        <span class="makes">Every session</span>
+        <h3>How to run the drills</h3>
+        <ul>
+          <li>Plyos go immediately after the warm-up, before you touch a barbell. Never after squats.</li>
+          <li>Land quiet. Noise is force you failed to absorb.</li>
+          <li>If ground contact slows or landings get loud, that set is over. Rep quality is the stimulus, not rep count.</li>
+          <li>Rest 45–60 seconds between sets. This is not conditioning.</li>
+          <li>Trainers on, not racing flats.</li>
+        </ul>
+      </div>
+      <div class="prep warnbox">
+        <span class="makes">When to back off</span>
+        <h3>The right-side rule</h3>
+        <ul>
+          <li>Any calf or shin awareness the next morning: repeat the phase, don't advance.</li>
+          <li>Awareness two weeks running: drop back a phase for two weeks.</li>
+          <li>Pain during a landing: stop the session's plyos entirely, keep the lifting.</li>
+          <li>Never on consecutive days, and never within 24 hours before a quality run.</li>
+          <li>After any layoff of two weeks or more: restart one phase lower.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>When the clock beats you</h2>
+    <p class="lead">Both days now run close to an hour. The failure mode is rushing the compounds to make room for the accessories, so the cut order is decided in advance rather than in the moment.</p>
+    <div class="prepgrid">
+      <div class="prep goldbox">
+        <span class="makes">Day B · cut in this order</span>
+        <h3>Arms go first</h3>
+        <ul>
+          <li><b>1.</b> Hammer curls and tricep extensions.</li>
+          <li><b>2.</b> Face pulls.</li>
+          <li><b>3.</b> Planks — move them to legs day.</li>
+          <li>Bench, pull-ups, rows and the overhead press are what the day is for. They don't get cut.</li>
+        </ul>
+      </div>
+      <div class="prep goldbox">
+        <span class="makes">Day A · cut in this order</span>
+        <h3>Protect the lower leg work</h3>
+        <ul>
+          <li><b>1.</b> Planks.</li>
+          <li><b>2.</b> Standing single-leg calf raise.</li>
+          <li>The seated calf raise and tibialis raise stay. They're doing more for your right side than any core work will.</li>
+          <li><b>Better than cutting:</b> do the planks in the rest gaps between calf raise sets. Low enough fatigue that it doesn't interfere, and it buys back five minutes.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Loading and progression</h2>
+    <p class="lead">Log every set. Progression only works if you know what you lifted last week. Treat the first session of each lift as calibration — if the last rep of set one leaves three in the tank, the weight is right.</p>
+    <div class="prepgrid">
+      <div class="prep">
+        <span class="makes">The four-week cycle</span>
+        <h3>How the weight moves</h3>
+        <ul>
+          <li><b>Weeks 1–3:</b> add 5kg per week to squat and RDL, 2.5kg to bench, row and overhead press, 2kg per hand to Bulgarians — as long as every rep is clean and the last set sits at RPE 8 or below.</li>
+          <li><b>Week 4:</b> deload. Two sets instead of four, around 70% of working load, plyos at half volume.</li>
+          <li>Then repeat from your week 3 numbers.</li>
+          <li>Stall twice on the same weight? Drop 10% and build back. Normal, not failure.</li>
+        </ul>
+      </div>
+      <div class="prep">
+        <span class="makes">Reading RPE</span>
+        <h3>How hard each set should feel</h3>
+        <ul>
+          <li><b>RPE 7</b> — three reps left. Where the main lifts should live most weeks.</li>
+          <li><b>RPE 8</b> — two reps left. The top of a hard week.</li>
+          <li><b>RPE 9+</b> — one or none. Not needed here. Grinding reps costs recovery you'd rather spend on running.</li>
+          <li><b>Exception:</b> curls, tricep extensions and planks can go close to failure. Small muscles, no recovery bill.</li>
+          <li>Accessories climb by reps first, load second.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Where these sit in the week</h2>
+    <p class="lead">Placement logic matters more than the specific days. Move them to fit whatever the run week actually looks like.</p>
+    <div class="prepgrid">
+      <div class="prep">
+        <span class="makes">Legs day</span>
+        <h3>Placement, best to worst</h3>
+        <ul>
+          <li><b>Best:</b> same day as a quality run, after it or six-plus hours later. Consolidating hard stress onto one day keeps easy days genuinely easy.</li>
+          <li><b>Workable:</b> a standalone Wednesday, between a Tuesday quality session and a Thursday easy run. Costs two hard days back to back, but avoids doubles.</li>
+          <li><b>Avoid:</b> anything within 24 hours before a long run or quality session. Saturday legs with a Sunday long run is the specific version never to do.</li>
+        </ul>
+      </div>
+      <div class="prep">
+        <span class="makes">Upper day</span>
+        <h3>Much more flexible</h3>
+        <ul>
+          <li>Goes anywhere, including the day before a hard run. Upper-body lifting barely touches running recovery.</li>
+          <li>Keep at least 48 hours between it and legs day so the trunk work isn't landing on a fatigued core.</li>
+          <li>If a week collapses and only one session happens, make it legs. Every time.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Cutting it down for a taper</h2>
+    <p class="lead">Load maintains fitness, volume drains you. So cut sets, not weight.</p>
+    <div class="prepgrid">
+      <div class="prep">
+        <span class="makes">Final 10 days</span>
+        <h3>Halve the volume</h3>
+        <ul>
+          <li>Same exercises, same working weight, half the sets. Four sets becomes two.</li>
+          <li>Nothing above RPE 7. No stretching for a rep.</li>
+          <li>Drop the arm work and the third accessory pairing entirely.</li>
+        </ul>
+      </div>
+      <div class="prep warnbox">
+        <span class="makes">Final week</span>
+        <h3>Hard cutoffs</h3>
+        <ul>
+          <li><b>No plyometrics in the last 7 days.</b> Not reduced — none.</li>
+          <li>Last legs session no closer than 5 days out.</li>
+          <li>Upper body can run to 3 days out, kept light.</li>
+          <li>Race week soreness is a planning failure, not a sign of a good block.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="notes">
+      <h2>Why the plan looks like this</h2>
+      <ul>
+        <li><span class="n">01</span><span><b>Low reps and real load, not circuits.</b> The strength that improves running economy is neural — producing more force through the tissue you already have. That's a 4–6 rep job. High-rep burn work builds fatigue you then carry into your runs, which is the trade most runner strength plans get backwards.</span></li>
+        <li><span class="n">02</span><span><b>The soleus is the priority accessory.</b> Bent-knee calf raises load the soleus, which absorbs the single largest force in running and sits behind most calf and shin problems. Given the right side, it's the one exercise here never to skip.</span></li>
+        <li><span class="n">03</span><span><b>Tibialis raises earn their spot.</b> The shin muscle decelerates the foot on every landing. Undertrained in almost everyone and directly relevant to the shin history.</span></li>
+        <li><span class="n">04</span><span><b>Plyometrics are here for stiffness, not power.</b> The goal isn't jumping higher — it's a tendon that returns energy instead of absorbing it, which is free speed at the same effort. That adaptation is slow, which is why the ladder is measured in months.</span></li>
+        <li><span class="n">05</span><span><b>Upper day leans on pulling,</b> two-to-one plus face pulls, because running posture collapses forward under fatigue and nothing on a run trains the muscles that resist it.</span></li>
+        <li><span class="n">06</span><span><b>The suitcase carry replaces the Pallof press.</b> Load on one side forces the trunk to resist being pulled sideways for the whole walk — the same anti-rotation quality, in a more running-specific form, at no extra time cost.</span></li>
+        <li><span class="n">07</span><span><b>Side plank matters more than front plank.</b> It trains the lateral chain that resists pelvic drop when standing on one leg, which is what running is. It also doubles as an asymmetry check — if the right side gives out first, that's worth knowing.</span></li>
+        <li><span class="n">08</span><span><b>Progress planks by difficulty, not duration.</b> Past 45–60 seconds a plank becomes a boredom test. Long-lever position, shoulder taps, or a plate on the back. For side planks, lift the top leg into abduction.</span></li>
+        <li><span class="n">09</span><span><b>Arms cost nothing that matters.</b> Small muscles, negligible systemic fatigue, no interference with running. Take them close to failure if you want. Just keep them after the carry, since curls wreck the grip that the carry depends on.</span></li>
+        <li><span class="n">10</span><span><b>Two sessions done for a year beats four done for a month.</b> Lower-body strength dropping off is the single thing that correlates most directly with breakdown risk. Protect the frequency before chasing anything else.</span></li>
+      </ul>
+    </div>
+    <p class="foot">Full gym · 55–60 minute sessions · starting from zero plyometric experience</p>
+  </section>
+
+</div>
+
+<script>
+const plan = [
+  {
+    key:"Legs", tag:"Day A", title:"Legs + plyometrics", session:"55–60 min · plyos first",
+    warm:{t:"Warm-up · 8 minutes", h:"Prime the ankles and hips", p:"5 min easy bike or rower · ankle rocks to wall 10/side · banded lateral walks 2 × 12 steps each way · glute bridge × 15 · bodyweight squat × 10 · calf raise × 15."},
+    plyo:true,
+    lifts:[
+      {slot:"Main lift", badge:"prep", blabel:"Heavy", name:"Squat (Barbell)",
+       prescribe:["4 × 5","40 kg","RPE 7","Rest 2–3 min"],
+       ing:"The biggest single driver of force production you have. Full depth you can control, knees tracking out, no bounce out of the bottom.",
+       cue:"<b>Swap:</b> trap bar deadlift if ankle mobility limits depth. <b>Watch:</b> if the right calf restricts depth on one side, stop adding load and fix the ankle first."},
+      {slot:"Pair 1 · A", badge:"fresh", blabel:"Superset", name:"Bulgarian Split Squat (Dumbbell)",
+       prescribe:["3 × 8 / side","2 × 10 kg","Rest 60s"],
+       ing:"Running is a single-leg sport and this is where side-to-side asymmetry shows up. Expect the right to feel different — that's information, not a reason to skip it.",
+       cue:"<b>Cue:</b> front shin close to vertical, torso leaning slightly forward, slow on the way down. <b>Match the weaker side</b> — the stronger leg does whatever the weaker one can."},
+      {slot:"Pair 1 · B", badge:"fresh", blabel:"Superset", name:"Romanian Deadlift (Barbell)",
+       prescribe:["3 × 8","40 kg","RPE 7","Rest 90s"],
+       ing:"Hamstring and glute loading through a long muscle length. The posterior chain work a squat alone doesn't cover.",
+       cue:"<b>Cue:</b> hinge from the hip, bar tracking the thighs, stop when the hamstrings run out of range — not when the plates hit the floor. <b>Swap:</b> single-leg RDL for more balance demand and less load."},
+      {slot:"Pair 2 · A", badge:"prep", blabel:"Non-negotiable", name:"Seated Calf Raise (Machine)",
+       prescribe:["3 × 12","30 kg","3s lower","1s stretch"],
+       ing:"Bent knee means this hits the soleus, which takes the largest force in running and sits behind most calf and shin problems. The slow eccentric is the whole point.",
+       cue:"<b>Cue:</b> pause at the bottom in a full stretch, then drive up. <b>If one thing gets dropped from this session, it is not this one.</b>"},
+      {slot:"Pair 2 · B", badge:"fresh", blabel:"Superset", name:"Tibialis Raise",
+       prescribe:["3 × 20","Bodyweight","Rest 45s"],
+       ing:"The muscle down the front of the shin controls how the foot lands. Undertrained in nearly every runner and directly relevant to the shin history.",
+       cue:"<b>Setup:</b> lean back against a wall, heels out in front, toes up through full range. Add a tib bar or plate once 20 reps feels easy."},
+      {slot:"Accessory", badge:"cut", blabel:"Cut 2nd", name:"Single Leg Calf Raise",
+       prescribe:["2 × 10 / side","Bodyweight","Off a step"],
+       ing:"Straight knee shifts load to the gastrocnemius, and single-leg means each side carries its own weight. Full range off a step.",
+       cue:"<b>Short on time?</b> Second thing to cut, after the planks. Everything above it earns its place first."},
+      {slot:"Trunk", badge:"cut", blabel:"Cut 1st", name:"Plank + Side Plank",
+       prescribe:["Plank 3 × 30–45s","Side 3 × 30s / side"],
+       ing:"Side plank is the one that transfers — it trains the lateral chain that resists pelvic drop on a single leg, which is what running is. It also flags asymmetry: if the right gives out first, note it.",
+       cue:"<b>Best move:</b> do these in the rest gaps between calf raise sets rather than at the end. <b>Progress by difficulty, not time</b> — long-lever plank, shoulder taps, or top leg lifted on the side plank."},
+    ]
+  },
+  {
+    key:"Upper", tag:"Day B", title:"Upper body", session:"55–60 min · supersetted",
+    warm:{t:"Warm-up · 6 minutes", h:"Open the shoulders", p:"Band pull-aparts 2 × 15 · shoulder dislocates with a band × 10 · scapular push-ups 2 × 10 · dead hang 2 × 20s."},
+    plyo:false,
+    lifts:[
+      {slot:"Pair 1 · A", badge:"prep", blabel:"Heavy", name:"Bench Press (Barbell)",
+       prescribe:["4 × 6","40 kg","RPE 7","Rest 90s"],
+       ing:"Main horizontal press, supersetted with pull-ups so the antagonist rests while the other works. That pairing is how this session fits in an hour.",
+       cue:"<b>Cue:</b> shoulder blades pulled back and down into the bench, bar to the lower chest, feet planted."},
+      {slot:"Pair 1 · B", badge:"prep", blabel:"Heavy", name:"Pull Up",
+       prescribe:["4 × 6–8","Bodyweight","Rest 90s"],
+       ing:"The most valuable upper-body movement available. If six clean reps isn't there yet, use assisted pull-ups or a lat pulldown at 40 kg and work toward it.",
+       cue:"<b>Cue:</b> start from a dead hang, lead with the elbows, chest to the bar. <b>Progression:</b> once 4 × 8 is comfortable, hang a belt with weight."},
+      {slot:"Pair 2 · A", badge:"fresh", blabel:"Superset", name:"Bent Over Row (Barbell)",
+       prescribe:["3 × 10","35 kg","RPE 7","Rest 75s"],
+       ing:"Second pull of the session. The pulling bias is deliberate — running posture collapses forward under fatigue and nothing on a run trains the muscles that resist it.",
+       cue:"<b>Cue:</b> torso around 45 degrees, bar to the navel, no heaving with the lower back. <b>Swap:</b> single-arm dumbbell row if the hinge position bothers you."},
+      {slot:"Pair 2 · B", badge:"fresh", blabel:"Superset", name:"Overhead Press (Barbell)",
+       prescribe:["3 × 8","25 kg","RPE 7","Rest 75s"],
+       ing:"Standing rather than seated on purpose — it builds the trunk-to-shoulder chain that keeps you upright when form starts going in the last mile.",
+       cue:"<b>Cue:</b> ribs down, glutes tight, press the bar then move the head through."},
+      {slot:"Accessory", badge:"cut", blabel:"Cut 2nd", name:"Face Pull (Cable)",
+       prescribe:["3 × 15","15 kg","Rest 45s"],
+       ing:"Rear delts and mid-back. Cheap insurance for shoulder health and the direct counterweight to a day spent at a desk.",
+       cue:"<b>Cue:</b> pull to the forehead, elbows high and wide, pause a beat at the end of each rep. Go lighter than feels right."},
+      {slot:"Carry", badge:"prep", blabel:"Runs transfer", name:"Suitcase Carry",
+       prescribe:["3 × 40m","20 kg one side","Rest 60s"],
+       ing:"This replaces the Pallof press. Load on one side forces the trunk to resist being pulled sideways for the entire walk — the same anti-rotation quality, in a more running-specific form. Alternate hands each set.",
+       cue:"<b>Cue:</b> tall through the chest, shoulders level, walk normally — don't shuffle or lean away. <b>Order matters:</b> this comes before the curls, because curls wreck the grip this depends on."},
+      {slot:"Pair 3 · A", badge:"cut", blabel:"Cut 1st", name:"Hammer Curl (Dumbbell)",
+       prescribe:["3 × 10–12","2 × 10 kg","Rest 45s"],
+       ing:"Negligible systemic fatigue and no interference with running, so there's no reason not to. Take these close to failure if you want — there's no recovery bill.",
+       cue:"<b>Cue:</b> neutral grip throughout, elbows pinned to the ribs, no swinging."},
+      {slot:"Pair 3 · B", badge:"cut", blabel:"Cut 1st", name:"Overhead Tricep Extension",
+       prescribe:["3 × 10–12","15 kg","Rest 45s"],
+       ing:"Same logic as the curls. Full stretch at the bottom is where most of the value is.",
+       cue:"<b>Watch:</b> this stacks more overhead loading on top of the press. If elbows or shoulders start complaining, swap to a cable pushdown — same muscle, less overhead stress."},
+      {slot:"Trunk", badge:"cut", blabel:"Cut 3rd", name:"Plank + Side Plank",
+       prescribe:["Plank 3 × 30–45s","Side 3 × 30s / side"],
+       ing:"Same as legs day. If both sessions are running long, keep these on legs day only — doing them twice a week isn't necessary.",
+       cue:"<b>Progress by difficulty, not time.</b> Past 45–60 seconds a plank is a boredom test. Long-lever position, shoulder taps, a plate on the back, or top leg lifted on the side plank."},
+    ]
+  },
+];
+
+const daysEl = document.getElementById('days');
+const view = document.getElementById('dayview');
+const tog = document.getElementById('viewtog');
+let current = 0, compact = false;
+
+plan.forEach((d,i)=>{
+  const b=document.createElement('button');
+  b.className='day'; b.setAttribute('role','tab'); b.setAttribute('aria-selected',i===0);
+  b.innerHTML=d.tag+'<span class="tag">'+d.key+'</span>';
+  b.onclick=()=>{current=i;render();};
+  daysEl.appendChild(b);
+});
+
+tog.onclick=()=>{
+  compact=!compact;
+  tog.textContent = compact ? 'Full detail' : 'Quick list';
+  tog.setAttribute('aria-pressed', compact);
+  render();
+};
+
+function render(){
+  [...daysEl.children].forEach((c,j)=>c.setAttribute('aria-selected',j===current));
+  const d=plan[current];
+  const head='<div class="dayhead"><h2>'+d.title+'</h2><span class="session">'+d.session+'</span></div>';
+
+  if(compact){
+    const plyoRows = d.plyo ? [
+      {n:'Pogo Hop', v:'3 × 12 · bodyweight'},
+      {n:'Jump Squat (land and hold)', v:'3 × 4 · bodyweight'},
+      {n:'Ankling', v:'2 × 20 m'}
+    ] : [];
+    view.innerHTML = head +
+      (d.plyo ? '<div class="quick"><div class="qgroup">Plyometrics · Phase 1</div>'+
+        plyoRows.map(r=>'<div class="qrow"><span class="qn">'+r.n+'</span><span class="qv">'+r.v+'</span></div>').join('')+
+        '</div>' : '') +
+      '<div class="quick"><div class="qgroup">Lifting</div>'+
+      d.lifts.map(m=>'<div class="qrow"><span class="qn">'+m.name+'</span><span class="qv"><b>'+
+        m.prescribe[0]+'</b>'+(m.prescribe[1]?' · '+m.prescribe[1]:'')+'</span></div>').join('')+
+      '</div>';
+    return;
+  }
+
+  const plyoCard = d.plyo ?
+    '<div class="meal pair"><div class="top"><span class="slot">Plyometrics · 8–10 min</span>'+
+    '<span class="badge prep">Do first</span></div>'+
+    '<h3>Phase 1 · Pogo hops, jump-and-stick, ankling</h3>'+
+    '<div class="mline"><span class="chip k">3 × 12</span><span class="chip">3 × 4</span>'+
+    '<span class="chip">2 × 20m</span><span class="chip o">~48 contacts</span></div>'+
+    '<p class="ing">Straight after the warm-up, before touching a barbell. Start at <b>Phase 1</b> — the full ladder is below. Around 48 ground contacts to begin with, building to 100 over several months.</p>'+
+    '<p class="cue"><b>Why first:</b> plyometrics is a nervous-system quality. Done after squats it becomes slow, heavy landings — exactly the load the calf and shin handle worst.</p></div>' : '';
+
+  view.innerHTML = head +
+    '<div class="block"><span class="t">'+d.warm.t+'</span><h3>'+d.warm.h+'</h3><p>'+d.warm.p+'</p></div>'+
+    plyoCard +
+    d.lifts.map(m=>(
+      '<div class="meal"><div class="top"><span class="slot">'+m.slot+'</span>'+
+      '<span class="badge '+m.badge+'">'+m.blabel+'</span></div>'+
+      '<h3>'+m.name+'</h3>'+
+      '<div class="mline">'+
+        m.prescribe.map((p,k)=>'<span class="chip'+(k===0?' k':'')+'">'+p+'</span>').join('')+
+      '</div>'+
+      '<p class="ing">'+m.ing+'</p>'+
+      '<p class="cue">'+m.cue+'</p></div>'
+    )).join('');
+}
+render();
+</script>
+</body>
+</html>

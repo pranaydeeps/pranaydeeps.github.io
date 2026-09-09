@@ -27,6 +27,14 @@
         {% endif %}
       {% endfor %}
 
+      {% comment %}
+        The training plans are standalone HTML with no front matter, so the loop
+        above cannot see them. Their URLs are stable: to publish a new block,
+        overwrite training/running/index.html or training/strength/index.html.
+      {% endcomment %}
+      <a class="sidebar-nav-item" href="/training/running/">Running</a>
+      <a class="sidebar-nav-item" href="/training/strength/">Strength</a>
+
 <!--       <a class="sidebar-nav-item" href="{{ site.github.repo }}/archive/v{{ site.version }}.zip">Download</a> -->
       <!-- <a class="sidebar-nav-item" href="{{ site.github.repo }}">GitHub</a> -->
       <!-- <span class="sidebar-nav-item">Currently v{{ site.version }}</span> -->

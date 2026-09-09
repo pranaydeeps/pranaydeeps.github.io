@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Autumn Base Block — Sep–Dec 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FAF6EE;--paper:#FFFDF8;--ink:#1F2418;--ink-soft:#5C6152;--line:#DED6C5;
+  --green:#2F5D3A;--green-pale:#E4EDE2;--persimmon:#D2542B;--persimmon-pale:#FAE5DC;
+  --gold:#C9922B;--gold-pale:#F7EBD2;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.55}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px 80px}
+h1,h2,h3{font-family:'Bricolage Grotesque',serif;font-weight:800;letter-spacing:-.02em;margin:0}
+header{padding:56px 0 40px;border-bottom:2px solid var(--ink)}
+.dates{font-family:'Space Mono',monospace;font-size:13px;color:var(--ink-soft);margin-bottom:14px}
+h1{font-size:clamp(38px,8vw,68px);line-height:.98}
+.sub{margin-top:20px;font-size:18px;max-width:56ch;color:var(--ink-soft)}
+.headline{margin-top:34px;display:flex;flex-wrap:wrap;border:2px solid var(--ink);background:var(--paper)}
+.hcell{flex:1 1 150px;padding:18px 20px;border-right:1px solid var(--line)}
+.hcell:last-child{border-right:none}
+.hcell .from{font-family:'Space Mono',monospace;font-size:12px;color:var(--ink-soft)}
+.hcell .to{font-family:'Bricolage Grotesque',serif;font-size:28px;font-weight:800;line-height:1.1;margin-top:2px}
+.hcell .lbl{font-size:13px;color:var(--ink-soft);margin-top:4px}
+section{padding-top:52px}
+h2{font-size:clamp(24px,4.5vw,32px);margin-bottom:6px}
+.note{color:var(--ink-soft);font-size:15px;max-width:62ch;margin:8px 0 22px}
+table{width:100%;border-collapse:collapse;background:var(--paper);border:1px solid var(--line)}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);font-size:14px;vertical-align:top}
+th{font-family:'Space Mono',monospace;font-size:11.5px;color:var(--ink-soft);font-weight:400;background:#F5F0E4}
+tr:last-child td{border-bottom:none}
+td.z{font-weight:600;white-space:nowrap}
+td.num{font-family:'Space Mono',monospace;white-space:nowrap}
+.swatch{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:middle}
+.evidence{font-size:12.5px;color:var(--ink-soft);font-style:italic}
+.tmpl{border:1px solid var(--line);background:var(--paper)}
+.trow{display:flex;gap:14px;padding:12px 14px;border-bottom:1px solid var(--line);align-items:baseline}
+.trow:last-child{border-bottom:none}
+.tday{font-family:'Space Mono',monospace;font-size:12px;color:var(--ink-soft);width:44px;flex:none;padding-top:2px}
+.tbody{flex:1;font-size:14.5px}
+.tag{display:inline-block;font-family:'Space Mono',monospace;font-size:10.5px;padding:2px 7px;border-radius:3px;margin-right:7px;white-space:nowrap}
+.t-quality{background:var(--persimmon-pale);color:var(--persimmon)}
+.t-easy{background:var(--green-pale);color:var(--green)}
+.t-long{background:var(--gold-pale);color:#8A6414}
+.t-str{background:#E7E3F0;color:#4B3E72}
+.t-rest{background:#EDEAE1;color:var(--ink-soft)}
+.t-other{background:#DDEBEF;color:#255A6B}
+.t-mark{background:#DCE9E4;color:#1D5C4A}
+.wkhead{display:flex;padding:0 14px;font-family:'Space Mono',monospace;font-size:11px;color:var(--ink-soft);margin-bottom:6px}
+.wkhead span:nth-child(1){width:52px}
+.wkhead span:nth-child(2){flex:1}
+.wkhead span:nth-child(3){width:62px;text-align:right}
+.wkhead span:nth-child(4){width:52px;text-align:right}
+.week{border:1px solid var(--line);background:var(--paper);margin-bottom:6px}
+.week.down{background:#F6F2E7}
+.wbar{display:flex;align-items:center;padding:13px 14px;cursor:pointer;border:none;background:none;width:100%;text-align:left;font:inherit;color:inherit;border-left:4px solid transparent}
+.wbar:hover{background:#F4EFE3}
+.wbar:focus-visible{outline:2px solid var(--persimmon);outline-offset:-2px}
+.week[data-phase="Recovery"] .wbar{border-left-color:#B9B3A4}
+.week[data-phase="Recalibrate"] .wbar{border-left-color:var(--green)}
+.week[data-phase="Build"] .wbar{border-left-color:var(--gold)}
+.week[data-phase="Consolidate"] .wbar{border-left-color:var(--persimmon)}
+.wnum{width:52px;flex:none;font-family:'Space Mono',monospace;font-size:13px;font-weight:700}
+.wmid{flex:1;min-width:0;padding-right:10px}
+.wfocus{font-weight:600;font-size:14.5px}
+.wdate{font-family:'Space Mono',monospace;font-size:11.5px;color:var(--ink-soft)}
+.wvol{width:62px;text-align:right;font-family:'Space Mono',monospace;font-size:14px;font-weight:700;flex:none}
+.wruns{width:52px;text-align:right;font-family:'Space Mono',monospace;font-size:12px;color:var(--ink-soft);flex:none}
+.chev{width:18px;text-align:right;color:var(--ink-soft);font-size:12px;flex:none;transition:transform .15s}
+.week.open .chev{transform:rotate(90deg)}
+.wdetail{display:none;border-top:1px solid var(--line);padding:4px 0}
+.week.open .wdetail{display:block}
+.day{display:flex;gap:12px;padding:9px 14px 9px 18px;border-bottom:1px solid #EFE9DB;align-items:baseline}
+.day:last-child{border-bottom:none}
+.dname{font-family:'Space Mono',monospace;font-size:11.5px;color:var(--ink-soft);width:40px;flex:none;padding-top:3px}
+.dbody{flex:1;font-size:14px}
+.dsess{margin-bottom:5px}
+.dsess:last-child{margin-bottom:0}
+.dsess em{font-style:normal;color:var(--ink-soft);font-size:13px;display:block;margin-top:1px}
+.milestone{margin:12px 14px 14px;padding:11px 14px;background:var(--persimmon-pale);border-left:4px solid var(--persimmon);font-size:14px}
+.gate{border:1px solid var(--line);background:var(--paper);padding:14px 16px;margin-bottom:6px;display:flex;gap:16px;flex-wrap:wrap;align-items:baseline}
+.gwk{font-family:'Space Mono',monospace;font-size:12px;color:var(--ink-soft);width:70px;flex:none}
+.gnum{font-family:'Bricolage Grotesque',serif;font-size:26px;font-weight:800;width:74px;flex:none;line-height:1}
+.gnum span{font-family:'Inter',sans-serif;font-size:11px;font-weight:400;color:var(--ink-soft);display:block}
+.gbody{flex:1;min-width:200px;font-size:14px}
+.gbody em{font-style:normal;display:block;color:var(--ink-soft);font-size:13px;margin-top:3px}
+ol.rules{counter-reset:r;list-style:none;padding:0;margin:0}
+ol.rules li{counter-increment:r;position:relative;padding:13px 0 13px 44px;border-bottom:1px solid var(--line);font-size:15px}
+ol.rules li:last-child{border-bottom:none}
+ol.rules li::before{content:counter(r);position:absolute;left:0;top:13px;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;color:var(--persimmon);width:26px;height:26px;border:1.5px solid var(--persimmon);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.targets{display:flex;flex-wrap:wrap;border:2px solid var(--ink);background:var(--paper);margin-top:8px}
+.tg{flex:1 1 140px;padding:16px 18px;border-right:1px solid var(--line)}
+.tg:last-child{border-right:none}
+.tg b{font-family:'Bricolage Grotesque',serif;font-size:26px;font-weight:800;display:block;line-height:1.1}
+.tg span{font-size:13px;color:var(--ink-soft)}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-soft)}
+@media(max-width:560px){
+  .wruns,.wkhead span:nth-child(4){display:none}
+  .hcell{flex:1 1 100%;border-right:none;border-bottom:1px solid var(--line)}
+  .hcell:last-child{border-bottom:none}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.site-back{display:inline-block;margin:24px 0 -8px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+.site-back:hover{color:var(--green);border-bottom-color:var(--green)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a class="site-back" href="/">&larr; Pranaydeep Singh</a>
+
+
+<header>
+  <div class="dates">21 SEP — 27 DEC 2026 · 14 WEEKS · BRIDGE TO SOFICO GENT 11K</div>
+  <h1>Autumn base block</h1>
+  <p class="sub">Volume and progression, no racing. Frequency first, then kilometres, then everything else. The right shin sets the ceiling on all of it.</p>
+  <div class="headline">
+    <div class="hcell"><div class="from">3 runs/week</div><div class="to">5 runs</div><div class="lbl">One added at a time, four weeks apart</div></div>
+    <div class="hcell"><div class="from">25 km/week</div><div class="to">44 km</div><div class="lbl">Never more than 10% up, down week every fourth</div></div>
+    <div class="hcell"><div class="from">8:05/km at 145 bpm</div><div class="to">~7:35/km</div><div class="lbl">Same heart rate, faster clock, by December</div></div>
+  </div>
+</header>
+
+<section>
+  <h2>Zones</h2>
+  <p class="note">Built on your lab-tested LTHR of 167. Paces come from your own last three weeks, not a formula — each row lists the session it was read from. Heart rate is the target on hard days; pace is the sanity check.</p>
+  <table>
+    <thead><tr><th>Zone</th><th>Heart rate</th><th>Pace</th><th>Read from</th></tr></thead>
+    <tbody>
+      <tr><td class="z"><span class="swatch" style="background:#B9B3A4"></span>1 Recovery</td><td class="num">&lt;135</td><td class="num">8:35–9:05</td><td class="evidence">1 Sep opening km, 8:49 at 125</td></tr>
+      <tr><td class="z"><span class="swatch" style="background:var(--green)"></span>2 Easy</td><td class="num">135–148</td><td class="num">7:50–8:30</td><td class="evidence">1 Sep, 8:33 at 136; 30 Aug, 7:56 at 144</td></tr>
+      <tr><td class="z"><span class="swatch" style="background:var(--gold)"></span>3 Steady</td><td class="num">149–157</td><td class="num">7:15–7:35</td><td class="evidence">15 Aug, 7:22 at 157</td></tr>
+      <tr><td class="z"><span class="swatch" style="background:var(--persimmon)"></span>4 Threshold</td><td class="num">158–166</td><td class="num">6:50–7:05 held<br>6:20–6:40 in reps</td><td class="evidence">30 Aug, 6:48 at 165 held; 2 Sep, 6:10 at 162 in reps</td></tr>
+      <tr><td class="z"><span class="swatch" style="background:#8B2E12"></span>5 VO2</td><td class="num">167+</td><td class="num">5:40–6:05</td><td class="evidence">27 Aug, 6:02 at 167 over 500 m</td></tr>
+    </tbody>
+  </table>
+  <p class="note" style="margin-top:18px">Reference 5K: <strong>32:30, or 6:30/km</strong>. Your short reps run faster than that and your continuous efforts run slower — that gap is why the sessions below are prescribed by heart rate. Chase the bpm, let the pace be whatever it is on the day.</p>
+</section>
+
+<section>
+  <h2>The week</h2>
+  <p class="note">Day A and Day B are fixed and unchanged every week, including down weeks. Legs go on Tuesday alongside the hard run so the hard day is genuinely hard and Wednesday and Thursday stay genuinely easy. Upper body on Thursday adds no leg load before Saturday.</p>
+  <div class="tmpl">
+    <div class="trow"><div class="tday">MON</div><div class="tbody"><span class="tag t-rest">rest</span>Full rest. Optional Start to Crawl session at Rooigem — technique only, not training.</div></div>
+    <div class="trow"><div class="tday">TUE</div><div class="tbody"><span class="tag t-quality">quality</span>Hard run in the morning<br><span class="tag t-str">day A</span>Legs and plyometrics, evening</div></div>
+    <div class="trow"><div class="tday">WED</div><div class="tbody"><span class="tag t-easy">easy</span>Easy run, Zone 2, no exceptions</div></div>
+    <div class="trow"><div class="tday">THU</div><div class="tbody"><span class="tag t-easy">easy</span>Easy run in the morning<br><span class="tag t-str">day B</span>Upper body, evening</div></div>
+    <div class="trow"><div class="tday">FRI</div><div class="tbody"><span class="tag t-rest">rest</span>Rest until Week 6, then <span class="tag t-easy" style="margin-left:4px">easy</span>short recovery run</div></div>
+    <div class="trow"><div class="tday">SAT</div><div class="tbody"><span class="tag t-long">long</span>Long run, Zone 2 throughout</div></div>
+    <div class="trow"><div class="tday">SUN</div><div class="tbody"><span class="tag t-other">football</span>The flex session. First thing cut when the right side complains.</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Fourteen weeks</h2>
+  <p class="note">Tap a week to open it. Down weeks are shaded.</p>
+  <div class="wkhead"><span>Week</span><span>Focus</span><span>Volume</span><span>Runs</span></div>
+  <div id="weeks"></div>
+</section>
+
+<section>
+  <h2>Plyometric progression</h2>
+  <p class="note">Ground contacts per session, inside Day A. Each step up is gated on your right side staying quiet — the gate is a requirement, not a suggestion. If symptoms appear, drop back one level and hold there for three weeks.</p>
+  <div id="plyo"></div>
+</section>
+
+<section>
+  <h2>Seven rules</h2>
+  <ol class="rules">
+    <li>The right shin and calf outrank the plan. Symptoms mean the session stops, not that you push through.</li>
+    <li>Add one run at a time, four weeks apart. Never add a run and raise volume in the same week.</li>
+    <li>Volume rises no more than 10% per week, with a down week every fourth.</li>
+    <li>Two quality sessions per week, maximum. As volume grows, only the easy running grows.</li>
+    <li>Hard sessions are steered by heart rate. Pace is the sanity check, not the target.</li>
+    <li>Day A and Day B happen every week, unchanged. Cut running before you cut strength.</li>
+    <li>No racing in this block. The Week 12 benchmark is a repeat of a Week 1 run, not a time trial.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>Where this lands by 27 December</h2>
+  <div class="targets">
+    <div class="tg"><b>5</b><span>runs per week, held for eight weeks</span></div>
+    <div class="tg"><b>44 km</b><span>peak week, up from 25</span></div>
+    <div class="tg"><b>~7:35</b><span>per km easy at 145 bpm, from 8:05</span></div>
+    <div class="tg"><b>~30:30</b><span>5K equivalent, from 32:30</span></div>
+  </div>
+  <p class="note" style="margin-top:20px">That base is what the 13-week Sofico Gent 11K plan gets built on from early January. Arrive there with five running days already habitual and the block becomes a sharpening job rather than another rebuild.</p>
+</section>
+
+<footer>Zones from your lactate test. Paces read from your own sessions, 15 August – 2 September 2026.</footer>
+</div>
+
+<script>
+const PLYO=[
+ {wk:"Weeks 1–4",n:48,c:"Pogo hops 2×12, ankle hops 2×12",g:"Entry level. Stop immediately if the right shin or calf speaks up."},
+ {wk:"Weeks 5–8",n:64,c:"Add low box jumps 2×8, skips 2×8",g:"Gate: two consecutive symptom-free weeks at 48 contacts."},
+ {wk:"Weeks 9–12",n:80,c:"Add bounding 2×8, single-leg hops 2×6 per side",g:"Gate: three consecutive symptom-free weeks at 64 contacts."},
+ {wk:"Week 13 on",n:100,c:"Full progression carried into the 11K block",g:"Gate: three consecutive symptom-free weeks at 80 contacts."}
+];
+const S=(t,txt,sub)=>({t,txt,sub});
+const REST=S("rest","Full rest","Optional Start to Crawl swim, technique only");
+const DAYA=S("str","Day A — legs and plyometrics","Evening, unchanged every week. Plyos per the progression");
+const DAYB=S("str","Day B — upper body","Evening, unchanged every week");
+const FOOT=S("other","Football","Skip it if the right side is grumbling or the long run went past 14 km");
+
+const WEEKS=[
+{n:0,d:"21–27 Sep",p:"Recovery",f:"Absorb the race",v:14,r:3,down:true,
+ days:[["Mon",[REST]],["Tue",[S("rest","Rest or a walk","Nothing with impact")]],["Wed",[S("easy","4 km very easy","Under 135 bpm")]],["Thu",[S("rest","Rest"),DAYB]],["Fri",[S("easy","4 km very easy","Under 135 bpm")]],["Sat",[S("easy","6 km easy","135–148 bpm")]],["Sun",[S("rest","Rest or a gentle kickabout","No competitive football this week")]]],
+ ms:"Nothing here builds fitness. It protects what you just earned."},
+
+{n:1,d:"28 Sep – 4 Oct",p:"Recalibrate",f:"Set the benchmark",v:24,r:3,down:false,
+ days:[["Mon",[REST]],["Tue",[S("quality","8 km easy + 6 × 20 s strides","Strides at 5:40–5:55/km, relaxed, full recovery between"),DAYA]],["Wed",[S("mark","Benchmark run — 6 km at 145 bpm","Pick a flat route you'll repeat exactly in Week 12. Hold 145 bpm and let the pace be whatever it is. Expect around 8:05/km")]],["Thu",[S("rest","Rest"),DAYB]],["Fri",[S("rest","Rest")]],["Sat",[S("long","10 km long","135–148 bpm throughout, 7:55–8:30/km")]],["Sun",[FOOT]]],
+ ms:"Save Wednesday's route. It is the only progress measure in this block and it costs you nothing."},
+
+{n:2,d:"5–11 Oct",p:"Recalibrate",f:"Add the fourth run",v:27,r:4,down:false,
+ days:[["Mon",[REST]],["Tue",[S("quality","6 km easy + 6 × 20 s strides"),DAYA]],["Wed",[S("easy","5 km easy","135–148 bpm")]],["Thu",[S("easy","5 km easy — the new fourth run"),DAYB]],["Fri",[S("rest","Rest")]],["Sat",[S("long","11 km long")]],["Sun",[FOOT]]],
+ ms:"Run #4 joins on Thursday. Volume barely moves this week — that is deliberate."},
+
+{n:3,d:"12–18 Oct",p:"Recalibrate",f:"First real quality session",v:30,r:4,down:false,
+ days:[["Mon",[REST]],["Tue",[S("quality","4 × 800 m at threshold — 8 km total","2 min jog between. Target 158–166 bpm; pace should land near 6:25–6:40/km"),DAYA]],["Wed",[S("easy","6 km easy")]],["Thu",[S("easy","5 km easy"),DAYB]],["Fri",[S("rest","Rest")]],["Sat",[S("long","11 km long")]],["Sun",[FOOT]]]},
+
+{n:4,d:"19–25 Oct",p:"Recalibrate",f:"Down week",v:24,r:4,down:true,
+ days:[["Mon",[REST]],["Tue",[S("quality","6 km easy + 6 × 20 s strides"),DAYA]],["Wed",[S("easy","5 km easy")]],["Thu",[S("easy","5 km easy"),DAYB]],["Fri",[S("rest","Rest")]],["Sat",[S("long","8 km long")]],["Sun",[FOOT]]],
+ ms:"Running drops, strength does not. If the right side has been quiet all month, plyos step to 64 contacts next week."},
+
+{n:5,d:"26 Oct – 1 Nov",p:"Build",f:"Volume climbs",v:32,r:4,down:false,
+ days:[["Mon",[REST]],["Tue",[S("quality","5 × 800 m at threshold — 8 km total","2 min jog between. 158–166 bpm"),DAYA]],["Wed",[S("easy","6 km easy")]],["Thu",[S("easy","6 km easy"),DAYB]],["Fri",[S("rest","Rest")]],["Sat",[S("long","12 km long","Last 2 km may drift to 149–157 bpm")]],["Sun",[FOOT]]]},
+
+{n:6,d:"2–8 Nov",p:"Build",f:"Add the fifth run",v:35,r:5,down:false,
+ days:[["Mon",[REST]],["Tue",[S("quality","20 min continuous tempo — 9 km total","Unbroken at 155–163 bpm. Expect 6:50–7:05/km — far slower than your interval pace, and that is correct"),DAYA]],["Wed",[S("easy","6 km easy")]],["Thu",[S("easy","6 km easy"),DAYB]],["Fri",[S("easy","4 km recovery — the new fifth run","Under 135 bpm. Slower than feels natural")]],["Sat",[S("long","10 km long")]],["Sun",[FOOT]]],
+ ms:"Run #5 joins on Friday. The long run drops to make room; the weekly total still rises."},
+
+{n:7,d:"9–15 Nov",p:"Build",f:"Longer reps",v:37,r:5,down:false,
+ days:[["Mon",[REST]],["Tue",[S("quality","5 × 1000 m at threshold — 9 km total","2 min jog between. Hold 158–166 bpm — resist the urge to run these at 6:10/km"),DAYA]],["Wed",[S("easy","7 km easy")]],["Thu",[S("easy","6 km easy"),DAYB]],["Fri",[S("easy","4 km recovery")]],["Sat",[S("long","11 km long")]],["Sun",[FOOT]]]},
+
+{n:8,d:"16–22 Nov",p:"Build",f:"Down week",v:28,r:5,down:true,
+ days:[["Mon",[REST]],["Tue",[S("quality","6 km easy + 6 × 20 s strides"),DAYA]],["Wed",[S("easy","5 km easy")]],["Thu",[S("easy","5 km easy"),DAYB]],["Fri",[S("easy","4 km recovery")]],["Sat",[S("long","8 km long")]],["Sun",[FOOT]]],
+ ms:"Plyos step to 80 contacts next week if the last three weeks were clean."},
+
+{n:9,d:"23–29 Nov",p:"Consolidate",f:"Five runs, full volume",v:38,r:5,down:false,
+ days:[["Mon",[REST]],["Tue",[S("quality","6 × 800 m at threshold — 9 km total","90 s jog between — shorter recovery than October"),DAYA]],["Wed",[S("easy","7 km easy")]],["Thu",[S("easy","6 km easy"),DAYB]],["Fri",[S("easy","4 km recovery")]],["Sat",[S("long","12 km long")]],["Sun",[FOOT]]]},
+
+{n:10,d:"30 Nov – 6 Dec",p:"Consolidate",f:"Sustained threshold",v:41,r:5,down:false,
+ days:[["Mon",[REST]],["Tue",[S("quality","2 × 15 min sub-threshold — 10 km total","5 min jog between. 155–162 bpm, controlled"),DAYA]],["Wed",[S("easy","7 km easy")]],["Thu",[S("easy","6 km easy"),DAYB]],["Fri",[S("easy","4 km recovery")]],["Sat",[S("long","14 km long","Fuel this one — 30 g carbs at 45 minutes")]],["Sun",[S("other","Football — or skip","Long run hit 14 km. Play half or sit it out")]]]},
+
+{n:11,d:"7–13 Dec",p:"Consolidate",f:"Peak week",v:44,r:5,down:false,
+ days:[["Mon",[REST]],["Tue",[S("quality","5 × 1000 m at threshold — 10 km total","2 min jog between"),DAYA]],["Wed",[S("easy","8 km easy")]],["Thu",[S("easy","6 km easy"),DAYB]],["Fri",[S("easy","4 km recovery")]],["Sat",[S("long","16 km long","Around 2h10 at Zone 2. Practise fuelling properly")]],["Sun",[S("rest","Rest","Skip football after a 16 km long run")]]],
+ ms:"Biggest week of the block. If anything is going to complain, it complains here. Listen to it."},
+
+{n:12,d:"14–20 Dec",p:"Consolidate",f:"Down week and benchmark repeat",v:33,r:5,down:true,
+ days:[["Mon",[REST]],["Tue",[S("quality","6 km easy + 6 × 20 s strides"),DAYA]],["Wed",[S("mark","Benchmark repeat — 6 km at 145 bpm","Same route, same heart rate as Week 1. The pace difference is your entire block, measured without a single hard effort")]],["Thu",[S("easy","5 km easy"),DAYB]],["Fri",[S("easy","4 km recovery")]],["Sat",[S("long","12 km long")]],["Sun",[FOOT]]],
+ ms:"Twelve weeks apart, same route, same bpm. If Wednesday reads around 7:35/km, the block worked."},
+
+{n:13,d:"21–27 Dec",p:"Consolidate",f:"Hold through the holidays",v:40,r:5,down:false,
+ days:[["Mon",[REST]],["Tue",[S("quality","25 min continuous tempo — 10 km total","Unbroken at 155–163 bpm. Compare how it feels to Week 6"),DAYA]],["Wed",[S("easy","7 km easy")]],["Thu",[S("easy","6 km easy"),DAYB]],["Fri",[S("easy","4 km recovery")]],["Sat",[S("long","13 km long")]],["Sun",[FOOT]]],
+ ms:"Hold, don't push. The 11K block starts in early January off this base."}
+];
+
+const TAGNAME={quality:"quality",easy:"easy",long:"long",str:"strength",rest:"rest",other:"other",mark:"benchmark"};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+document.getElementById("weeks").innerHTML=WEEKS.map(w=>`
+<div class="week${w.down?" down":""}" data-phase="${w.p}">
+  <button class="wbar" aria-expanded="false">
+    <span class="wnum">${w.n===0?"REC":"W"+w.n}</span>
+    <span class="wmid"><span class="wfocus">${esc(w.f)}</span><br><span class="wdate">${esc(w.d)} · ${esc(w.p)}</span></span>
+    <span class="wvol">${w.v} km</span>
+    <span class="wruns">${w.r} runs</span>
+    <span class="chev">&#9656;</span>
+  </button>
+  <div class="wdetail">
+    ${w.days.map(([d,ss])=>`<div class="day"><div class="dname">${d}</div><div class="dbody">${ss.map(s=>`<div class="dsess"><span class="tag t-${s.t}">${TAGNAME[s.t]}</span>${esc(s.txt)}${s.sub?`<em>${esc(s.sub)}</em>`:""}</div>`).join("")}</div></div>`).join("")}
+    ${w.ms?`<div class="milestone">${esc(w.ms)}</div>`:""}
+  </div>
+</div>`).join("");
+
+document.getElementById("plyo").innerHTML=PLYO.map(p=>`
+<div class="gate">
+  <div class="gwk">${esc(p.wk)}</div>
+  <div class="gnum">${p.n}<span>contacts</span></div>
+  <div class="gbody">${esc(p.c)}<em>${esc(p.g)}</em></div>
+</div>`).join("");
+
+document.querySelectorAll(".wbar").forEach(b=>{
+  b.addEventListener("click",()=>{
+    const w=b.parentElement,open=w.classList.toggle("open");
+    b.setAttribute("aria-expanded",open?"true":"false");
+  });
+});
+</script>
+</body>
+</html>
